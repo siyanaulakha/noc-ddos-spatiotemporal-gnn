@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Please cite this repository if you use its code, data contracts, or experimental methodology."
+title: "NoC DDoS Spatiotemporal GNN"
+type: software
+authors:
+  - family-names: "Naulakha"
+    given-names: "Siya"
+repository-code: "REPLACE_WITH_GITHUB_REPOSITORY_URL"
+license: "NOASSERTION"
+version: "0.1.0"
+date-released: "2026-07-30"
+keywords:
+  - Network-on-Chip
+  - DDoS detection
+  - Graph neural networks
+  - Hardware security
+  - Spatiotemporal learning

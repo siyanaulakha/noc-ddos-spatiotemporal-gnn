@@ -1,0 +1,67 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editors
+.vscode/
+.idea/
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+
+# Large datasets
+data/raw/
+data/interim/
+data/processed/
+*.npy
+*.npz
+*.memmap
+*.mmap
+*.h5
+*.hdf5
+
+# Model checkpoints
+models/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Generated model formats
+*.onnx
+*.tflite
+
+# Logs and trackers
+logs/
+nohup.out
+wandb/
+runs/
+tensorboard/
+profiler/
+
+# Private copies of papers
+references/private_pdfs/
+
+# Generated RTL and simulation outputs
+rtl/build/
+rtl/generated/
+*.vcd
+*.fst
+
+# Temporary files
+*.tmp
+*.bak
+*~
+.DS_Store
+
+# Archives
+*.zip
+*.tar
+*.tar.gz

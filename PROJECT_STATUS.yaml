@@ -1,0 +1,40 @@
+project:
+  name: noc-ddos-spatiotemporal-gnn
+  status: active
+
+current_dataset:
+  name: v5_p2
+  status: ACTIVE
+
+current_protocol:
+  name: v5_p2_g0
+  status: FROZEN
+
+completed:
+  - v3_baseline_experiments
+  - v3_failure_analysis
+  - v4_all16_chronological_dataset
+  - v5_p2_pair_aligned_dataset
+  - v5_p2_g0_protocol
+  - v5_p2_g1c_source_only_operator_matrix
+
+active:
+  - repository_reconstruction
+  - v5_p2_validation_analysis
+
+planned:
+  - g2_graph_detection
+  - g3_role_aware_localization
+  - task_d_full_multitask
+  - frozen_blind_test_evaluation
+  - quantization
+  - rtl_handoff
+
+superseded:
+  - v3_dataset
+  - v4_dataset
+
+scientific_policy:
+  current_claims_use_v5_p2_only: true
+  blind_test_for_model_selection: false
+  unfinished_results_must_be_marked_planned: true
