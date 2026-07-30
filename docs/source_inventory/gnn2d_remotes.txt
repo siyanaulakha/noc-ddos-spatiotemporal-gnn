@@ -1,0 +1,2 @@
+origin	https://github.com/siyanaulakha/GNN-2d.git (fetch)
+origin	https://github.com/siyanaulakha/GNN-2d.git (push)
