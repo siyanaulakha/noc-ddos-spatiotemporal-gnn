@@ -1,0 +1,839 @@
+{
+  "dataset": {
+    "class": "V5P2PairAlignedPrimary58Dataset",
+    "train_batch": {
+      "attack_rows": 4,
+      "binary_values": [
+        0,
+        1
+      ],
+      "control_rows": 4,
+      "flattened_x_shape": [
+        8,
+        16,
+        58,
+        32
+      ],
+      "flattened_y_source_shape": [
+        8,
+        16
+      ],
+      "original_prefix_shape": [
+        8
+      ],
+      "pair_aligned_input": false,
+      "rows": 8,
+      "x_dtype": "torch.float32",
+      "x_shape": [
+        8,
+        16,
+        58,
+        32
+      ],
+      "y_source_dtype": "torch.float32",
+      "y_source_shape": [
+        8,
+        16
+      ]
+    },
+    "train_items": 70166,
+    "train_selection": {
+      "attack_items": 4,
+      "control_items": 4,
+      "items_scanned": 8,
+      "items_selected": 8,
+      "mixed_items": 0,
+      "selected_indices": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "validation_batch": {
+      "attack_rows": 1,
+      "binary_values": [
+        0,
+        1
+      ],
+      "control_rows": 7,
+      "flattened_x_shape": [
+        8,
+        16,
+        58,
+        32
+      ],
+      "flattened_y_source_shape": [
+        8,
+        16
+      ],
+      "original_prefix_shape": [
+        8
+      ],
+      "pair_aligned_input": false,
+      "rows": 8,
+      "x_dtype": "torch.float32",
+      "x_shape": [
+        8,
+        16,
+        58,
+        32
+      ],
+      "y_source_dtype": "torch.float32",
+      "y_source_shape": [
+        8,
+        16
+      ]
+    },
+    "validation_items": 12528,
+    "validation_selection": {
+      "attack_items": 1,
+      "control_items": 7,
+      "items_scanned": 83,
+      "items_selected": 8,
+      "mixed_items": 0,
+      "selected_indices": [
+        0,
+        82,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  "decision": "AUTHORIZE_CLEAN_G1C_SOURCE_ONLY_TRAINING_IMPLEMENTATION",
+  "device": "cuda",
+  "failures": [],
+  "historical_smoke_outputs_touched": false,
+  "interface_probe": {
+    "b3_class": "P2B3Conv1DOnlyCount4",
+    "b3_instantiation_attempts": [
+      {
+        "class": "CausalDepthwiseSeparableResidualBlock",
+        "kwargs": {},
+        "parameter_count": 4416
+      },
+      {
+        "class": "P2B3Conv1DOnlyCount4",
+        "kwargs": {},
+        "parameter_count": 43273
+      }
+    ],
+    "b3_kwargs": {},
+    "b3_parameter_count": 43273,
+    "clone_equivalence_max_abs_error": 0.0,
+    "cloned_source_head_state_sha256": "102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b",
+    "cloned_source_logits_shape": [
+      8,
+      16
+    ],
+    "cutpoint_candidates": [
+      {
+        "class": "Sequential",
+        "name": "source_head",
+        "score": 270
+      },
+      {
+        "class": "Linear",
+        "name": "source_head.0",
+        "score": 45
+      },
+      {
+        "class": "Linear",
+        "name": "source_head.2",
+        "score": 45
+      }
+    ],
+    "cutpoint_class": "Sequential",
+    "cutpoint_name": "source_head",
+    "embedding_dim": 64,
+    "forward_attempts_before_success": [
+      {
+        "error": "TypeError: P2B3Conv1DOnlyCount4.forward() missing 1 required positional argument: 'physical_port_mask'",
+        "variant": "positional_x"
+      },
+      {
+        "error": "TypeError: P2B3Conv1DOnlyCount4.forward() missing 1 required positional argument: 'physical_port_mask'",
+        "variant": "keyword_x"
+      },
+      {
+        "error": "TypeError: P2B3Conv1DOnlyCount4.forward() missing 1 required positional argument: 'physical_port_mask'",
+        "variant": "batch_dict"
+      }
+    ],
+    "forward_variant": "signature_batch_kwargs",
+    "normalized_embedding_shape": [
+      8,
+      16,
+      64
+    ],
+    "original_source_head_state_sha256": "102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b",
+    "original_source_logits_shape": [
+      8,
+      16
+    ],
+    "raw_cutpoint_input_shape": [
+      8,
+      16,
+      64
+    ]
+  },
+  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+  "operator_results": {
+    "conv1d": {
+      "b3_class": "P2B3Conv1DOnlyCount4",
+      "b3_failed_instantiation_attempts": [
+        {
+          "class": "CausalDepthwiseSeparableResidualBlock",
+          "kwargs": {},
+          "parameter_count": 4416
+        },
+        {
+          "class": "P2B3Conv1DOnlyCount4",
+          "kwargs": {},
+          "parameter_count": 43273
+        }
+      ],
+      "b3_forward_variant": "signature_batch_kwargs",
+      "b3_kwargs": {},
+      "b3_parameter_count": 43273,
+      "cuda_memory": {
+        "allocated_bytes": 19500032,
+        "max_allocated_bytes": 36950528,
+        "reserved_bytes": 56623104
+      },
+      "embedding_dim": 64,
+      "gradient_groups": {
+        "graph1": {
+          "all_gradient_tensors_finite": false,
+          "gradient_parameter_names": [],
+          "parameter_tensors": 0,
+          "total_absolute_gradient": 0.0,
+          "with_gradient": 0
+        },
+        "graph2": {
+          "all_gradient_tensors_finite": false,
+          "gradient_parameter_names": [],
+          "parameter_tensors": 0,
+          "total_absolute_gradient": 0.0,
+          "with_gradient": 0
+        },
+        "other": {
+          "all_gradient_tensors_finite": false,
+          "gradient_parameter_names": [],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 0.0,
+          "with_gradient": 0
+        },
+        "source_head": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "source_head.0.weight",
+            "source_head.0.bias",
+            "source_head.2.weight",
+            "source_head.2.bias"
+          ],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 6.9514288902282715,
+          "with_gradient": 4
+        },
+        "temporal_backbone": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "adapter.b3.input_projection.weight",
+            "adapter.b3.input_projection.bias",
+            "adapter.b3.temporal_blocks.0.depthwise.weight",
+            "adapter.b3.temporal_blocks.0.depthwise.bias",
+            "adapter.b3.temporal_blocks.0.pointwise.weight",
+            "adapter.b3.temporal_blocks.0.pointwise.bias",
+            "adapter.b3.temporal_blocks.1.depthwise.weight",
+            "adapter.b3.temporal_blocks.1.depthwise.bias",
+            "adapter.b3.temporal_blocks.1.pointwise.weight",
+            "adapter.b3.temporal_blocks.1.pointwise.bias",
+            "adapter.b3.temporal_blocks.2.depthwise.weight",
+            "adapter.b3.temporal_blocks.2.depthwise.bias",
+            "adapter.b3.temporal_blocks.2.pointwise.weight",
+            "adapter.b3.temporal_blocks.2.pointwise.bias",
+            "adapter.b3.temporal_blocks.3.depthwise.weight",
+            "adapter.b3.temporal_blocks.3.depthwise.bias",
+            "adapter.b3.temporal_blocks.3.pointwise.weight",
+            "adapter.b3.temporal_blocks.3.pointwise.bias",
+            "adapter.b3.node_projection.weight",
+            "adapter.b3.node_projection.bias"
+          ],
+          "parameter_tensors": 38,
+          "total_absolute_gradient": 14.57801990956068,
+          "with_gradient": 20
+        }
+      },
+      "gradient_summary": {
+        "parameter_tensors_with_finite_gradient": 24,
+        "parameter_tensors_with_gradient": 24,
+        "total_absolute_gradient": 21.529448799788952,
+        "trainable_parameter_tensors": 46
+      },
+      "initial_b3_state_sha256": "b66f4cea227d5f72e936ca8b691a9b74ffdde37f581a441df362711e51a5d37c",
+      "initial_source_head_state_sha256": "102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b",
+      "node_embedding_shape": [
+        8,
+        16,
+        64
+      ],
+      "operator": "conv1d",
+      "seed": 107,
+      "source_cutpoint_candidates": [
+        {
+          "class": "Sequential",
+          "name": "source_head",
+          "score": 270
+        },
+        {
+          "class": "Linear",
+          "name": "source_head.0",
+          "score": 45
+        },
+        {
+          "class": "Linear",
+          "name": "source_head.2",
+          "score": 45
+        }
+      ],
+      "source_cutpoint_class": "Sequential",
+      "source_cutpoint_name": "source_head",
+      "source_head_clone_class": "Sequential",
+      "status": "PASS",
+      "total_parameter_count": 45386,
+      "train_logits_shape": [
+        8,
+        16
+      ],
+      "train_loss_before_step": 0.6296700239181519,
+      "trainable_parameter_count": 45386,
+      "validation_logits_shape": [
+        8,
+        16
+      ],
+      "validation_loss_after_step": 0.6032592058181763
+    },
+    "gatconv": {
+      "b3_class": "P2B3Conv1DOnlyCount4",
+      "b3_failed_instantiation_attempts": [
+        {
+          "class": "CausalDepthwiseSeparableResidualBlock",
+          "kwargs": {},
+          "parameter_count": 4416
+        },
+        {
+          "class": "P2B3Conv1DOnlyCount4",
+          "kwargs": {},
+          "parameter_count": 43273
+        }
+      ],
+      "b3_forward_variant": "signature_batch_kwargs",
+      "b3_kwargs": {},
+      "b3_parameter_count": 43273,
+      "cuda_memory": {
+        "allocated_bytes": 19643392,
+        "max_allocated_bytes": 37022208,
+        "reserved_bytes": 56623104
+      },
+      "embedding_dim": 64,
+      "gradient_groups": {
+        "graph1": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "graph1.att_src",
+            "graph1.att_dst",
+            "graph1.bias",
+            "graph1.lin.weight"
+          ],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 2.8551281162071973,
+          "with_gradient": 4
+        },
+        "graph2": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "graph2.att_src",
+            "graph2.att_dst",
+            "graph2.bias",
+            "graph2.lin.weight"
+          ],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 2.7894047447996773,
+          "with_gradient": 4
+        },
+        "other": {
+          "all_gradient_tensors_finite": false,
+          "gradient_parameter_names": [],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 0.0,
+          "with_gradient": 0
+        },
+        "source_head": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "source_head.0.weight",
+            "source_head.0.bias",
+            "source_head.2.weight",
+            "source_head.2.bias"
+          ],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 5.271833270788193,
+          "with_gradient": 4
+        },
+        "temporal_backbone": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "adapter.b3.input_projection.weight",
+            "adapter.b3.input_projection.bias",
+            "adapter.b3.temporal_blocks.0.depthwise.weight",
+            "adapter.b3.temporal_blocks.0.depthwise.bias",
+            "adapter.b3.temporal_blocks.0.pointwise.weight",
+            "adapter.b3.temporal_blocks.0.pointwise.bias",
+            "adapter.b3.temporal_blocks.1.depthwise.weight",
+            "adapter.b3.temporal_blocks.1.depthwise.bias",
+            "adapter.b3.temporal_blocks.1.pointwise.weight",
+            "adapter.b3.temporal_blocks.1.pointwise.bias",
+            "adapter.b3.temporal_blocks.2.depthwise.weight",
+            "adapter.b3.temporal_blocks.2.depthwise.bias",
+            "adapter.b3.temporal_blocks.2.pointwise.weight",
+            "adapter.b3.temporal_blocks.2.pointwise.bias",
+            "adapter.b3.temporal_blocks.3.depthwise.weight",
+            "adapter.b3.temporal_blocks.3.depthwise.bias",
+            "adapter.b3.temporal_blocks.3.pointwise.weight",
+            "adapter.b3.temporal_blocks.3.pointwise.bias",
+            "adapter.b3.node_projection.weight",
+            "adapter.b3.node_projection.bias"
+          ],
+          "parameter_tensors": 38,
+          "total_absolute_gradient": 8.906600330024958,
+          "with_gradient": 20
+        }
+      },
+      "gradient_summary": {
+        "parameter_tensors_with_finite_gradient": 32,
+        "parameter_tensors_with_gradient": 32,
+        "total_absolute_gradient": 19.822966461820027,
+        "trainable_parameter_tensors": 54
+      },
+      "initial_b3_state_sha256": "b66f4cea227d5f72e936ca8b691a9b74ffdde37f581a441df362711e51a5d37c",
+      "initial_source_head_state_sha256": "102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b",
+      "node_embedding_shape": [
+        8,
+        16,
+        64
+      ],
+      "operator": "gatconv",
+      "seed": 107,
+      "source_cutpoint_candidates": [
+        {
+          "class": "Sequential",
+          "name": "source_head",
+          "score": 270
+        },
+        {
+          "class": "Linear",
+          "name": "source_head.0",
+          "score": 45
+        },
+        {
+          "class": "Linear",
+          "name": "source_head.2",
+          "score": 45
+        }
+      ],
+      "source_cutpoint_class": "Sequential",
+      "source_cutpoint_name": "source_head",
+      "source_head_clone_class": "Sequential",
+      "status": "PASS",
+      "total_parameter_count": 53962,
+      "train_logits_shape": [
+        8,
+        16
+      ],
+      "train_loss_before_step": 0.6488603353500366,
+      "trainable_parameter_count": 53962,
+      "validation_logits_shape": [
+        8,
+        16
+      ],
+      "validation_loss_after_step": 0.631184995174408
+    },
+    "gcnconv": {
+      "b3_class": "P2B3Conv1DOnlyCount4",
+      "b3_failed_instantiation_attempts": [
+        {
+          "class": "CausalDepthwiseSeparableResidualBlock",
+          "kwargs": {},
+          "parameter_count": 4416
+        },
+        {
+          "class": "P2B3Conv1DOnlyCount4",
+          "kwargs": {},
+          "parameter_count": 43273
+        }
+      ],
+      "b3_forward_variant": "signature_batch_kwargs",
+      "b3_kwargs": {},
+      "b3_parameter_count": 43273,
+      "cuda_memory": {
+        "allocated_bytes": 19635200,
+        "max_allocated_bytes": 37018112,
+        "reserved_bytes": 56623104
+      },
+      "embedding_dim": 64,
+      "gradient_groups": {
+        "graph1": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "graph1.bias",
+            "graph1.lin.weight"
+          ],
+          "parameter_tensors": 2,
+          "total_absolute_gradient": 2.7624681442976,
+          "with_gradient": 2
+        },
+        "graph2": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "graph2.bias",
+            "graph2.lin.weight"
+          ],
+          "parameter_tensors": 2,
+          "total_absolute_gradient": 2.69996640086174,
+          "with_gradient": 2
+        },
+        "other": {
+          "all_gradient_tensors_finite": false,
+          "gradient_parameter_names": [],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 0.0,
+          "with_gradient": 0
+        },
+        "source_head": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "source_head.0.weight",
+            "source_head.0.bias",
+            "source_head.2.weight",
+            "source_head.2.bias"
+          ],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 3.897789776325226,
+          "with_gradient": 4
+        },
+        "temporal_backbone": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "adapter.b3.input_projection.weight",
+            "adapter.b3.input_projection.bias",
+            "adapter.b3.temporal_blocks.0.depthwise.weight",
+            "adapter.b3.temporal_blocks.0.depthwise.bias",
+            "adapter.b3.temporal_blocks.0.pointwise.weight",
+            "adapter.b3.temporal_blocks.0.pointwise.bias",
+            "adapter.b3.temporal_blocks.1.depthwise.weight",
+            "adapter.b3.temporal_blocks.1.depthwise.bias",
+            "adapter.b3.temporal_blocks.1.pointwise.weight",
+            "adapter.b3.temporal_blocks.1.pointwise.bias",
+            "adapter.b3.temporal_blocks.2.depthwise.weight",
+            "adapter.b3.temporal_blocks.2.depthwise.bias",
+            "adapter.b3.temporal_blocks.2.pointwise.weight",
+            "adapter.b3.temporal_blocks.2.pointwise.bias",
+            "adapter.b3.temporal_blocks.3.depthwise.weight",
+            "adapter.b3.temporal_blocks.3.depthwise.bias",
+            "adapter.b3.temporal_blocks.3.pointwise.weight",
+            "adapter.b3.temporal_blocks.3.pointwise.bias",
+            "adapter.b3.node_projection.weight",
+            "adapter.b3.node_projection.bias"
+          ],
+          "parameter_tensors": 38,
+          "total_absolute_gradient": 10.170749383978546,
+          "with_gradient": 20
+        }
+      },
+      "gradient_summary": {
+        "parameter_tensors_with_finite_gradient": 28,
+        "parameter_tensors_with_gradient": 28,
+        "total_absolute_gradient": 19.53097370546311,
+        "trainable_parameter_tensors": 50
+      },
+      "initial_b3_state_sha256": "b66f4cea227d5f72e936ca8b691a9b74ffdde37f581a441df362711e51a5d37c",
+      "initial_source_head_state_sha256": "102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b",
+      "node_embedding_shape": [
+        8,
+        16,
+        64
+      ],
+      "operator": "gcnconv",
+      "seed": 107,
+      "source_cutpoint_candidates": [
+        {
+          "class": "Sequential",
+          "name": "source_head",
+          "score": 270
+        },
+        {
+          "class": "Linear",
+          "name": "source_head.0",
+          "score": 45
+        },
+        {
+          "class": "Linear",
+          "name": "source_head.2",
+          "score": 45
+        }
+      ],
+      "source_cutpoint_class": "Sequential",
+      "source_cutpoint_name": "source_head",
+      "source_head_clone_class": "Sequential",
+      "status": "PASS",
+      "total_parameter_count": 53706,
+      "train_logits_shape": [
+        8,
+        16
+      ],
+      "train_loss_before_step": 0.632455050945282,
+      "trainable_parameter_count": 53706,
+      "validation_logits_shape": [
+        8,
+        16
+      ],
+      "validation_loss_after_step": 0.6073439121246338
+    },
+    "graphconv": {
+      "b3_class": "P2B3Conv1DOnlyCount4",
+      "b3_failed_instantiation_attempts": [
+        {
+          "class": "CausalDepthwiseSeparableResidualBlock",
+          "kwargs": {},
+          "parameter_count": 4416
+        },
+        {
+          "class": "P2B3Conv1DOnlyCount4",
+          "kwargs": {},
+          "parameter_count": 43273
+        }
+      ],
+      "b3_forward_variant": "signature_batch_kwargs",
+      "b3_kwargs": {},
+      "b3_parameter_count": 43273,
+      "cuda_memory": {
+        "allocated_bytes": 19766272,
+        "max_allocated_bytes": 37083648,
+        "reserved_bytes": 56623104
+      },
+      "embedding_dim": 64,
+      "gradient_groups": {
+        "graph1": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "graph1.lin_rel.weight",
+            "graph1.lin_rel.bias",
+            "graph1.lin_root.weight"
+          ],
+          "parameter_tensors": 3,
+          "total_absolute_gradient": 12.511689335107803,
+          "with_gradient": 3
+        },
+        "graph2": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "graph2.lin_rel.weight",
+            "graph2.lin_rel.bias",
+            "graph2.lin_root.weight"
+          ],
+          "parameter_tensors": 3,
+          "total_absolute_gradient": 12.011546909809113,
+          "with_gradient": 3
+        },
+        "other": {
+          "all_gradient_tensors_finite": false,
+          "gradient_parameter_names": [],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 0.0,
+          "with_gradient": 0
+        },
+        "source_head": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "source_head.0.weight",
+            "source_head.0.bias",
+            "source_head.2.weight",
+            "source_head.2.bias"
+          ],
+          "parameter_tensors": 4,
+          "total_absolute_gradient": 10.86055314540863,
+          "with_gradient": 4
+        },
+        "temporal_backbone": {
+          "all_gradient_tensors_finite": true,
+          "gradient_parameter_names": [
+            "adapter.b3.input_projection.weight",
+            "adapter.b3.input_projection.bias",
+            "adapter.b3.temporal_blocks.0.depthwise.weight",
+            "adapter.b3.temporal_blocks.0.depthwise.bias",
+            "adapter.b3.temporal_blocks.0.pointwise.weight",
+            "adapter.b3.temporal_blocks.0.pointwise.bias",
+            "adapter.b3.temporal_blocks.1.depthwise.weight",
+            "adapter.b3.temporal_blocks.1.depthwise.bias",
+            "adapter.b3.temporal_blocks.1.pointwise.weight",
+            "adapter.b3.temporal_blocks.1.pointwise.bias",
+            "adapter.b3.temporal_blocks.2.depthwise.weight",
+            "adapter.b3.temporal_blocks.2.depthwise.bias",
+            "adapter.b3.temporal_blocks.2.pointwise.weight",
+            "adapter.b3.temporal_blocks.2.pointwise.bias",
+            "adapter.b3.temporal_blocks.3.depthwise.weight",
+            "adapter.b3.temporal_blocks.3.depthwise.bias",
+            "adapter.b3.temporal_blocks.3.pointwise.weight",
+            "adapter.b3.temporal_blocks.3.pointwise.bias",
+            "adapter.b3.node_projection.weight",
+            "adapter.b3.node_projection.bias"
+          ],
+          "parameter_tensors": 38,
+          "total_absolute_gradient": 29.319973807781935,
+          "with_gradient": 20
+        }
+      },
+      "gradient_summary": {
+        "parameter_tensors_with_finite_gradient": 30,
+        "parameter_tensors_with_gradient": 30,
+        "total_absolute_gradient": 64.70376319810748,
+        "trainable_parameter_tensors": 52
+      },
+      "initial_b3_state_sha256": "b66f4cea227d5f72e936ca8b691a9b74ffdde37f581a441df362711e51a5d37c",
+      "initial_source_head_state_sha256": "102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b",
+      "node_embedding_shape": [
+        8,
+        16,
+        64
+      ],
+      "operator": "graphconv",
+      "seed": 107,
+      "source_cutpoint_candidates": [
+        {
+          "class": "Sequential",
+          "name": "source_head",
+          "score": 270
+        },
+        {
+          "class": "Linear",
+          "name": "source_head.0",
+          "score": 45
+        },
+        {
+          "class": "Linear",
+          "name": "source_head.2",
+          "score": 45
+        }
+      ],
+      "source_cutpoint_class": "Sequential",
+      "source_cutpoint_name": "source_head",
+      "source_head_clone_class": "Sequential",
+      "status": "PASS",
+      "total_parameter_count": 61898,
+      "train_logits_shape": [
+        8,
+        16
+      ],
+      "train_loss_before_step": 0.5590621829032898,
+      "trainable_parameter_count": 61898,
+      "validation_logits_shape": [
+        8,
+        16
+      ],
+      "validation_loss_after_step": 0.47001153230667114
+    }
+  },
+  "resolved_contract": {
+    "canonical_edge_index_sha256": "f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff",
+    "contract_sha256": "b8871e8516c05f54d37c5a761b3e17cbf91b0722f08e63b37a93251f6e30e5b6",
+    "dataset_class": "V5P2PairAlignedPrimary58Dataset",
+    "execution_policy": "serial one-model-at-a-time",
+    "graph_layers": 2,
+    "graph_width": 64,
+    "initial_seeds": [
+      107,
+      117,
+      127
+    ],
+    "input_shape": [
+      "items",
+      16,
+      58,
+      32
+    ],
+    "name": "V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CONTRACT",
+    "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+    "operators": [
+      "conv1d",
+      "gcnconv",
+      "graphconv",
+      "gatconv"
+    ],
+    "production_constraints": {
+      "clean_encoder_equivalence_required": true,
+      "clean_temporal_encoder_extraction_required": true,
+      "hook_based_full_b3_wrapper_allowed": false,
+      "unused_multitask_heads_allowed": false
+    },
+    "scientific_training_authorized": false,
+    "source_embedding_cutpoint": "source_head",
+    "source_embedding_dim": 64,
+    "source_head_clone_equivalence_max_abs_error": 0.0,
+    "source_target_semantics": "16 independent binary attacker/source labels",
+    "source_target_shape": [
+      "items",
+      16
+    ],
+    "temporal_backbone": "P2B3Conv1DOnlyCount4",
+    "temporal_backbone_parameters": 43273,
+    "train_manifest": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+    "validation_manifest": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+    "version": 1
+  },
+  "security_boundary": {
+    "architecture_selected": false,
+    "b4_validation_cache_accessed": false,
+    "b6_test_cache_accessed": false,
+    "checkpoint_loaded": false,
+    "full_training_performed": false,
+    "legal_decoder_implemented": false,
+    "p2_test_directory_enumerated": false,
+    "p2_test_tensors_deserialized": false,
+    "p2_train_used": true,
+    "p2_validation_used": true,
+    "quantization_performed": false,
+    "rtl_generated": false,
+    "scientific_checkpoint_created": false,
+    "smoke_optimizer_steps_completed": 4,
+    "threshold_tuning_performed": false
+  },
+  "stage": "V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK",
+  "status": "COMPLETE",
+  "topology": {
+    "contract_sha256": "74112ce145cd3347148d4c784be125add7945943e80e98948368f4c076d047af",
+    "edge_index_sha256": "f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff",
+    "runtime_validation": {
+      "directed_edges": 48,
+      "dtype": "torch.int64",
+      "maximum_router": 15,
+      "minimum_router": 0,
+      "self_loops": 0,
+      "shape": [
+        2,
+        48
+      ],
+      "undirected_links": 24
+    }
+  },
+  "torch_version": "2.12.1+cu130",
+  "warnings": []
+}

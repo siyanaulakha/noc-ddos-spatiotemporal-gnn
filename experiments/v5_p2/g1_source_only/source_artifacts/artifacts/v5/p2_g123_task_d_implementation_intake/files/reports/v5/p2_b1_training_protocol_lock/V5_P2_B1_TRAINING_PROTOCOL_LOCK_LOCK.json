@@ -1,0 +1,27 @@
+{
+  "batch_size_items": 256,
+  "count_logits": 4,
+  "decision": "FREEZE_P2_TRAINING_PROTOCOL_AND_AUTHORIZE_B2",
+  "early_stopping_patience_epochs": 12,
+  "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+  "maximum_epochs": 100,
+  "model_sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def",
+  "next_stage": "V5_P2_B2_MULTI_SEED_TRAINING",
+  "parameter_count": 43273,
+  "protocol_file_sha256": "e18253eb2545b453ffbfb3f627d8646307d7a0c3e9da337547f5d061553baa4a",
+  "protocol_markdown_sha256": "5f7c828d8b352efdc16635836758b3bfcd0f3423a5fb1091ea27d31bbf49fc9b",
+  "protocol_sha256": "0817ae7812f91e3c75260589acaf52bd8a74b07b2114a451b4773578efde4b60",
+  "report_sha256": "523aa60c95d20f2223e43882ca7fb1077148c2b731f8f101c439451f6d8aa9b4",
+  "script_sha256": "a2e99e5c2c58a19a1b8e0571a5a257d4448918d9e15e732b081774a89f61416f",
+  "seeds": [
+    107,
+    117,
+    127
+  ],
+  "status": "V5_P2_B1_TRAINING_PROTOCOL_LOCK_COMPLETE",
+  "test_directory_enumerated": false,
+  "test_evaluation_authorized": false,
+  "test_tensor_contents_accessed": false,
+  "train_items": 70166,
+  "validation_items": 12528
+}

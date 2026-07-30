@@ -1,0 +1,23 @@
+{
+  "architecture_selected": false,
+  "b4_validation_cache_accessed": false,
+  "b6_test_cache_accessed": false,
+  "checkpoint_loaded": false,
+  "g0_protocol_sha256": "22e3d9828edaba9323a0c5206806ea93c149a239b8d9043ad79129de76882def",
+  "historical_g1a_hold_preserved": true,
+  "legal_decoder_implemented": false,
+  "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+  "model_sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def",
+  "next_stage": "V5_P2_G1A_R2_PAIR_MANIFEST_RESOLUTION",
+  "optimization_steps": 0,
+  "quantization_performed": false,
+  "report_sha256": "a2c03ef7cb35f51d2354ae04c3d932c07c70da1d2651acd153b76efaa055844d",
+  "rtl_generated": false,
+  "script_sha256": "0e2faac654bf8560786377966951a3862d0954f5e1e304cf6f53098c8623c771",
+  "selected_train_manifest_sha256": "f42f40446d03161a6932ee060f6d8c859f894cb5075d1fc926ea161461413ab5",
+  "selected_validation_manifest_sha256": "f42f40446d03161a6932ee060f6d8c859f894cb5075d1fc926ea161461413ab5",
+  "status": "V5_P2_G1A_R1_SOURCE_ONLY_GRAPH_BASELINE_PREFLIGHT_HOLD",
+  "test_directory_enumerated": false,
+  "test_tensors_deserialized": false,
+  "training_performed": false
+}

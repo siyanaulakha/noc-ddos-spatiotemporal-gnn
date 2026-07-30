@@ -1,0 +1,20 @@
+{
+  "architecture_selected": false,
+  "b4_validation_cache_accessed": false,
+  "b6_test_cache_accessed": false,
+  "checkpoint_loaded": false,
+  "g0_protocol_sha256": "22e3d9828edaba9323a0c5206806ea93c149a239b8d9043ad79129de76882def",
+  "legal_decoder_implemented": false,
+  "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+  "model_sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def",
+  "next_stage": "V5_P2_G1A_R1_INTERFACE_RESOLUTION",
+  "optimization_steps": 0,
+  "quantization_performed": false,
+  "report_sha256": "9cbfdad4588796e1ff38e30c5995657b63efa3a9afbaec1c9da83151b6a45852",
+  "rtl_generated": false,
+  "script_sha256": "4f068b84d0861e701ccf6ecc536ccf8c92a522902acd6b61dbd992db3548b3f7",
+  "status": "V5_P2_G1A_SOURCE_ONLY_GRAPH_BASELINE_PREFLIGHT_HOLD",
+  "test_directory_enumerated": false,
+  "test_tensors_deserialized": false,
+  "training_performed": false
+}

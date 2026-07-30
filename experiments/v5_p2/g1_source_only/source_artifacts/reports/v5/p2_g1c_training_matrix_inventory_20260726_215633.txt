@@ -1,0 +1,161 @@
+===== V5 P2-G1C TRAINING MATRIX INVENTORY =====
+repo=/home/zira/research/projects/GNN-2d
+timestamp=20260726_215633
+
+===== REQUIRED PREREQUISITES =====
+FOUND: /home/zira/research/projects/GNN-2d/reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol
+FOUND: /home/zira/research/projects/GNN-2d/reports/v5/p2_g1a_r1_source_only_graph_baseline_preflight
+FOUND: /home/zira/research/projects/GNN-2d/reports/v5/p2_g1a_r2a_canonical_static_topology_contract
+FOUND: /home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check
+
+===== SMOKE COMPLETION MARKERS =====
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check/G1_SOURCE_ONLY_GRAPH_SMOKE_CONTRACT.json:20:  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check/G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK_LOCK.json:13:  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check/G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK_LOCK.json:21:  "status": "V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK_COMPLETE",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check/V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK.json:188:  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check/V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK.json:774:    "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+/home/zira/research/projects/GNN-2d/logs/v5/v5_p2_g1_source_only_graph_smoke_check.log:4:failure_count: 0
+/home/zira/research/projects/GNN-2d/logs/v5/v5_p2_g1_source_only_graph_smoke_check.log:25:next_stage: V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX
+/home/zira/research/projects/GNN-2d/logs/v5/v5_p2_g1_source_only_graph_smoke_check.log:26:V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK_COMPLETE
+
+===== FROZEN COMPONENT HASHES =====
+2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2  /home/zira/research/projects/GNN-2d/src/data/v5_p2_pair_aligned_primary58_dataset.py
+56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def  /home/zira/research/projects/GNN-2d/src/models/v5_p2_b3_conv1d_only_count4.py
+2f543a9f1bf4b8a556a173dfb54626e2e35fb10dabc45337d6b4e071938785d4  /home/zira/research/projects/GNN-2d/scripts/v5/p2/g1_source_only_graph_smoke.py
+e310a7a45da403f3ed1cf1e3905430543778c1a2325649b399263703dd19d55f  /home/zira/research/projects/GNN-2d/scripts/v5/p2/run_g1_source_only_graph_smoke.sh
+
+===== G0 FILE HASH CHECK =====
+d9442205c372a275314ab5cc1872b439d293d600bffbb9f456394d00dc9aaf61  /home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py
+dfef36558c07f0e77338d087076c02864dd3d4bc8002a86760bad9970c7b1c84  /home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_g0_graph_baseline_rtl_handoff_protocol.sh
+
+===== TOPOLOGY HASH CHECK =====
+f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff  /home/zira/research/projects/GNN-2d/reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_STATIC_EDGE_INDEX.npy
+
+===== EXISTING G1C SCRIPT CANDIDATES =====
+
+===== G1C REFERENCES IN FROZEN REPORTS AND SCRIPTS =====
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r1_source_only_graph_implementations.py:1177:                "initial_training_seeds": [107, 117, 127],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r1_source_only_graph_implementations.py:1188:                    "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r1_source_only_graph_implementations.py:1269:            "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r1_source_only_graph_implementations.py:1445:        "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_g1b_r2_source_only_graph_smoke.sh:35:echo "architectures=conv1d,gcnconv,graphconv,gatconv"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r2_source_only_graph_implementations.py:1212:                "initial_training_seeds": [107, 117, 127],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r2_source_only_graph_implementations.py:1223:                    "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r2_source_only_graph_implementations.py:1305:            "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r2_source_only_graph_implementations.py:1488:        "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_g1b_r1_source_only_graph_smoke.sh:32:echo "architectures=conv1d,gcnconv,graphconv,gatconv"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py:672:            "initial_seeds": [107, 117, 127],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/finalize_v5_p2_b2_multi_seed_training.py:5:Validates the completed seed-107, seed-117, and seed-127 training runs,
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/finalize_v5_p2_b2_multi_seed_training.py:8:This stage does not select the winning seed. Seed/checkpoint selection remains
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/finalize_v5_p2_b2_multi_seed_training.py:26:SEEDS = [107, 117, 127]
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_b2_finalize_multi_seed.sh:38:for seed in 107 117 127; do
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/g1_source_only_graph_smoke.py:1811:                "initial_seeds": [107, 117, 127],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/g1_source_only_graph_smoke.py:1821:                    "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/g1_source_only_graph_smoke.py:1888:            "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_b4_validation_threshold_tuning.sh:14:B3="$REPO/reports/v5/p2_b3_seed_checkpoint_selection"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_source_only_graph_implementations.py:1100:                "initial_training_seeds": [107, 117, 127],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_source_only_graph_implementations.py:1106:                    "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_source_only_graph_implementations.py:1186:            "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_source_only_graph_implementations.py:1348:        "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_g1_source_only_graph_smoke.sh:30:echo "architectures=conv1d,gcnconv,graphconv,gatconv"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:5:This stage freezes the complete non-test training and checkpoint-selection
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:38:SEEDS = [107, 117, 127]
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:502:        "epochs_and_early_stopping": {
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:505:            "early_stopping_patience_epochs": 12,
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:506:            "early_stopping_minimum_delta": 1e-4,
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:670:            "validation only and freeze thresholds",
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:746:early stop  = patience 12 after minimum epoch 15
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:795:training, seed selection, checkpoint freeze, and validation-only threshold
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:875:        "early_stopping_patience_epochs": 12,
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py:905:    print("early_stopping_patience_epochs: 12")
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_g1b_source_only_graph_smoke.sh:29:echo "architectures=conv1d,gcnconv,graphconv,gatconv"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/evaluate_v5_p2_b6_one_shot_test.py:18:No training, checkpoint selection, threshold tuning, calibration, or weight
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/evaluate_v5_p2_b6_one_shot_test.py:1410:        "checkpoint_selection_allowed": False,
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/evaluate_v5_p2_b6_one_shot_test.py:1650:                "checkpoint_selection_performed": False,
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_g1b_r4_source_only_graph_smoke.sh:38:echo "architectures=conv1d,gcnconv,graphconv,gatconv"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_b0_r1b_k3_count_role_mask_semantics.py:140:    Historical early-stop audit reports used two schemas:
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_b0_r1b_k3_count_role_mask_semantics.py:1299:                "an early-stop report that stored the explicit "
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_b2_one_seed.sh:6:    107|117|127) ;;
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_b2_one_seed.sh:8:        echo "Usage: $0 {107|117|127}"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:19:checkpoint selection, RTL generation, or decoder implementation.
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:57:    "initial_screening_seeds": [107, 117, 127],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:58:    "finalist_stability_seeds": [107, 117, 127, 137, 147],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:64:    "early_stopping_patience": 12,
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:68:    "checkpoint_selection_split": "validation_only",
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:517:                    "separate validation-only role thresholds using the "
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:534:            "same optimizer/scheduler/early stopping",
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:535:            "same checkpoint-selection metric per task",
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:742:            "checkpoint_selection": "validation_only",
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:985:        "width, layer count, seeds, optimizer, scheduler, early stopping, "
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:986:        "checkpoint-selection metric, and threshold-selection policy for a "
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:1074:    print("initial_seeds: 107,117,127")
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_g0_graph_baseline_rtl_handoff_protocol.py:1075:    print("finalist_seeds: 107,117,127,137,147")
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/authorize_v5_p2_b5_one_shot_test.py:8:- B4 validation-only thresholds.
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_c2a_legal_noc_decoder_amendment.py:136:            "checkpoint_selection": "validation only",
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_b2_all_seeds.sh:18:for seed in 107 117 127; do
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_g1b_r3_source_only_graph_smoke.sh:38:echo "architectures=conv1d,gcnconv,graphconv,gatconv"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_b3_seed_checkpoint_selection.sh:16:OUT="$REPO/reports/v5/p2_b3_seed_checkpoint_selection"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_b3_seed_checkpoint_selection.sh:17:LOG="$REPO/logs/v5/v5_p2_b3_seed_checkpoint_selection.log"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_g1b_r5_source_only_graph_smoke.sh:42:echo "architectures=conv1d,gcnconv,graphconv,gatconv"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/select_v5_p2_b3_seed_checkpoint.py:15:SEEDS = [107, 117, 127]
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r3_source_only_graph_implementations.py:1247:                "initial_training_seeds": [107, 117, 127],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r3_source_only_graph_implementations.py:1258:                    "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r3_source_only_graph_implementations.py:1341:            "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r3_source_only_graph_implementations.py:1531:        "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r4_source_only_graph_implementations.py:1645:                "initial_training_seeds": [107, 117, 127],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r4_source_only_graph_implementations.py:1672:                    "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r4_source_only_graph_implementations.py:1774:            "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r4_source_only_graph_implementations.py:1982:        "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_b5_one_shot_test_authorization.sh:9:B3="$REPO/reports/v5/p2_b3_seed_checkpoint_selection"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/run_v5_p2_b6_one_shot_test_evaluation.sh:13:B3="$REPO/reports/v5/p2_b3_seed_checkpoint_selection"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r5_source_only_graph_implementations.py:1718:                "initial_training_seeds": [107, 117, 127],
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r5_source_only_graph_implementations.py:1745:                    "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r5_source_only_graph_implementations.py:1861:            "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/smoke_v5_p2_g1b_r5_source_only_graph_implementations.py:2082:        "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:6:    107, 117, 127
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:44:EXPECTED_SEEDS = [107, 117, 127]
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:895:    early_stop_patience_counter: int,
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:993:        "early_stop_patience_counter": (
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:994:            early_stop_patience_counter
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1429:    best_early_stop_score = -float("inf")
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1430:    early_stop_patience_counter = 0
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1559:            > best_early_stop_score + 1e-4
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1561:            best_early_stop_score = current_score
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1562:            early_stop_patience_counter = 0
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1564:            early_stop_patience_counter += 1
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1577:            early_stop_patience_counter=(
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1578:                early_stop_patience_counter
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1602:            "early_stop_patience_counter": (
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1603:                early_stop_patience_counter
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1627:            f"patience={early_stop_patience_counter}"
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1632:            and early_stop_patience_counter >= 12
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1636:                f"early stopping at epoch {epoch}; "
+/home/zira/research/projects/GNN-2d/scripts/v5/p2/train_v5_p2_b2_single_seed.py:1715:            "early_stopping_patience": 12,
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_TRAINING_SELECTION_AND_SEED_POLICY.json:30:    "same optimizer/scheduler/early stopping",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_TRAINING_SELECTION_AND_SEED_POLICY.json:31:    "same checkpoint-selection metric per task",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_TRAINING_SELECTION_AND_SEED_POLICY.json:74:      "post_checkpoint_threshold_selection": "separate validation-only role thresholds using the same node-F1/exact-set policy for every operator"
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_TRAINING_SELECTION_AND_SEED_POLICY.json:83:    "checkpoint_selection_split": "validation_only",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_TRAINING_SELECTION_AND_SEED_POLICY.json:84:    "early_stopping_patience": 12,
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_GRAPH_BASELINE_AND_RTL_HANDOFF_PROTOCOL.md:27:All variants use the same P2 train/validation pair manifests, PRIMARY58 interface, physical-port mask, temporal encoder, graph width, layer count, seeds, optimizer, scheduler, early stopping, checkpoint-selection metric, and threshold-selection policy for a given task.
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_P2_TEST_ACCESS_POLICY.json:26:    "checkpoint_selection": "validation_only",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check/G1_SOURCE_ONLY_GRAPH_SMOKE_CONTRACT.json:20:  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check/G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK_LOCK.json:13:  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check/V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK.json:188:  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+/home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check/V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK.json:774:    "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+
+===== CANDIDATE SCRIPT SUMMARIES =====
+
+===== GPU STATUS =====
+NVIDIA GeForce RTX 4070 Laptop GPU, 8188 MiB, 16 MiB, 47, 15.24 W
+
+===== RUNNING V5 TRAINING PROCESSES =====
+5297 tee /home/zira/research/projects/GNN-2d/reports/v5/p2_g1c_training_matrix_inventory_20260726_215633.txt
+
+===== SAFETY STATE =====
+p2_test_directory_enumerated=false
+p2_test_tensors_deserialized=false
+training_started=false
+scientific_checkpoint_created=false
+architecture_selected=false
+
+V5_P2_G1C_TRAINING_MATRIX_INVENTORY_COMPLETE

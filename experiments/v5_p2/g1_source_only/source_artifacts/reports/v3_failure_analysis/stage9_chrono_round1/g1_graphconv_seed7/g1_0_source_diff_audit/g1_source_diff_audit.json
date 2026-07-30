@@ -1,0 +1,99 @@
+{
+  "stage": "G1.0",
+  "status": "SOURCE_DIFF_AUDIT_PASSED",
+  "created_utc": "2026-07-21T14:32:41.067151+00:00",
+  "scope": {
+    "persistent_training_started": false,
+    "checkpoint_written": false,
+    "validation_inference_performed": false,
+    "test_inference_performed": false,
+    "synthetic_forward_backward_only": true
+  },
+  "single_changed_factor": "normalized shared-transform GCN -> separate-root-and-neighbor add-aggregation GraphConv",
+  "sources": {
+    "a1_path": "/home/zira/research/projects/GNN-2d/scripts/train_temporal_gcn_v3.py",
+    "a1_sha256": "2a70d2c6cac90f54504fa120126e643d9ce3a5d312436d6e59004e273d6d593b",
+    "g1_path": "/home/zira/research/projects/GNN-2d/scripts/train_temporal_gcn_v3_g1_graphconv.py",
+    "g1_sha256": "3ebe7b8d37c5104c606daf0e65b488a3f553b815b01689ce172b12b8bbbffb5e",
+    "diff_path": "/home/zira/research/projects/GNN-2d/reports/v3_failure_analysis/stage9_chrono_round1/g1_graphconv_seed7/g1_0_source_diff_audit/a1_vs_g1_source.diff",
+    "diff_sha256": "1aa1022b846643a69521aae741bd6ce7c9c1311376fb9ed65043a107607bbdb7"
+  },
+  "source_edit_counts": {
+    "adjacency_function_replaced": 1,
+    "graph_layer_class_replaced": 1,
+    "constructor_references_replaced": 2,
+    "model_identifier_occurrences_replaced": 3
+  },
+  "parameters": {
+    "a1_total": 882,
+    "g1_total": 1138,
+    "delta": 256,
+    "shared_state_keys": [
+      "graph_head.bias",
+      "graph_head.weight",
+      "node_head.bias",
+      "node_head.weight",
+      "temporal.conv.bias",
+      "temporal.conv.weight"
+    ],
+    "g1_graph_state_keys": [
+      "gcn1.lin_neighbor.bias",
+      "gcn1.lin_neighbor.weight",
+      "gcn1.lin_root.weight",
+      "gcn2.lin_neighbor.bias",
+      "gcn2.lin_neighbor.weight",
+      "gcn2.lin_root.weight"
+    ]
+  },
+  "synthetic_audit": {
+    "temporal_max_abs_difference": 0.0,
+    "graphconv_formula_max_abs_error": 4.76837158203125e-07,
+    "graph_output_shape": [
+      4
+    ],
+    "node_output_shape": [
+      4,
+      16
+    ],
+    "synthetic_loss": 1.3608988523483276
+  },
+  "checks": {
+    "g0_stage_is_g0": true,
+    "g0_status_passed": true,
+    "g0_training_not_started": true,
+    "g0_validation_not_inferred": true,
+    "g0_test_not_inferred": true,
+    "g0_operator_different": true,
+    "g0_script_hash_matches": true,
+    "a1_source_hash_matches_frozen": true,
+    "g0_a1_source_hash_matches": true,
+    "raw_unique_edge_count_is_64": true,
+    "raw_self_loop_count_is_16": true,
+    "raw_nonself_directed_edge_count_is_48": true,
+    "g1_adjacency_shape_is_16_by_16": true,
+    "g1_adjacency_is_binary": true,
+    "g1_adjacency_has_zero_diagonal": true,
+    "g1_adjacency_has_48_entries": true,
+    "g1_adjacency_matches_nonself_edges": true,
+    "g1_adjacency_is_symmetric": true,
+    "reverse_patch_exact": true,
+    "generated_source_compiles": true,
+    "a1_parameter_count_is_882": true,
+    "g1_parameter_count_is_1138": true,
+    "parameter_delta_is_256": true,
+    "shared_parameter_names_equal": true,
+    "shared_parameter_shapes_equal": true,
+    "shared_parameters_equal_after_transplant": true,
+    "temporal_outputs_identical_after_transplant": true,
+    "graphconv_formula_matches_manual_reference": true,
+    "g1_graph_output_shape_is_batch": true,
+    "g1_node_output_shape_is_batch_by_nodes": true,
+    "g1_outputs_are_finite": true,
+    "synthetic_loss_is_finite": true,
+    "all_synthetic_gradients_finite": true,
+    "g1_has_separate_root_and_neighbor_parameters": true,
+    "g1_has_no_a1_linear_graph_parameters": true,
+    "model_identifier_updated": true
+  },
+  "next_authorized_stage_if_passed": "G1.1 real-data dry preflight only"
+}

@@ -1,0 +1,59 @@
+experiment:
+  id: V5P2-G1C
+  name: source_only_operator_comparison
+  project_stage: G1C
+  status: COMPLETED
+
+dataset:
+  version: v5_p2
+  authoritative: true
+  pair_aligned: true
+
+task:
+  id: A
+  name: source_localization
+  description: Predict malicious source routers.
+
+controlled_comparison:
+  operators:
+    - name: Conv1D
+      spatial_operator: none
+      parameter_count: 28353
+
+    - name: Conv1D_GCNConv
+      spatial_operator: GCNConv
+      parameter_count: 36673
+
+    - name: Conv1D_GraphConv
+      spatial_operator: GraphConv
+      parameter_count: 44865
+
+training_context:
+  primary_screening_seed: 107
+  train_items: 70166
+  validation_items: 12528
+  train_batches: 275
+  validation_batches: 49
+  source_positive_weight: 20.0
+
+selection:
+  selected_operator: GraphConv
+  selection_scope: validation_stage_operator_screening
+  final_blind_test_claim: false
+
+test_isolation:
+  test_directory_enumerated: false
+  test_tensors_deserialized: false
+  test_metrics_computed: false
+  test_used_for_model_selection: false
+
+scientific_status:
+  operator_comparison_completed: true
+  checkpoint_selection_completed: true
+  blind_test_completed: false
+  paper_final_result: false
+
+notes:
+  - GraphConv was selected under the frozen V5 P2 G1C comparison.
+  - This result applies to the evaluated source-localization protocol.
+  - It must not be described as universal superiority over all graph operators.

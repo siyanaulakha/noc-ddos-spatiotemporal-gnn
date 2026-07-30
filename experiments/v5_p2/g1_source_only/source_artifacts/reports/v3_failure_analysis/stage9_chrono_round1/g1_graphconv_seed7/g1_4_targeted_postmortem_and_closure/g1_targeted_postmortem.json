@@ -1,0 +1,504 @@
+{
+  "stage": "G1.4",
+  "status": "TARGETED_POSTMORTEM_COMPLETED",
+  "created_utc": "2026-07-21T15:22:46.152132+00:00",
+  "scope": {
+    "validation_predictions_only": true,
+    "model_inference_performed": false,
+    "training_performed": false,
+    "test_accessed": false,
+    "test_transfer_performed": false
+  },
+  "checks": {
+    "gate_stage_is_g1_3": true,
+    "gate_completed": true,
+    "validation_only": true,
+    "test_inference_false": true,
+    "test_threshold_selection_false": true,
+    "primary_any_pass_true": true,
+    "mandatory_all_pass_false": true,
+    "advance_false": true,
+    "verdict_rejected": true,
+    "prediction_keys_equal": true,
+    "sample_idx_equal": true,
+    "y_graph_equal": true,
+    "y_node_equal": true,
+    "run_id_equal": true,
+    "strength_equal": true,
+    "validation_rows_42809": true,
+    "node_count_16": true,
+    "nonself_directed_edges_48": true,
+    "router_degrees_match_4x4_mesh": true
+  },
+  "thresholds": {
+    "a1_graph": 0.41,
+    "g1_graph": 0.165,
+    "a1_node": 0.765,
+    "g1_node": 0.55
+  },
+  "graph_probability_distribution": {
+    "a1_normal": {
+      "q01": 2.404583199222543e-07,
+      "q05": 2.404583199222543e-07,
+      "q25": 1.0883471759370877e-05,
+      "q50": 0.001070073980372399,
+      "q75": 0.10536633618175983,
+      "q95": 0.7759145200252533,
+      "q99": 0.9440721708536145,
+      "mean": 0.12810474248736442,
+      "std": 0.24930919957786354
+    },
+    "a1_attack": {
+      "q01": 0.27839066863059997,
+      "q05": 0.5845785498619079,
+      "q25": 0.9415819048881531,
+      "q50": 0.9927805066108704,
+      "q75": 0.9993755221366882,
+      "q95": 0.9999770164489746,
+      "q99": 0.9999963045120239,
+      "mean": 0.9285792818781318,
+      "std": 0.14866611549699224
+    },
+    "g1_normal": {
+      "q01": 4.5805351473973135e-05,
+      "q05": 9.169628174277022e-05,
+      "q25": 9.169628174277022e-05,
+      "q50": 0.004000134067609906,
+      "q75": 0.3381049484014511,
+      "q95": 0.9628029674291609,
+      "q99": 0.9955355930328369,
+      "mean": 0.2102395240529881,
+      "std": 0.3446378830569813
+    },
+    "g1_attack": {
+      "q01": 0.17916591286659242,
+      "q05": 0.4755025148391724,
+      "q25": 0.919277548789978,
+      "q50": 0.9880926012992859,
+      "q75": 0.9982853531837463,
+      "q95": 0.9998993158340455,
+      "q99": 0.9999850988388062,
+      "mean": 0.9076340411545832,
+      "std": 0.1774127421736017
+    }
+  },
+  "node_error_profile": {
+    "a1": {
+      "threshold": 0.765,
+      "attack_node_metrics": {
+        "tp": 55068,
+        "tn": 407670,
+        "fp": 7248,
+        "fn": 4206,
+        "precision": 0.8836895821297901,
+        "recall": 0.9290414009515133,
+        "f1": 0.9057981741919566,
+        "fpr": 0.017468511850534323
+      },
+      "exact_localization": 0.7049633903566488,
+      "overprediction_rate": 0.17474778148935452,
+      "underprediction_rate": 0.09866045821102001,
+      "empty_prediction_rate": 0.012416911293315788,
+      "mean_true_attacker_probability": 0.941404646795836,
+      "mean_nonattacker_probability_on_attack_samples": 0.030690511685231566,
+      "adjacent_nonattacker_activation_rate": 0.01611643746475207,
+      "other_nonattacker_activation_rate": 0.018144549043425447,
+      "adjacent_nonattacker_mean_probability": 0.03134133021654873,
+      "other_nonattacker_mean_probability": 0.030365102419572985,
+      "normal_node_activation_rate": 0.012275091102338294,
+      "normal_node_mean_probability": 0.020357823081292973
+    },
+    "g1": {
+      "threshold": 0.55,
+      "attack_node_metrics": {
+        "tp": 56592,
+        "tn": 408724,
+        "fp": 6194,
+        "fn": 2682,
+        "precision": 0.9013474341413691,
+        "recall": 0.9547525053143031,
+        "f1": 0.9272816647550384,
+        "fpr": 0.014928250883307063
+      },
+      "exact_localization": 0.7720754462327496,
+      "overprediction_rate": 0.14738333839457435,
+      "underprediction_rate": 0.06755069676417991,
+      "empty_prediction_rate": 0.008907784188683066,
+      "mean_true_attacker_probability": 0.9232041080982895,
+      "mean_nonattacker_probability_on_attack_samples": 0.02013264665680561,
+      "adjacent_nonattacker_activation_rate": 0.006297629893135511,
+      "other_nonattacker_activation_rate": 0.01924356137839284,
+      "adjacent_nonattacker_mean_probability": 0.009587094102768581,
+      "other_nonattacker_mean_probability": 0.025405422933824123,
+      "normal_node_activation_rate": 0.01435336319465533,
+      "normal_node_mean_probability": 0.018146729402808197
+    },
+    "g1_minus_a1": {
+      "attacker_recall": 0.025711104362789783,
+      "nonattacker_fpr_on_attack_samples": -0.002540260967227259,
+      "exact_localization": 0.0671120558761008,
+      "overprediction_rate": -0.027364443094780172,
+      "underprediction_rate": -0.031109761446840106,
+      "empty_prediction_rate": -0.0035091271046327217,
+      "adjacent_nonattacker_activation_rate": -0.00981880757161656,
+      "other_nonattacker_activation_rate": 0.001099012334967394,
+      "normal_node_activation_rate": 0.002078272092317035
+    }
+  },
+  "run_level": {
+    "normal_runs": 4,
+    "attack_runs": 9,
+    "largest_normal_fpr_regressions": [
+      {
+        "run_id": "N-2-6-10-14-Pmixed-R13-V3",
+        "label": 0,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.43273610689341024,
+        "g1_positive_prediction_rate": 0.9435165502581233,
+        "delta_positive_prediction_rate": 0.5107804433647131,
+        "a1_mean_graph_probability": 0.40266824841100274,
+        "g1_mean_graph_probability": 0.7129113186689064,
+        "delta_mean_graph_probability": 0.3102430702579037
+      },
+      {
+        "run_id": "N-0-9-Pstream-R11-V3",
+        "label": 0,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.038262982083206803,
+        "g1_positive_prediction_rate": 0.08836926814454904,
+        "delta_positive_prediction_rate": 0.05010628606134224,
+        "a1_mean_graph_probability": 0.038755577204039784,
+        "g1_mean_graph_probability": 0.05679747253009679,
+        "delta_mean_graph_probability": 0.018041895326057003
+      },
+      {
+        "run_id": "N-4-15-Pbursty-R12-V3",
+        "label": 0,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.045247494685696936,
+        "g1_positive_prediction_rate": 0.058912845429699365,
+        "delta_positive_prediction_rate": 0.013665350744002429,
+        "a1_mean_graph_probability": 0.039854565319760185,
+        "g1_mean_graph_probability": 0.04175124414949774,
+        "delta_mean_graph_probability": 0.0018966788297375553
+      },
+      {
+        "run_id": "N-idle-Pidle-R1-V3",
+        "label": 0,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.03887033100516247,
+        "g1_positive_prediction_rate": 0.04798056483449742,
+        "delta_positive_prediction_rate": 0.00911023382933495,
+        "a1_mean_graph_probability": 0.031140579014655008,
+        "g1_mean_graph_probability": 0.029498060863451536,
+        "delta_mean_graph_probability": -0.0016425181512034724
+      }
+    ],
+    "largest_normal_fpr_improvements": [
+      {
+        "run_id": "N-idle-Pidle-R1-V3",
+        "label": 0,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.03887033100516247,
+        "g1_positive_prediction_rate": 0.04798056483449742,
+        "delta_positive_prediction_rate": 0.00911023382933495,
+        "a1_mean_graph_probability": 0.031140579014655008,
+        "g1_mean_graph_probability": 0.029498060863451536,
+        "delta_mean_graph_probability": -0.0016425181512034724
+      },
+      {
+        "run_id": "N-4-15-Pbursty-R12-V3",
+        "label": 0,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.045247494685696936,
+        "g1_positive_prediction_rate": 0.058912845429699365,
+        "delta_positive_prediction_rate": 0.013665350744002429,
+        "a1_mean_graph_probability": 0.039854565319760185,
+        "g1_mean_graph_probability": 0.04175124414949774,
+        "delta_mean_graph_probability": 0.0018966788297375553
+      },
+      {
+        "run_id": "N-0-9-Pstream-R11-V3",
+        "label": 0,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.038262982083206803,
+        "g1_positive_prediction_rate": 0.08836926814454904,
+        "delta_positive_prediction_rate": 0.05010628606134224,
+        "a1_mean_graph_probability": 0.038755577204039784,
+        "g1_mean_graph_probability": 0.05679747253009679,
+        "delta_mean_graph_probability": 0.018041895326057003
+      },
+      {
+        "run_id": "N-2-6-10-14-Pmixed-R13-V3",
+        "label": 0,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.43273610689341024,
+        "g1_positive_prediction_rate": 0.9435165502581233,
+        "delta_positive_prediction_rate": 0.5107804433647131,
+        "a1_mean_graph_probability": 0.40266824841100274,
+        "g1_mean_graph_probability": 0.7129113186689064,
+        "delta_mean_graph_probability": 0.3102430702579037
+      }
+    ],
+    "largest_attack_recall_improvements": [
+      {
+        "run_id": "N-0-9-Pstream-R40-A-11-S20-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9426055268751898,
+        "g1_positive_prediction_rate": 0.9924081384755542,
+        "delta_positive_prediction_rate": 0.049802611600364366,
+        "a1_mean_graph_probability": 0.8681774228833242,
+        "g1_mean_graph_probability": 0.9164470082784085,
+        "delta_mean_graph_probability": 0.0482695853950843
+      },
+      {
+        "run_id": "N-2-6-10-14-Pmixed-R42-A-11-S20-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9483753416337686,
+        "g1_positive_prediction_rate": 0.996355906468266,
+        "delta_positive_prediction_rate": 0.04798056483449742,
+        "a1_mean_graph_probability": 0.8409249982257839,
+        "g1_mean_graph_probability": 0.9292050824157561,
+        "delta_mean_graph_probability": 0.08828008418997213
+      },
+      {
+        "run_id": "N-2-6-10-14-Pmixed-R42-A-1-12-S63-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9845126024901306,
+        "g1_positive_prediction_rate": 0.998177953234133,
+        "delta_positive_prediction_rate": 0.013665350744002436,
+        "a1_mean_graph_probability": 0.9245335304520791,
+        "g1_mean_graph_probability": 0.9146979032788565,
+        "delta_mean_graph_probability": -0.009835627173222616
+      },
+      {
+        "run_id": "N-0-9-Pstream-R40-A-1-12-S63-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9851199514120862,
+        "g1_positive_prediction_rate": 0.9975706043121774,
+        "delta_positive_prediction_rate": 0.012450652900091175,
+        "a1_mean_graph_probability": 0.966109782742392,
+        "g1_mean_graph_probability": 0.9717079318698265,
+        "delta_mean_graph_probability": 0.005598149127434504
+      },
+      {
+        "run_id": "N-2-6-10-14-Pmixed-R42-A-7-11-12-S77-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9890677194047981,
+        "g1_positive_prediction_rate": 1.0,
+        "delta_positive_prediction_rate": 0.010932280595201904,
+        "a1_mean_graph_probability": 0.9763799029773776,
+        "g1_mean_graph_probability": 0.9627988780663436,
+        "delta_mean_graph_probability": -0.013581024911034079
+      },
+      {
+        "run_id": "N-4-15-Pbursty-R41-A-7-11-12-S77-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9902824172487094,
+        "g1_positive_prediction_rate": 0.9975706043121774,
+        "delta_positive_prediction_rate": 0.00728818706346801,
+        "a1_mean_graph_probability": 0.9775869951756248,
+        "g1_mean_graph_probability": 0.9495054361193517,
+        "delta_mean_graph_probability": -0.028081559056273075
+      },
+      {
+        "run_id": "N-0-9-Pstream-R40-A-7-11-12-S77-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9930154873975099,
+        "g1_positive_prediction_rate": 0.9996963255390222,
+        "delta_positive_prediction_rate": 0.006680838141512324,
+        "a1_mean_graph_probability": 0.9816851236594735,
+        "g1_mean_graph_probability": 0.9818285430184512,
+        "delta_mean_graph_probability": 0.00014341935897776992
+      },
+      {
+        "run_id": "N-4-15-Pbursty-R41-A-11-S20-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9878530215608867,
+        "g1_positive_prediction_rate": 0.9863346492559976,
+        "delta_positive_prediction_rate": -0.0015183723048891595,
+        "a1_mean_graph_probability": 0.9451118175066786,
+        "g1_mean_graph_probability": 0.8656031842774594,
+        "delta_mean_graph_probability": -0.0795086332292192
+      },
+      {
+        "run_id": "N-4-15-Pbursty-R41-A-1-12-S63-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9766170665047069,
+        "g1_positive_prediction_rate": 0.9535378074703917,
+        "delta_positive_prediction_rate": -0.02307925903431518,
+        "a1_mean_graph_probability": 0.8767039632804523,
+        "g1_mean_graph_probability": 0.676912403066795,
+        "delta_mean_graph_probability": -0.1997915602136573
+      }
+    ],
+    "largest_attack_recall_regressions": [
+      {
+        "run_id": "N-4-15-Pbursty-R41-A-1-12-S63-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9766170665047069,
+        "g1_positive_prediction_rate": 0.9535378074703917,
+        "delta_positive_prediction_rate": -0.02307925903431518,
+        "a1_mean_graph_probability": 0.8767039632804523,
+        "g1_mean_graph_probability": 0.676912403066795,
+        "delta_mean_graph_probability": -0.1997915602136573
+      },
+      {
+        "run_id": "N-4-15-Pbursty-R41-A-11-S20-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9878530215608867,
+        "g1_positive_prediction_rate": 0.9863346492559976,
+        "delta_positive_prediction_rate": -0.0015183723048891595,
+        "a1_mean_graph_probability": 0.9451118175066786,
+        "g1_mean_graph_probability": 0.8656031842774594,
+        "delta_mean_graph_probability": -0.0795086332292192
+      },
+      {
+        "run_id": "N-0-9-Pstream-R40-A-7-11-12-S77-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9930154873975099,
+        "g1_positive_prediction_rate": 0.9996963255390222,
+        "delta_positive_prediction_rate": 0.006680838141512324,
+        "a1_mean_graph_probability": 0.9816851236594735,
+        "g1_mean_graph_probability": 0.9818285430184512,
+        "delta_mean_graph_probability": 0.00014341935897776992
+      },
+      {
+        "run_id": "N-4-15-Pbursty-R41-A-7-11-12-S77-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9902824172487094,
+        "g1_positive_prediction_rate": 0.9975706043121774,
+        "delta_positive_prediction_rate": 0.00728818706346801,
+        "a1_mean_graph_probability": 0.9775869951756248,
+        "g1_mean_graph_probability": 0.9495054361193517,
+        "delta_mean_graph_probability": -0.028081559056273075
+      },
+      {
+        "run_id": "N-2-6-10-14-Pmixed-R42-A-7-11-12-S77-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9890677194047981,
+        "g1_positive_prediction_rate": 1.0,
+        "delta_positive_prediction_rate": 0.010932280595201904,
+        "a1_mean_graph_probability": 0.9763799029773776,
+        "g1_mean_graph_probability": 0.9627988780663436,
+        "delta_mean_graph_probability": -0.013581024911034079
+      },
+      {
+        "run_id": "N-0-9-Pstream-R40-A-1-12-S63-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9851199514120862,
+        "g1_positive_prediction_rate": 0.9975706043121774,
+        "delta_positive_prediction_rate": 0.012450652900091175,
+        "a1_mean_graph_probability": 0.966109782742392,
+        "g1_mean_graph_probability": 0.9717079318698265,
+        "delta_mean_graph_probability": 0.005598149127434504
+      },
+      {
+        "run_id": "N-2-6-10-14-Pmixed-R42-A-1-12-S63-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9845126024901306,
+        "g1_positive_prediction_rate": 0.998177953234133,
+        "delta_positive_prediction_rate": 0.013665350744002436,
+        "a1_mean_graph_probability": 0.9245335304520791,
+        "g1_mean_graph_probability": 0.9146979032788565,
+        "delta_mean_graph_probability": -0.009835627173222616
+      },
+      {
+        "run_id": "N-2-6-10-14-Pmixed-R42-A-11-S20-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9483753416337686,
+        "g1_positive_prediction_rate": 0.996355906468266,
+        "delta_positive_prediction_rate": 0.04798056483449742,
+        "a1_mean_graph_probability": 0.8409249982257839,
+        "g1_mean_graph_probability": 0.9292050824157561,
+        "delta_mean_graph_probability": 0.08828008418997213
+      },
+      {
+        "run_id": "N-0-9-Pstream-R40-A-11-S20-V3",
+        "label": 1,
+        "sample_count": 3293,
+        "a1_positive_prediction_rate": 0.9426055268751898,
+        "g1_positive_prediction_rate": 0.9924081384755542,
+        "delta_positive_prediction_rate": 0.049802611600364366,
+        "a1_mean_graph_probability": 0.8681774228833242,
+        "g1_mean_graph_probability": 0.9164470082784085,
+        "delta_mean_graph_probability": 0.0482695853950843
+      }
+    ]
+  },
+  "router_degree_analysis": [
+    {
+      "degree": 2,
+      "router_count": 4,
+      "routers": "0-3-12-15",
+      "a1_normal_node_activation_rate": 0.006510021257212268,
+      "g1_normal_node_activation_rate": 0.009470847251746128,
+      "delta_normal_node_activation_rate": 0.00296082599453386,
+      "a1_normal_node_mean_probability": 0.020161629728564463,
+      "g1_normal_node_mean_probability": 0.0166720613148592,
+      "delta_normal_node_mean_probability": -0.003489568413705263,
+      "a1_attack_nonattacker_activation_rate": 0.009525255592671323,
+      "g1_attack_nonattacker_activation_rate": 0.005921651989067719,
+      "delta_attack_nonattacker_activation_rate": -0.003603603603603604
+    },
+    {
+      "degree": 3,
+      "router_count": 8,
+      "routers": "1-2-4-7-8-11-13-14",
+      "a1_normal_node_activation_rate": 0.021238232614637108,
+      "g1_normal_node_activation_rate": 0.023914363802004252,
+      "delta_normal_node_activation_rate": 0.0026761311873671444,
+      "a1_normal_node_mean_probability": 0.0304471545771322,
+      "g1_normal_node_mean_probability": 0.02733473683275356,
+      "delta_normal_node_mean_probability": -0.0031124177443786413,
+      "a1_attack_nonattacker_activation_rate": 0.03178965482336269,
+      "g1_attack_nonattacker_activation_rate": 0.02837837837837838,
+      "delta_attack_nonattacker_activation_rate": -0.003411276444984311
+    },
+    {
+      "degree": 4,
+      "router_count": 4,
+      "routers": "5-6-9-10",
+      "a1_normal_node_activation_rate": 0.00011387792286668691,
+      "g1_normal_node_activation_rate": 0.00011387792286668691,
+      "delta_normal_node_activation_rate": 0.0,
+      "a1_normal_node_mean_probability": 0.00037535344234302845,
+      "g1_normal_node_mean_probability": 0.001245382630866477,
+      "delta_normal_node_mean_probability": 0.0008700291885234486,
+      "a1_attack_nonattacker_activation_rate": 0.00021932044403954516,
+      "g1_attack_nonattacker_activation_rate": 1.687080338765732e-05,
+      "delta_attack_nonattacker_activation_rate": -0.00020244964065188785
+    }
+  ],
+  "conclusion": {
+    "g1_status": "REJECTED_ON_VALIDATION",
+    "formal_test_transfer_authorized": false,
+    "multiseed_authorized": false,
+    "additional_v3_architecture_training_authorized": false,
+    "final_v3_model": "Chrono-A1 Conv1D-TemporalGCN",
+    "architectural_insight_retained": "Separate self/root and neighbor transforms improved attacker localization, but raw unnormalized neighbor summation violated normal-run false-positive safeguards.",
+    "next_architecture_work_location": "V4 only",
+    "v4_baseline_order": [
+      "V4-A1: Conv1D + normalized GCN",
+      "V4-G2 only after V4-A1 failure analysis: separate root transform + normalized/mean neighbor transform"
+    ],
+    "default_threshold_test_metrics_policy": "Document as diagnostic trainer output only; do not use for selection, advancement, or formal claims."
+  }
+}

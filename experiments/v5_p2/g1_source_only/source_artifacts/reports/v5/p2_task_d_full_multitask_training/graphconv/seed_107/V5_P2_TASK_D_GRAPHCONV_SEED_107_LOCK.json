@@ -1,0 +1,16 @@
+{
+  "architecture_selected": false,
+  "best_epoch": 25,
+  "best_validation_selection_score": 0.7807553812773486,
+  "candidate": "graphconv",
+  "checkpoint_sha256": "82314baedb4bf3969842abf9076679682369daae2e57db07d4b4aeaa8623f7cc",
+  "common_initial_state_sha256": "8ec0d46aee51318af938711fe8e2f479d0bffa46fb846c6fede70c0d76309f41",
+  "history_sha256": "bda0d24fb3d39c39008173f31cd97648305e1751cbec636a4e708e2c107e3966",
+  "report_sha256": "81a332abc324174d40abe0276c4f92b4797e904a58596d383194623d95c5378b",
+  "script_sha256": "553dd206a8e6518b3a1e768c8f9c69633fcada421475b8ca75fda57c2fc13766",
+  "seed": 107,
+  "status": "V5_P2_TASK_D_FULL_MULTITASK_SINGLE_RUN_COMPLETE",
+  "test_directory_enumerated": false,
+  "test_tensors_deserialized": false,
+  "threshold_tuning_performed": false
+}

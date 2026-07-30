@@ -1,0 +1,37 @@
+{
+  "best_checkpoint_sha256": "d1e5c5ef7f7151f59581b61c03c12d0eb067c394640df1d65253a1a7dfe7f3b0",
+  "best_epoch": 13,
+  "completed_epoch": 25,
+  "current_learning_rate_after_scheduler": 0.00025,
+  "current_validation_metrics": {
+    "graph": {
+      "auroc": 0.8879881262589305,
+      "average_precision": 0.6550314534679189,
+      "negative_items": 8854,
+      "positive_items": 3674,
+      "thresholded": {
+        "accuracy": 0.8217592592592593,
+        "balanced_accuracy": 0.8511275393644606,
+        "f1": 0.7521367521367522,
+        "fn": 286,
+        "fp": 1947,
+        "fpr": 0.21990060989383328,
+        "precision": 0.6350515463917525,
+        "recall": 0.9221556886227545,
+        "threshold": 0.5,
+        "tn": 6907,
+        "tnr": 0.7800993901061667,
+        "tp": 3388
+      }
+    },
+    "loss": 0.3352297971531806,
+    "selection_score": 0.7715097898634247
+  },
+  "early_stop_patience_counter": 12,
+  "operator": "graphconv",
+  "p2_test_directory_enumerated": false,
+  "p2_test_tensors_deserialized": false,
+  "seed": 107,
+  "stage": "V5_P2_G2_DIRECT_GRAPH_SINGLE_RUN",
+  "status": "RUNNING"
+}

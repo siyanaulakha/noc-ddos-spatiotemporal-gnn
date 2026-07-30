@@ -1,0 +1,172 @@
+{
+  "artifacts": {
+    "selected_checkpoint": [
+      "/home/zira/research/projects/GNN-2d/models/v5/p2_b3_selected_checkpoint/v5_p2_b3_selected_seed_127_epoch_59.pt",
+      "7d4afae2214f67ecd9c65c6ff4614ba8238614234d7b07cdf1408b6d3efb07ef"
+    ],
+    "selection_manifest": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p2_b3_seed_checkpoint_selection/V5_P2_B3_SELECTED_CHECKPOINT_MANIFEST.json",
+      "54040ff0cd8f61cb640b71ae715612661fbd76cdd7dfc06725c1ed098406248a"
+    ]
+  },
+  "decision": "FREEZE_SELECTED_P2_CHECKPOINT_AND_AUTHORIZE_B4",
+  "failures": [],
+  "next_stage": "V5_P2_B4_VALIDATION_THRESHOLD_TUNING",
+  "provenance": {
+    "b1_lock_sha256": "4bfbf2a555899a841c445c576b2431cb4eb8cfaea5a7d8c6698d022744f89587",
+    "b1_protocol_file_sha256": "e18253eb2545b453ffbfb3f627d8646307d7a0c3e9da337547f5d061553baa4a",
+    "b1_report_sha256": "523aa60c95d20f2223e43882ca7fb1077148c2b731f8f101c439451f6d8aa9b4",
+    "b2_lock_sha256": "3df37f4a57e6b3ed7a2aa402421b508d25c23434e06febc0c5647ab62f50f955",
+    "b2_report_sha256": "4f57600ffa31b396bb2f03187a4e96f341da519dee26eb6d92bbf793cd31769c",
+    "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+    "model_source_sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def"
+  },
+  "security_boundary": {
+    "checkpoint_deserialized": false,
+    "dataset_constructed": false,
+    "run_tensors_deserialized": false,
+    "selection_uses_validation_only": true,
+    "test_directory_enumerated": false,
+    "test_directory_existence_checked": false,
+    "test_evaluation_authorized": false,
+    "test_evaluation_performed": false,
+    "test_tensor_contents_accessed": false,
+    "test_tensor_files_opened": false,
+    "threshold_tuning_performed": false
+  },
+  "selection": {
+    "contract_name": "V5_P2_B3_VALIDATION_ONLY_SEED_AND_CHECKPOINT_SELECTION",
+    "contract_version": 1,
+    "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+    "model_source_sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def",
+    "protocol_sha256": "0817ae7812f91e3c75260589acaf52bd8a74b07b2114a451b4773578efde4b60",
+    "ranked_candidates": [
+      {
+        "best_epoch": 59,
+        "checkpoint_path": "/home/zira/research/projects/GNN-2d/models/v5/p2_b2_multi_seed/seed_127/v5_p2_b2_seed_127_best.pt",
+        "checkpoint_sha256": "7d4afae2214f67ecd9c65c6ff4614ba8238614234d7b07cdf1408b6d3efb07ef",
+        "completed_epoch": 71,
+        "count_active_accuracy": 0.9997278170930866,
+        "count_active_macro_f1": 0.9997379559244336,
+        "graph_auroc": 0.8942131190316658,
+        "graph_average_precision": 0.7027605067901452,
+        "graph_fixed_0_5_f1": 0.7421206541752411,
+        "initial_state_sha256": "fcadfc523fda012b366d481489d0269266f1d708dbaf44a41150b46290b558fe",
+        "path_average_precision": 0.6347467427322039,
+        "ranking_tuple": [
+          0.773679542422322,
+          0.8942131190316658,
+          0.7027605067901452,
+          -1.1623698801829898,
+          -59
+        ],
+        "seed": 127,
+        "seed_lock_path": "/home/zira/research/projects/GNN-2d/reports/v5/p2_b2_multi_seed_training/seed_127/V5_P2_B2_SEED_127_LOCK.json",
+        "seed_report_path": "/home/zira/research/projects/GNN-2d/reports/v5/p2_b2_multi_seed_training/seed_127/V5_P2_B2_SEED_127_TRAINING_REPORT.json",
+        "selection_score": 0.773679542422322,
+        "source_average_precision": 0.6630922246137666,
+        "stopped_early": true,
+        "transit_average_precision": 0.6023850938885402,
+        "validation_loss": 1.1623698801829898,
+        "victim_average_precision": 0.6001843118218436
+      },
+      {
+        "best_epoch": 48,
+        "checkpoint_path": "/home/zira/research/projects/GNN-2d/models/v5/p2_b2_multi_seed/seed_117/v5_p2_b2_seed_117_best.pt",
+        "checkpoint_sha256": "27c34914466b91e0a1bf8470f33103bb380376acff0578eb5ad97e678f107f6a",
+        "completed_epoch": 60,
+        "count_active_accuracy": 0.9989112683723462,
+        "count_active_macro_f1": 0.9989517485865903,
+        "graph_auroc": 0.8958586513032624,
+        "graph_average_precision": 0.7163413401525729,
+        "graph_fixed_0_5_f1": 0.7401705845641773,
+        "initial_state_sha256": "4e1bb4415deb303a71ae30f7cd29ee76a9cb8e400ea99e7358fd60795b6d5b4a",
+        "path_average_precision": 0.626106612006332,
+        "ranking_tuple": [
+          0.7730198302851675,
+          0.8958586513032624,
+          0.7163413401525729,
+          -1.1668674533242314,
+          -48
+        ],
+        "seed": 117,
+        "seed_lock_path": "/home/zira/research/projects/GNN-2d/reports/v5/p2_b2_multi_seed_training/seed_117/V5_P2_B2_SEED_117_LOCK.json",
+        "seed_report_path": "/home/zira/research/projects/GNN-2d/reports/v5/p2_b2_multi_seed_training/seed_117/V5_P2_B2_SEED_117_TRAINING_REPORT.json",
+        "selection_score": 0.7730198302851675,
+        "source_average_precision": 0.6468969989230872,
+        "stopped_early": true,
+        "transit_average_precision": 0.5873073510935483,
+        "validation_loss": 1.1668674533242314,
+        "victim_average_precision": 0.6093717538101773
+      },
+      {
+        "best_epoch": 58,
+        "checkpoint_path": "/home/zira/research/projects/GNN-2d/models/v5/p2_b2_multi_seed/seed_107/v5_p2_b2_seed_107_best.pt",
+        "checkpoint_sha256": "668742c8e16644fc25697aa839e1410f96dd3c4d1bd7457c62731ae77cc56e87",
+        "completed_epoch": 70,
+        "count_active_accuracy": 0.994556341861731,
+        "count_active_macro_f1": 0.9947423768231027,
+        "graph_auroc": 0.8950481739767072,
+        "graph_average_precision": 0.717845999208222,
+        "graph_fixed_0_5_f1": 0.7432432432432432,
+        "initial_state_sha256": "8ec0d46aee51318af938711fe8e2f479d0bffa46fb846c6fede70c0d76309f41",
+        "path_average_precision": 0.6283990751200018,
+        "ranking_tuple": [
+          0.7718476145574708,
+          0.8950481739767072,
+          0.717845999208222,
+          -1.153542779262343,
+          -58
+        ],
+        "seed": 107,
+        "seed_lock_path": "/home/zira/research/projects/GNN-2d/reports/v5/p2_b2_multi_seed_training/seed_107/V5_P2_B2_SEED_107_LOCK.json",
+        "seed_report_path": "/home/zira/research/projects/GNN-2d/reports/v5/p2_b2_multi_seed_training/seed_107/V5_P2_B2_SEED_107_TRAINING_REPORT.json",
+        "selection_score": 0.7718476145574708,
+        "source_average_precision": 0.644622179940047,
+        "stopped_early": true,
+        "transit_average_precision": 0.5932900652652968,
+        "validation_loss": 1.153542779262343,
+        "victim_average_precision": 0.5981377392722533
+      }
+    ],
+    "ranking_rule": {
+      "primary": "higher validation selection score",
+      "tie_breakers": [
+        "higher graph AUROC",
+        "higher graph average precision",
+        "lower validation total loss",
+        "earlier best epoch"
+      ]
+    },
+    "runner_up": {
+      "score_margin": 0.0006597121371544334,
+      "seed": 117,
+      "selection_score": 0.7730198302851675
+    },
+    "selected": {
+      "best_epoch": 59,
+      "count_active_macro_f1": 0.9997379559244336,
+      "frozen_checkpoint_path": "/home/zira/research/projects/GNN-2d/models/v5/p2_b3_selected_checkpoint/v5_p2_b3_selected_seed_127_epoch_59.pt",
+      "frozen_checkpoint_sha256": "7d4afae2214f67ecd9c65c6ff4614ba8238614234d7b07cdf1408b6d3efb07ef",
+      "graph_auroc": 0.8942131190316658,
+      "graph_average_precision": 0.7027605067901452,
+      "path_average_precision": 0.6347467427322039,
+      "seed": 127,
+      "selection_score": 0.773679542422322,
+      "source_average_precision": 0.6630922246137666,
+      "source_checkpoint_path": "/home/zira/research/projects/GNN-2d/models/v5/p2_b2_multi_seed/seed_127/v5_p2_b2_seed_127_best.pt",
+      "source_checkpoint_sha256": "7d4afae2214f67ecd9c65c6ff4614ba8238614234d7b07cdf1408b6d3efb07ef",
+      "transit_average_precision": 0.6023850938885402,
+      "validation_loss": 1.1623698801829898,
+      "victim_average_precision": 0.6001843118218436
+    },
+    "selection_uses_validation_only": true,
+    "test_directory_enumerated": false,
+    "test_evaluation_authorized": false,
+    "test_tensor_contents_accessed": false,
+    "threshold_tuning_performed": false
+  },
+  "stage": "V5_P2_B3_SEED_AND_CHECKPOINT_SELECTION",
+  "status": "COMPLETE",
+  "warnings": []
+}

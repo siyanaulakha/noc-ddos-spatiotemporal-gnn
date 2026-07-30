@@ -1,0 +1,11 @@
+{
+  "architecture_selected": false,
+  "completed_runs": 12,
+  "next_stage": "V5_P2_G2_DIRECT_GRAPH_DETECTION",
+  "p2_test_directory_enumerated": false,
+  "p2_test_tensors_deserialized": false,
+  "per_seed_csv_sha256": "fd2b43b5c7c26e010ca0c0d769a39a163381ade825fc1f5f5d8f71914456e99b",
+  "report_sha256": "299f33cfbc55d82075a6992793540bdc3d237846b1315caab8361efeee8c2e7a",
+  "status": "V5_P2_G1C_SOURCE_ONLY_GRAPH_MATRIX_AGGREGATION_COMPLETE",
+  "summary_csv_sha256": "4b66d5f465c1b90d2addaf9d93c4311935401d1fabe9644ea55abfa3595022e9"
+}

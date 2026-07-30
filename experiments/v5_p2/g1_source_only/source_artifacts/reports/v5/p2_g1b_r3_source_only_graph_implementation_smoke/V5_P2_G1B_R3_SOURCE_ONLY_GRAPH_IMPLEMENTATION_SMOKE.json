@@ -1,0 +1,49 @@
+{
+  "batch_size": 8,
+  "decision": "HOLD_G1C_PENDING_IMPLEMENTATION_FIX",
+  "device": null,
+  "failures": [
+    "topology canonical SHA disagrees between contract and lock",
+    "topology contract is not a 4x4 2D mesh",
+    "topology contract does not contain 16 nodes",
+    "topology router numbering is not row-major",
+    "topology contract edge shape is None, expected [2,48]",
+    "topology contract does not freeze 48 directed edges",
+    "topology contract unexpectedly permits physical self-loops"
+  ],
+  "historical_g1b_hold_preserved": true,
+  "historical_g1b_r1_hold_preserved": true,
+  "historical_g1b_r2_hold_preserved": true,
+  "next_stage": "V5_P2_G1B_R4_IMPLEMENTATION_FIX",
+  "operator_results": {},
+  "resolved_implementation_contract": {},
+  "security_boundary": {
+    "architecture_selected": false,
+    "b4_validation_cache_accessed": false,
+    "b6_test_cache_accessed": false,
+    "checkpoint_loaded": false,
+    "full_training_performed": false,
+    "legal_decoder_implemented": false,
+    "quantization_performed": false,
+    "rtl_generated": false,
+    "scientific_checkpoint_created": false,
+    "smoke_optimizer_steps_per_operator": 0,
+    "test_directory_enumerated": false,
+    "test_tensors_deserialized": false,
+    "threshold_tuning_performed": false,
+    "train_items_available": null,
+    "validation_items_available": null
+  },
+  "smoke_seed": 107,
+  "stage": "V5_P2_G1B_R3_SOURCE_ONLY_GRAPH_IMPLEMENTATION_SMOKE",
+  "status": "HOLD",
+  "torch_geometric_operators": [
+    "GCNConv",
+    "GraphConv",
+    "GATConv"
+  ],
+  "torch_version": "2.12.1+cu130",
+  "train_subset_items": null,
+  "validation_subset_items": null,
+  "warnings": []
+}

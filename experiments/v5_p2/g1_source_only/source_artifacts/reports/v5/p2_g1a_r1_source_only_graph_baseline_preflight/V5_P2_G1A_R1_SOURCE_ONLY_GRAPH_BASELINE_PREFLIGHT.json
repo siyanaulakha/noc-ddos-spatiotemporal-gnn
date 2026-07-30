@@ -1,0 +1,326 @@
+{
+  "decision": "HOLD_G1_SOURCE_ONLY_IMPLEMENTATION_PENDING_R1_FIX",
+  "environment": {
+    "cuda_available": true,
+    "operators": {
+      "GATConv": {
+        "cpu": {
+          "finite": true,
+          "passed": true,
+          "shape": [
+            4,
+            8
+          ]
+        },
+        "cuda": {
+          "device_name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+          "finite": true,
+          "passed": true,
+          "shape": [
+            4,
+            8
+          ]
+        }
+      },
+      "GCNConv": {
+        "cpu": {
+          "finite": true,
+          "passed": true,
+          "shape": [
+            4,
+            8
+          ]
+        },
+        "cuda": {
+          "device_name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+          "finite": true,
+          "passed": true,
+          "shape": [
+            4,
+            8
+          ]
+        }
+      },
+      "GraphConv": {
+        "cpu": {
+          "finite": true,
+          "passed": true,
+          "shape": [
+            4,
+            8
+          ]
+        },
+        "cuda": {
+          "device_name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+          "finite": true,
+          "passed": true,
+          "shape": [
+            4,
+            8
+          ]
+        }
+      }
+    },
+    "torch_cuda": "13.0",
+    "torch_geometric_version": "2.8.0.post1",
+    "torch_version": "2.12.1+cu130"
+  },
+  "failures": [
+    "train sample missing: ['edge_index']",
+    "validation sample missing: ['edge_index']"
+  ],
+  "g0_protocol_sha256": "22e3d9828edaba9323a0c5206806ea93c149a239b8d9043ad79129de76882def",
+  "historical_g1a_hold_preserved": true,
+  "loader": {
+    "dataset_classes": [
+      {
+        "class": "V5P2PairAlignedPrimary58Dataset",
+        "signature": "(root: 'str | Path', split: 'str', pair_manifest: 'str | Path', *, window: 'int' = 32, stride: 'int' = 8) -> 'None'"
+      }
+    ],
+    "path": "/home/zira/research/projects/GNN-2d/src/data/v5_p2_pair_aligned_primary58_dataset.py",
+    "selected_class": "V5P2PairAlignedPrimary58Dataset",
+    "selected_kwargs": {
+      "train": {
+        "pair_manifest": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+        "root": "/home/zira/tools/architecture/gem5/experiments/v5_p2_complete558_dynamic_graph_tensors/p2_complete558_dynamic_graph",
+        "split": "train",
+        "stride": "8",
+        "window": "32"
+      },
+      "validation": {
+        "pair_manifest": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+        "root": "/home/zira/tools/architecture/gem5/experiments/v5_p2_complete558_dynamic_graph_tensors/p2_complete558_dynamic_graph",
+        "split": "validation",
+        "stride": "8",
+        "window": "32"
+      }
+    },
+    "sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2"
+  },
+  "manifest_discovery": {
+    "attempt_count": 0,
+    "attempts_tail": [],
+    "candidate_count": 1,
+    "candidates": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv"
+    ],
+    "evidence": [
+      {
+        "candidate": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+        "evidence": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+        "source": "filename_search"
+      },
+      {
+        "candidate": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+        "evidence": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_CONTRACT.json:64: \"pair_manifest_file\": \"/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv\",",
+        "source": "text_reference"
+      }
+    ],
+    "searched_roots": [
+      "/home/zira/research/projects/GNN-2d/data/processed/v5",
+      "/home/zira/research/projects/GNN-2d/logs/v5",
+      "/home/zira/research/projects/GNN-2d/reports/v5",
+      "/home/zira/research/projects/GNN-2d/scripts/v5",
+      "/home/zira/research/projects/GNN-2d/src",
+      "/home/zira/tools/architecture/gem5/experiments/v5_p2_complete558_dynamic_graph_tensors",
+      "/home/zira/tools/architecture/gem5/experiments/v5_p2_complete558_dynamic_graph_tensors/p2_complete558_dynamic_graph"
+    ],
+    "selected": {
+      "mode": "single_manifest",
+      "train_manifest": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+      "validation_manifest": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv"
+    }
+  },
+  "model": {
+    "path": "/home/zira/research/projects/GNN-2d/src/models/v5_p2_b3_conv1d_only_count4.py",
+    "sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def"
+  },
+  "next_stage": "V5_P2_G1A_R2_PAIR_MANIFEST_RESOLUTION",
+  "samples": {
+    "train": {
+      "physical_port_mask": {
+        "dtype": "torch.bool",
+        "shape": [
+          16,
+          10
+        ],
+        "type": "torch.Tensor"
+      },
+      "role_mask": {
+        "dtype": "torch.uint8",
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      },
+      "x": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16,
+          58,
+          32
+        ],
+        "type": "torch.Tensor"
+      },
+      "y_attack": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [],
+        "type": "torch.Tensor"
+      },
+      "y_attack_path": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      },
+      "y_attacker_count": {
+        "dtype": "torch.int64",
+        "shape": [],
+        "type": "torch.Tensor"
+      },
+      "y_source": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      },
+      "y_transit": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      },
+      "y_victim": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      }
+    },
+    "train_keys": [
+      "x",
+      "physical_port_mask",
+      "y_attack",
+      "y_attacker_count",
+      "y_source",
+      "y_transit",
+      "y_victim",
+      "y_attack_path",
+      "role_mask"
+    ],
+    "train_length": 70166,
+    "validation": {
+      "physical_port_mask": {
+        "dtype": "torch.bool",
+        "shape": [
+          16,
+          10
+        ],
+        "type": "torch.Tensor"
+      },
+      "role_mask": {
+        "dtype": "torch.uint8",
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      },
+      "x": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16,
+          58,
+          32
+        ],
+        "type": "torch.Tensor"
+      },
+      "y_attack": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [],
+        "type": "torch.Tensor"
+      },
+      "y_attack_path": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      },
+      "y_attacker_count": {
+        "dtype": "torch.int64",
+        "shape": [],
+        "type": "torch.Tensor"
+      },
+      "y_source": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      },
+      "y_transit": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      },
+      "y_victim": {
+        "dtype": "torch.float32",
+        "finite": true,
+        "shape": [
+          16
+        ],
+        "type": "torch.Tensor"
+      }
+    },
+    "validation_keys": [
+      "x",
+      "physical_port_mask",
+      "y_attack",
+      "y_attacker_count",
+      "y_source",
+      "y_transit",
+      "y_victim",
+      "y_attack_path",
+      "role_mask"
+    ],
+    "validation_length": 12528
+  },
+  "security_boundary": {
+    "architecture_selected": false,
+    "b4_validation_cache_accessed": false,
+    "b6_test_cache_accessed": false,
+    "checkpoint_loaded": false,
+    "historical_hold_deleted": false,
+    "legal_decoder_implemented": false,
+    "optimization_steps": 0,
+    "quantization_performed": false,
+    "rtl_generated": false,
+    "test_directory_enumerated": false,
+    "test_tensors_deserialized": false,
+    "threshold_tuning_performed": false,
+    "train_samples_deserialized": 1,
+    "training_performed": false,
+    "validation_samples_deserialized": 1
+  },
+  "stage": "V5_P2_G1A_R1_SOURCE_ONLY_GRAPH_BASELINE_PREFLIGHT",
+  "status": "HOLD",
+  "warnings": []
+}

@@ -1,0 +1,340 @@
+{
+  "architecture": {
+    "activation": "ReLU",
+    "clean_equivalence_max_abs_error": 0.0,
+    "clean_source_head_sha256": "fbe32b364faefa057af7fd4aad28903eb83d36d63bec0ca8af009fab5f474430",
+    "dropout": 0.0,
+    "expected_parameter_count": 36929,
+    "graph_layers": 2,
+    "graph_width": 64,
+    "hook_based_extraction_used": false,
+    "initial_state_sha256": "2da72a6ffeb88201f3f5fe9bad71c7ee72c26eaf06e47a549a60915694114896",
+    "name": "CLEAN_B3_SOURCE_ONLY_GATCONV",
+    "operator_configuration": {
+      "attention_dropout": 0.0,
+      "bias": true,
+      "concat": false,
+      "graph_layers": 2,
+      "heads": 1,
+      "message_passing": true,
+      "negative_slope": 0.2,
+      "operator": "GATConv",
+      "screening_only": true,
+      "self_loops": true
+    },
+    "parameter_count": 36929,
+    "reference_b3_initial_state_sha256": "fcadfc523fda012b366d481489d0269266f1d708dbaf44a41150b46290b558fe",
+    "reference_source_head_sha256": "fbe32b364faefa057af7fd4aad28903eb83d36d63bec0ca8af009fab5f474430",
+    "residual": false,
+    "unused_multitask_heads_present": false
+  },
+  "artifacts": {
+    "checkpoint": [
+      "/home/zira/research/projects/GNN-2d/models/v5/p2_g1c_source_only_graph/gatconv/seed_127/v5_p2_g1c_gatconv_seed_127_best.pt",
+      "375162e034814c9dc04e26e83a67ea8f56674782dcbd9148d7b805e5202a9ddf"
+    ],
+    "history_csv": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p2_g1c_source_only_graph_training/gatconv/seed_127/V5_P2_G1C_GATCONV_SEED_127_HISTORY.csv",
+      "efac528f8dd4ee0b9dedd7182b5571d80a878021ef2149d295281cc68b687c44"
+    ],
+    "progress_json": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p2_g1c_source_only_graph_training/gatconv/seed_127/V5_P2_G1C_GATCONV_SEED_127_PROGRESS.json",
+      "444b05369a8739fba2a8c50b50f1c1f2b265624e38466a971cfb2d1f8f7b7963"
+    ],
+    "threshold_sweep_csv": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p2_g1c_source_only_graph_training/gatconv/seed_127/V5_P2_G1C_GATCONV_SEED_127_THRESHOLD_SWEEP.csv",
+      "b8844a7a3296b9f38a694a7fc5bac10afad9f5bfd4e13c9651cb677d2b957143"
+    ],
+    "validation_predictions": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p2_g1c_source_only_graph_training/gatconv/seed_127/V5_P2_G1C_GATCONV_SEED_127_VALIDATION_PREDICTIONS.npz",
+      "f87cdc8c902eff395a376523e9f007998ff00b7f1bd1d01fee18ac8fc375ebcd"
+    ]
+  },
+  "best_checkpoint": {
+    "checkpoint_selection_weights": {
+      "derived_graph_average_precision": 0.25,
+      "source_auroc": 0.25,
+      "source_average_precision": 0.5
+    },
+    "epoch": 45,
+    "path": "/home/zira/research/projects/GNN-2d/models/v5/p2_g1c_source_only_graph/gatconv/seed_127/v5_p2_g1c_gatconv_seed_127_best.pt",
+    "ranking_tuple": [
+      0.6931175935237985,
+      0.5820584189262854,
+      0.9795670298980816,
+      0.6287865063445419,
+      -0.32186205660398587,
+      -45
+    ],
+    "sha256": "375162e034814c9dc04e26e83a67ea8f56674782dcbd9148d7b805e5202a9ddf",
+    "validation_metrics_at_selection": {
+      "derived_graph": {
+        "auroc": 0.8681506527163756,
+        "average_precision": 0.6287865063445419,
+        "negative_items": 8854,
+        "positive_items": 3674,
+        "thresholded": {
+          "accuracy": 0.7833652618135377,
+          "balanced_accuracy": 0.8449843029098794,
+          "f1": 0.7290876422439609,
+          "fn": 22,
+          "fp": 2692,
+          "fpr": 0.3040433702281455,
+          "precision": 0.5756620428751577,
+          "recall": 0.9940119760479041,
+          "threshold": 0.5,
+          "tn": 6162,
+          "tnr": 0.6959566297718546,
+          "tp": 3652
+        }
+      },
+      "exact_set": {
+        "attack": 0.663581927054981,
+        "control": 0.6959566297718546,
+        "overall": 0.6864623243933589
+      },
+      "loss": 0.32186205660398587,
+      "selection_score": 0.6931175935237985,
+      "source": {
+        "auroc": 0.9795670298980816,
+        "average_precision": 0.5820584189262854,
+        "negative_entries": 191178,
+        "positive_entries": 9270,
+        "thresholded": {
+          "accuracy": 0.9517830060664112,
+          "balanced_accuracy": 0.9510117140870192,
+          "f1": 0.6457241303471281,
+          "fn": 462,
+          "fp": 9203,
+          "fpr": 0.04813838412369624,
+          "precision": 0.48903447892954305,
+          "recall": 0.9501618122977347,
+          "threshold": 0.5,
+          "tn": 181975,
+          "tnr": 0.9518616158763038,
+          "tp": 8808
+        }
+      }
+    }
+  },
+  "contracts": {
+    "b3_model_sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def",
+    "edge_index_sha256": "f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff",
+    "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+    "smoke_contract_sha256": "b8871e8516c05f54d37c5a761b3e17cbf91b0722f08e63b37a93251f6e30e5b6",
+    "topology_contract_sha256": "74112ce145cd3347148d4c784be125add7945943e80e98948368f4c076d047af"
+  },
+  "cost": {
+    "inference_latency_proxy": {
+      "batch_items": 256,
+      "microseconds_per_item": 67.37670218740277,
+      "milliseconds_per_batch": 17.24843575997511,
+      "timed_iterations": 50,
+      "warmup_iterations": 10
+    },
+    "operation_count": {
+      "base_temporal_node_head_macs": 10791424,
+      "graph_linear_macs": 131072,
+      "graph_message_scalar_ops": 20736,
+      "method": "analytic_per_sample_proxy",
+      "total_linear_macs": 10922496
+    },
+    "peak_cuda_memory_allocated_bytes": 667571200
+  },
+  "data": {
+    "input_shape": [
+      "items",
+      16,
+      58,
+      32
+    ],
+    "item_batch_size": 256,
+    "num_workers": 0,
+    "pair_block_batch_size": 128,
+    "pair_manifest": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+    "stride": 8,
+    "train_batches": 275,
+    "train_items": 70166,
+    "validation_batches": 49,
+    "validation_items": 12528,
+    "window": 32
+  },
+  "loss": {
+    "clamped_positive_weight": 20.0,
+    "name": "class_weighted_source_bce_with_logits",
+    "negative_entries": 1074559,
+    "positive_entries": 48097,
+    "raw_positive_weight": 22.341497390689646
+  },
+  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_MATRIX_AGGREGATION",
+  "operator": "gatconv",
+  "post_checkpoint_validation": {
+    "threshold_selection": {
+      "grid": {
+        "candidate_count": 1001,
+        "kind": "uniform_closed_interval",
+        "start": 0.0,
+        "step": 0.001,
+        "stop": 1.0
+      },
+      "objective_weights": {
+        "source_exact_set_attack": 0.4,
+        "source_node_f1": 0.6
+      },
+      "selected": {
+        "derived_graph_balanced_accuracy": 0.8427513824641413,
+        "metrics": {
+          "derived_graph": {
+            "auroc": 0.8681506527163756,
+            "average_precision": 0.6287865063445419,
+            "negative_items": 8854,
+            "positive_items": 3674,
+            "thresholded": {
+              "accuracy": 0.7795338441890166,
+              "balanced_accuracy": 0.8427513824641413,
+              "f1": 0.7259376860488193,
+              "fn": 16,
+              "fp": 2746,
+              "fpr": 0.3101423085611023,
+              "precision": 0.5712054965646471,
+              "recall": 0.9956450734893849,
+              "threshold": 0.406,
+              "tn": 6108,
+              "tnr": 0.6898576914388976,
+              "tp": 3658
+            }
+          },
+          "exact_set": {
+            "attack": 0.6665759390310289,
+            "control": 0.6898576914388976,
+            "overall": 0.6830300127713921
+          },
+          "source": {
+            "auroc": 0.9795670298980816,
+            "average_precision": 0.5820584189262854,
+            "negative_entries": 191178,
+            "positive_entries": 9270,
+            "thresholded": {
+              "accuracy": 0.9512142800127714,
+              "balanced_accuracy": 0.9544600736547357,
+              "f1": 0.6449293780182274,
+              "fn": 389,
+              "fp": 9390,
+              "fpr": 0.04911653014468192,
+              "precision": 0.48607082261507306,
+              "recall": 0.9580366774541532,
+              "threshold": 0.406,
+              "tn": 181788,
+              "tnr": 0.9508834698553181,
+              "tp": 8881
+            }
+          }
+        },
+        "objective": 0.653588002423348,
+        "ranking_tuple": [
+          0.653588002423348,
+          0.6449293780182274,
+          0.6665759390310289,
+          0.8427513824641413,
+          -0.09399999999999997,
+          -0.406
+        ],
+        "source_exact_set_attack": 0.6665759390310289,
+        "source_node_f1": 0.6449293780182274,
+        "threshold": 0.406
+      }
+    },
+    "untuned_metrics": {
+      "derived_graph": {
+        "auroc": 0.8681506527163756,
+        "average_precision": 0.6287865063445419,
+        "negative_items": 8854,
+        "positive_items": 3674,
+        "thresholded": {
+          "accuracy": 0.7833652618135377,
+          "balanced_accuracy": 0.8449843029098794,
+          "f1": 0.7290876422439609,
+          "fn": 22,
+          "fp": 2692,
+          "fpr": 0.3040433702281455,
+          "precision": 0.5756620428751577,
+          "recall": 0.9940119760479041,
+          "threshold": 0.5,
+          "tn": 6162,
+          "tnr": 0.6959566297718546,
+          "tp": 3652
+        }
+      },
+      "exact_set": {
+        "attack": 0.663581927054981,
+        "control": 0.6959566297718546,
+        "overall": 0.6864623243933589
+      },
+      "loss": 0.32186205660398587,
+      "selection_score": 0.6931175935237985,
+      "source": {
+        "auroc": 0.9795670298980816,
+        "average_precision": 0.5820584189262854,
+        "negative_entries": 191178,
+        "positive_entries": 9270,
+        "thresholded": {
+          "accuracy": 0.9517830060664112,
+          "balanced_accuracy": 0.9510117140870192,
+          "f1": 0.6457241303471281,
+          "fn": 462,
+          "fp": 9203,
+          "fpr": 0.04813838412369624,
+          "precision": 0.48903447892954305,
+          "recall": 0.9501618122977347,
+          "threshold": 0.5,
+          "tn": 181975,
+          "tnr": 0.9518616158763038,
+          "tp": 8808
+        }
+      }
+    }
+  },
+  "run_contract_sha256": "96ae14f393b8ae885cfd3b153138ddf25d85b9d4772ea5c67902ff31f060403c",
+  "security_boundary": {
+    "architecture_selected": false,
+    "p2_test_directory_enumerated": false,
+    "p2_test_directory_existence_checked": false,
+    "p2_test_evaluation_performed": false,
+    "p2_test_tensor_files_opened": false,
+    "p2_test_tensors_deserialized": false,
+    "p2_train_used": true,
+    "p2_validation_used": true,
+    "post_checkpoint_validation_threshold_tuning": true,
+    "quantization_performed": false,
+    "rtl_generated": false,
+    "threshold_tuning_during_training": false
+  },
+  "seed": 127,
+  "stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_SINGLE_RUN",
+  "status": "COMPLETE",
+  "training": {
+    "automatic_mixed_precision": false,
+    "completed_epoch": 57,
+    "deterministic_algorithms": "enabled_warn_only",
+    "device": "cuda",
+    "early_stopping_minimum_delta": 0.0001,
+    "early_stopping_patience": 12,
+    "gradient_clip_global_norm": 1.0,
+    "learning_rate": 0.001,
+    "maximum_epochs": 100,
+    "minimum_epochs": 15,
+    "optimizer": "AdamW",
+    "scheduler": {
+      "factor": 0.5,
+      "minimum_learning_rate": 1e-05,
+      "mode": "max",
+      "name": "ReduceLROnPlateau",
+      "patience": 4,
+      "threshold": 0.0001,
+      "threshold_mode": "abs"
+    },
+    "stopped_early": true,
+    "total_elapsed_seconds": 1441.0269436836243,
+    "weight_decay": 0.0001
+  }
+}

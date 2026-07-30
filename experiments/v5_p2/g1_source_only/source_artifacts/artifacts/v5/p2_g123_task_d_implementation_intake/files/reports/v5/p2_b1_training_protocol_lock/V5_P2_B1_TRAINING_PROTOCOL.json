@@ -1,0 +1,257 @@
+{
+  "architecture": {
+    "class": "P2B3Conv1DOnlyCount4",
+    "count_class_mapping": {
+      "1": 0,
+      "2": 1,
+      "3": 2,
+      "4": 3
+    },
+    "count_class_values": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "count_logits": 4,
+    "edge_index_model_input": false,
+    "graph_message_passing": false,
+    "model_sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def",
+    "name": "B3_CAUSAL_DEPTHWISE_SEPARABLE_CONV1D_ONLY_P2_COUNT4",
+    "parameter_count": 43273,
+    "role_mask_model_input": false,
+    "role_mask_model_output": false,
+    "role_mask_semantics": "source + 2*transit + 4*victim"
+  },
+  "baseline_reporting_obligations": {
+    "epoch_position_graph_balanced_accuracy": 0.5801486129738592,
+    "highest_final_epoch_traffic_router_source_hit_at_1": 0.6913445835601524,
+    "mask_only_role_validation_auroc": {
+      "path": 0.5812605851259985,
+      "source": 0.5352475882187593,
+      "transit": 0.6598773532295982,
+      "victim": 0.5193032333338157
+    },
+    "most_common_source_hit_at_1": 0.20386499727817092,
+    "quarantined_mode_and_category_baselines": "report as leakage diagnostics only; never compare as deployable baselines"
+  },
+  "checkpointing": {
+    "best_checkpoint_rule": "highest validation_selection_score",
+    "checkpoint_contains": [
+      "model_state_dict",
+      "optimizer_state_dict",
+      "scheduler_state_dict",
+      "epoch",
+      "seed",
+      "protocol_sha256",
+      "loader_sha256",
+      "model_source_sha256",
+      "train_label_weight_manifest",
+      "validation_metrics"
+    ],
+    "cross_seed_selection": "same ranking rule applied to each seed's locked best epoch",
+    "save_best_checkpoint_per_seed": true,
+    "save_initial_state_hash": true,
+    "save_last_checkpoint": false,
+    "save_optimizer_state_for_best": true,
+    "within_seed_tie_breakers": [
+      "higher graph_AUROC",
+      "higher graph_average_precision",
+      "lower validation_total_loss",
+      "earlier epoch"
+    ]
+  },
+  "contract_name": "V5_P2_B3_COUNT4_MULTI_SEED_TRAINING_PROTOCOL",
+  "contract_version": 1,
+  "data": {
+    "authorized_splits": [
+      "train",
+      "validation"
+    ],
+    "batch_size_items": 256,
+    "batch_size_pair_windows": 128,
+    "batching": "shuffle aligned ATTACK/CONTROL two-item blocks; preserve adjacency inside each block",
+    "drop_last_train": false,
+    "loader_class": "V5P2PairAlignedPrimary58Dataset",
+    "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+    "num_workers": 0,
+    "pair_aligned_common_prefix": true,
+    "pin_memory_on_cuda": true,
+    "primary58": true,
+    "second_normalization": false,
+    "shuffle_validation": false,
+    "stride": 8,
+    "test_split_authorized": false,
+    "train_items": 70166,
+    "validation_items": 12528,
+    "window": 32
+  },
+  "epochs_and_early_stopping": {
+    "early_stopping_minimum_delta": 0.0001,
+    "early_stopping_patience_epochs": 12,
+    "maximum_epochs": 100,
+    "minimum_epochs_before_stop": 15,
+    "mode": "max",
+    "monitor": "validation_selection_score"
+  },
+  "forbidden_actions": [
+    "constructing or reading the P2 test dataset",
+    "using mode, category, case_id, run_id, pair_id, filenames, lengths, window positions, epoch IDs, coordinates, edge_index, status_flags, or role_mask as learned inputs",
+    "second normalization",
+    "hyperparameter changes after B1 lock",
+    "seed-specific hyperparameter changes",
+    "threshold tuning during B2 training",
+    "selecting a checkpoint using test data",
+    "reusing A4 or B0-R2 audit weights"
+  ],
+  "losses": {
+    "attack": {
+      "positive_weight": 2.45339108179939,
+      "positive_weight_formula": "train_graph_negative/train_graph_positive",
+      "scope": "all items",
+      "train_negative_items": 49848,
+      "train_positive_items": 20318,
+      "type": "BCEWithLogitsLoss"
+    },
+    "count": {
+      "class_mapping": {
+        "1": 0,
+        "2": 1,
+        "3": 2,
+        "4": 3
+      },
+      "class_weighting": "none",
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "diagnostic_inverse_frequency_weights_not_applied": {
+        "1": 0.8675491033304867,
+        "2": 0.9335600073515897,
+        "3": 1.074344331641286,
+        "4": 1.1829296693060083
+      },
+      "label_smoothing": 0.0,
+      "observed_train_distribution": {
+        "1": 5855,
+        "2": 5441,
+        "3": 4728,
+        "4": 4294
+      },
+      "scope": "graph-positive attack items only",
+      "type": "CrossEntropyLoss"
+    },
+    "path": {
+      "positive_weight": "compute once from complete train aligned labels as negative_nodes/positive_nodes; clamp to [1,20]; save in each seed manifest",
+      "scope": "all items and nodes",
+      "type": "BCEWithLogitsLoss"
+    },
+    "role_mask_loss": false,
+    "source": {
+      "positive_weight": "compute once from complete train aligned labels as negative_nodes/positive_nodes; clamp to [1,20]; save in each seed manifest",
+      "scope": "all items and nodes",
+      "type": "BCEWithLogitsLoss"
+    },
+    "total": "1.0*attack_bce + 0.5*count_ce + 1.0*source_bce + 0.5*transit_bce + 0.75*victim_bce + 0.5*path_bce",
+    "transit": {
+      "positive_weight": "compute once from complete train aligned labels as negative_nodes/positive_nodes; clamp to [1,20]; save in each seed manifest",
+      "scope": "all items and nodes",
+      "type": "BCEWithLogitsLoss"
+    },
+    "victim": {
+      "positive_weight": "compute once from complete train aligned labels as negative_nodes/positive_nodes; clamp to [1,20]; save in each seed manifest",
+      "scope": "all items and nodes",
+      "type": "BCEWithLogitsLoss"
+    },
+    "weights": {
+      "attack": 1.0,
+      "count": 0.5,
+      "path": 0.5,
+      "source": 1.0,
+      "transit": 0.5,
+      "victim": 0.75
+    }
+  },
+  "optimizer": {
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "gradient_clip_global_norm": 1.0,
+    "learning_rate": 0.001,
+    "name": "AdamW",
+    "weight_decay": 0.0001
+  },
+  "post_training_sequence": [
+    "B2: run all three seeds and freeze each best checkpoint",
+    "B3: compare locked seed results and select one checkpoint",
+    "B4: tune attack/source/transit/victim/path thresholds on validation only and freeze thresholds",
+    "B5: authorize exactly one P2 test evaluation"
+  ],
+  "protocol_sha256": "0817ae7812f91e3c75260589acaf52bd8a74b07b2114a451b4773578efde4b60",
+  "reproducibility": {
+    "automatic_mixed_precision": false,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic_algorithms": true,
+    "model_initialization": "PyTorch module defaults under seed",
+    "one_training_run_per_seed": true,
+    "precision": "float32",
+    "resume_after_protocol_change": false,
+    "seeds": [
+      107,
+      117,
+      127
+    ]
+  },
+  "scheduler": {
+    "cooldown_epochs": 0,
+    "factor": 0.5,
+    "minimum_learning_rate": 1e-05,
+    "mode": "max",
+    "name": "ReduceLROnPlateau",
+    "patience_epochs": 4,
+    "threshold": 0.0001,
+    "threshold_mode": "abs"
+  },
+  "test_boundary": {
+    "test_directory_enumerated": false,
+    "test_evaluation_authorized": false,
+    "test_tensor_contents_accessed": false
+  },
+  "validation": {
+    "binary_head_metrics": [
+      "AUROC",
+      "average_precision",
+      "fixed_0.5_precision",
+      "fixed_0.5_recall",
+      "fixed_0.5_f1"
+    ],
+    "count_metrics": [
+      "active_macro_f1",
+      "active_accuracy",
+      "active_confusion_matrix"
+    ],
+    "frequency": "every epoch",
+    "full_split": true,
+    "selection_score": {
+      "formula": "0.30*graph_AUROC + 0.15*graph_average_precision + 0.15*count_active_macro_f1 + 0.10*source_average_precision + 0.10*transit_average_precision + 0.10*victim_average_precision + 0.10*path_average_precision",
+      "threshold_free_except_count_argmax": true,
+      "undefined_metric_policy": "HOLD; no metric may be silently replaced or skipped",
+      "weights": {
+        "count_macro_f1_active": 0.15,
+        "graph_auroc": 0.3,
+        "graph_average_precision": 0.15,
+        "path_average_precision": 0.1,
+        "source_average_precision": 0.1,
+        "transit_average_precision": 0.1,
+        "victim_average_precision": 0.1
+      }
+    },
+    "split": "validation",
+    "threshold_tuning_during_training": false
+  }
+}

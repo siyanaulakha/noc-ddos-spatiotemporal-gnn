@@ -1,0 +1,14 @@
+{
+  "architecture_selected": false,
+  "checkpoint_sha256": "6443324b302a7d68aee1b0b81b2f5d6a425b5e14840f2276c2d7ca54f98652b0",
+  "history_sha256": "ff0fc3c47020df7b4022c885da16e22d56e5868b99459b052c5908bc7181af09",
+  "operator": "graphconv",
+  "p2_test_directory_enumerated": false,
+  "p2_test_tensors_deserialized": false,
+  "predictions_sha256": "efcb9f72b1fc28a7b6a26a99dcb1b1c8f6de42c6e099cd0501c92945e67fe817",
+  "report_sha256": "93af1c9fc3cdf1a8170f42398cca576e1d7e33d1d768a69b7aa4737d5de6b9a6",
+  "seed": 117,
+  "status": "V5_P2_G3_ROLE_AWARE_MULTILABEL_SINGLE_RUN_COMPLETE",
+  "threshold_sweep_sha256": "6f5d1b0744fed5042fb70db54fdab34f96f21690921f5b263681cb8759e3a59c",
+  "trainer_sha256": "4d63bc9fcaee8d01a5a9dd40833e6f0b9c6ea44dff14392ad2251c7cbd16370d"
+}

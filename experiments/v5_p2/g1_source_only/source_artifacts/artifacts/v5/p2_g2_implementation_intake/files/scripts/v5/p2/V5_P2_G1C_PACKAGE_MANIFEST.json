@@ -1,0 +1,67 @@
+{
+  "execution_order": [
+    "run_v5_p2_g1c_clean_training_implementation_preflight.sh",
+    "run_v5_p2_g1c_source_only_graph_training_matrix.sh"
+  ],
+  "files": [
+    {
+      "filename": "README_G1C.md",
+      "sha256": "180d166ff1071ae3f0bff2301888f0062584369c3708082dd19651ff2fd6bb6c",
+      "size_bytes": 3002
+    },
+    {
+      "filename": "aggregate_v5_p2_g1c_source_only_graph_training_matrix.py",
+      "sha256": "51300f48cd2bd1f9e6fe34039f23bdd97fee77322574a59aa9f8f5a675407a3b",
+      "size_bytes": 12746
+    },
+    {
+      "filename": "preflight_v5_p2_g1c_clean_training_implementation.py",
+      "sha256": "804e708cc3b030f396a761206ad1c4bce2b2560abf849e111a10c191bb7ffc63",
+      "size_bytes": 14524
+    },
+    {
+      "filename": "run_v5_p2_g1c_clean_training_implementation_preflight.sh",
+      "sha256": "13b118b6b3521670eb4795d5f9d4545f0ca1b30d1851294e1201ec2b32b082f3",
+      "size_bytes": 2360
+    },
+    {
+      "filename": "run_v5_p2_g1c_source_only_graph_aggregation.sh",
+      "sha256": "2bd985c22b5e1afdb96d4dbd95cfe4c87a8c37f432b57f38af9e4cd91536d3ef",
+      "size_bytes": 1213
+    },
+    {
+      "filename": "run_v5_p2_g1c_source_only_graph_one_run.sh",
+      "sha256": "96599f291f1b5c442c17540e2bf6d8b8a0bde79158d68598b1308ea3d7c43f7e",
+      "size_bytes": 3446
+    },
+    {
+      "filename": "run_v5_p2_g1c_source_only_graph_training_matrix.sh",
+      "sha256": "1014fcfa6a6e745473ff137398290f936b21df3f601d2160f164e2a0ee1a0ee0",
+      "size_bytes": 2005
+    },
+    {
+      "filename": "train_v5_p2_g1c_source_only_graph_single_run.py",
+      "sha256": "b5590cf4d237908cec658a270521020470b21d8d3b96d14c755a132a5c845c6d",
+      "size_bytes": 60456
+    }
+  ],
+  "input_bundle_sha256": "5dca417a963997b27d80da1bc7400ddbac15ee115eab84f519b70d841a34c48c",
+  "matrix": {
+    "operators": [
+      "conv1d",
+      "gcnconv",
+      "graphconv",
+      "gatconv"
+    ],
+    "runs": 12,
+    "seeds": [
+      107,
+      117,
+      127
+    ],
+    "serial": true
+  },
+  "name": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_PACKAGE",
+  "p2_test_access": false,
+  "version": 1
+}

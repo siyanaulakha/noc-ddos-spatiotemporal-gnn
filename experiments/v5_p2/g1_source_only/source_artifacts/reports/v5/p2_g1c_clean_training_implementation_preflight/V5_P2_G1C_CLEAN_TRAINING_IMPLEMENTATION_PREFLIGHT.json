@@ -1,0 +1,132 @@
+{
+  "decision": "AUTHORIZE_G1C_SERIAL_SCIENTIFIC_TRAINING_MATRIX",
+  "device": "cuda",
+  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+  "operator_results": {
+    "conv1d": {
+      "clean_equivalence_max_abs_error": 0.0,
+      "finite_gradient_parameter_tensors": 24,
+      "gradient_parameter_tensors": 24,
+      "parameter_count": 28353,
+      "peak_cuda_memory_allocated_bytes": 86946816,
+      "reference_b3_initial_state_sha256": "8ec0d46aee51318af938711fe8e2f479d0bffa46fb846c6fede70c0d76309f41",
+      "source_head_initial_state_sha256": "b99f9c30416d247725523dea9981230a08a80458d181c881a0ea9835ffba58e7",
+      "status": "PASS",
+      "total_absolute_gradient": 20.29733445122838,
+      "train_logits_shape": [
+        8,
+        16
+      ],
+      "train_loss_before_step": 1.1322916746139526,
+      "trainable_parameter_tensors": 24,
+      "validation_logits_shape": [
+        8,
+        16
+      ],
+      "validation_loss_after_step": 0.7565934062004089
+    },
+    "gatconv": {
+      "clean_equivalence_max_abs_error": 0.0,
+      "finite_gradient_parameter_tensors": 32,
+      "gradient_parameter_tensors": 32,
+      "parameter_count": 36929,
+      "peak_cuda_memory_allocated_bytes": 87052288,
+      "reference_b3_initial_state_sha256": "8ec0d46aee51318af938711fe8e2f479d0bffa46fb846c6fede70c0d76309f41",
+      "source_head_initial_state_sha256": "b99f9c30416d247725523dea9981230a08a80458d181c881a0ea9835ffba58e7",
+      "status": "PASS",
+      "total_absolute_gradient": 10.681881255149813,
+      "train_logits_shape": [
+        8,
+        16
+      ],
+      "train_loss_before_step": 1.1266918182373047,
+      "trainable_parameter_tensors": 32,
+      "validation_logits_shape": [
+        8,
+        16
+      ],
+      "validation_loss_after_step": 0.7361202239990234
+    },
+    "gcnconv": {
+      "clean_equivalence_max_abs_error": 0.0,
+      "finite_gradient_parameter_tensors": 28,
+      "gradient_parameter_tensors": 28,
+      "parameter_count": 36673,
+      "peak_cuda_memory_allocated_bytes": 87016448,
+      "reference_b3_initial_state_sha256": "8ec0d46aee51318af938711fe8e2f479d0bffa46fb846c6fede70c0d76309f41",
+      "source_head_initial_state_sha256": "b99f9c30416d247725523dea9981230a08a80458d181c881a0ea9835ffba58e7",
+      "status": "PASS",
+      "total_absolute_gradient": 13.4544040793553,
+      "train_logits_shape": [
+        8,
+        16
+      ],
+      "train_loss_before_step": 1.1338088512420654,
+      "trainable_parameter_tensors": 28,
+      "validation_logits_shape": [
+        8,
+        16
+      ],
+      "validation_loss_after_step": 0.7491687536239624
+    },
+    "graphconv": {
+      "clean_equivalence_max_abs_error": 0.0,
+      "finite_gradient_parameter_tensors": 30,
+      "gradient_parameter_tensors": 30,
+      "parameter_count": 44865,
+      "peak_cuda_memory_allocated_bytes": 87113728,
+      "reference_b3_initial_state_sha256": "8ec0d46aee51318af938711fe8e2f479d0bffa46fb846c6fede70c0d76309f41",
+      "source_head_initial_state_sha256": "b99f9c30416d247725523dea9981230a08a80458d181c881a0ea9835ffba58e7",
+      "status": "PASS",
+      "total_absolute_gradient": 31.95416646450758,
+      "train_logits_shape": [
+        8,
+        16
+      ],
+      "train_loss_before_step": 1.1370065212249756,
+      "trainable_parameter_tensors": 30,
+      "validation_logits_shape": [
+        8,
+        16
+      ],
+      "validation_loss_after_step": 0.742322564125061
+    }
+  },
+  "production_constraints": {
+    "clean_encoder_equivalence_max_abs_error": 0.0,
+    "clean_temporal_encoder_extraction": true,
+    "hook_based_full_b3_wrapper": false,
+    "unused_multitask_heads": false
+  },
+  "scientific_training_authorized": true,
+  "security_boundary": {
+    "architecture_selected": false,
+    "full_training_performed": false,
+    "p2_test_directory_enumerated": false,
+    "p2_test_directory_existence_checked": false,
+    "p2_test_tensors_deserialized": false,
+    "p2_train_used": true,
+    "p2_validation_used": true,
+    "scientific_checkpoint_created": false,
+    "smoke_optimizer_steps_completed": 4
+  },
+  "shared_initialization": {
+    "reference_b3_initial_state_sha256": "8ec0d46aee51318af938711fe8e2f479d0bffa46fb846c6fede70c0d76309f41",
+    "source_head_initial_state_sha256": "b99f9c30416d247725523dea9981230a08a80458d181c881a0ea9835ffba58e7"
+  },
+  "source_positive_weight": 20.0,
+  "stage": "V5_P2_G1C_CLEAN_TRAINING_IMPLEMENTATION_PREFLIGHT",
+  "status": "COMPLETE",
+  "train_batch_shape": [
+    8,
+    16,
+    58,
+    32
+  ],
+  "validation_batch_shape": [
+    8,
+    16,
+    58,
+    32
+  ]
+}

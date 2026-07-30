@@ -1,0 +1,243 @@
+{
+  "architecture_contract_sha256": "86624dd842a57fe289f7d747151ad2aabf0fb5203d8fbc618f48ce3c91ef71b2",
+  "artifacts": {
+    "protocol_json": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p0_c0_final_b3_training_protocol_lock/V5_P0_C0_FINAL_B3_PROTOCOL.json",
+      "dc345753ce2cbfcb89bc460cb6b9369bd3bb50cd0bfce50d863cba5881f69dac"
+    ],
+    "protocol_markdown": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p0_c0_final_b3_training_protocol_lock/V5_P0_C0_FINAL_B3_PROTOCOL.md",
+      "6783735a636c99e7597025a8dc40e83947cdf75eadcea0e346ce9022716b08c2"
+    ]
+  },
+  "decision": "LOCK_FINAL_P0_B3_TRAINING_PROTOCOL",
+  "failures": [],
+  "next_stage": "V5_P0_C1_B3_MULTI_SEED_VALIDATION_TRAINING",
+  "protocol": {
+    "architecture_contract": {
+      "architecture_contract_sha256": "86624dd842a57fe289f7d747151ad2aabf0fb5203d8fbc618f48ce3c91ef71b2",
+      "name": "V5_P0_FROZEN_B3_CONV1D_ONLY",
+      "parameter_count": 43208,
+      "train_from_scratch": true,
+      "weights_frozen": false
+    },
+    "c3_one_shot_test": {
+      "checkpoint_selection_on_test": false,
+      "report_all_metrics": true,
+      "required_inputs": [
+        "C1 selected checkpoint hash",
+        "C2 threshold-freeze hash",
+        "C0 protocol hash",
+        "B8 architecture-contract hash"
+      ],
+      "retraining_after_test": false,
+      "test_evaluation_count": 1,
+      "threshold_calibration_on_test": false
+    },
+    "checkpoint_selection": {
+      "epoch_tie_break_order": [
+        "lower graph false negatives",
+        "lower graph false-positive rate",
+        "higher victim F1 on attack windows",
+        "earlier epoch"
+      ],
+      "graph_gating_of_role_predictions": false,
+      "seed_selection": "Select the seed's best checkpoint with the highest fixed validation selection score; use the same tie breaks.",
+      "selection_score": {
+        "all_component_metrics_range": [
+          0.0,
+          1.0
+        ],
+        "formula": "0.25*graph_balanced_accuracy + 0.20*graph_f1 + 0.10*count_macro_f1 + 0.10*source_f1_attack + 0.10*victim_f1_attack + 0.05*transit_f1_attack + 0.05*path_f1_attack + 0.15*all_tasks_exact - 0.20*max(0,0.90-graph_recall) - 0.10*max(0,graph_fpr-0.20)",
+        "higher_is_better": true
+      },
+      "test_information_forbidden": true,
+      "thresholds_during_selection": {
+        "attack": 0.5,
+        "attack_path": 0.5,
+        "source": 0.5,
+        "transit": 0.5,
+        "victim": 0.5
+      },
+      "validation_only": true
+    },
+    "data_contract": {
+      "active_only": false,
+      "feature_variant": "PRIMARY58",
+      "metadata_as_model_input": false,
+      "physical_port_mask": {
+        "dtype": "bool",
+        "shape": [
+          "B",
+          16,
+          10
+        ],
+        "source": "topology-derived recovered binary mask"
+      },
+      "root": "/home/zira/tools/architecture/gem5/experiments/v5_p0_initial24_graph_tensors/p0_initial24_graph",
+      "second_normalization_forbidden": true,
+      "stored_x_already_standardized": true,
+      "stride": 8,
+      "test_split": "test",
+      "test_split_boundary": "C0, C1, and C2 must not construct, enumerate, load, or evaluate the P0 test split",
+      "train_split": "train",
+      "validation_split": "validation",
+      "window": 32,
+      "x_shape": [
+        "B",
+        16,
+        58,
+        32
+      ]
+    },
+    "fresh_training_seeds": [
+      107,
+      117,
+      127
+    ],
+    "protocol_name": "V5_P0_FINAL_B3_TRAINING_SELECTION_AND_TEST",
+    "protocol_sha256": "337fcd031b4ad4963c9a959a1c91075bda84dc913f35113e53077b26bfcd33e7",
+    "protocol_version": 1,
+    "seed_rationale": "Fresh seeds are used because seeds 7, 17, 27 and 101 were already observed during architecture-selection experiments.",
+    "stages": {
+      "C1": "V5_P0_C1_B3_MULTI_SEED_VALIDATION_TRAINING",
+      "C2": "V5_P0_C2_FINAL_CHECKPOINT_THRESHOLD_FREEZE",
+      "C3": "V5_P0_C3_ONE_SHOT_LOCKED_TEST_EVALUATION",
+      "after_C3": "V5_P1_INDEPENDENT_DATASET_AUDIT"
+    },
+    "threshold_calibration": {
+      "attack": {
+        "eligibility": "validation FPR <= 0.15",
+        "fallback_if_no_eligible_threshold": [
+          "minimum graph FPR",
+          "maximum graph recall",
+          "maximum graph F1",
+          "closest threshold to 0.5"
+        ],
+        "maximize_in_order": [
+          "graph recall",
+          "graph F1",
+          "graph balanced accuracy",
+          "closest threshold to 0.5"
+        ]
+      },
+      "attacker_count": "argmax; no threshold",
+      "candidate_thresholds": [
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9
+      ],
+      "checkpoint": "single validation-selected checkpoint from C1",
+      "graph_gating_of_role_predictions": false,
+      "source_and_victim": {
+        "calibration_scope": "ground-truth validation attack windows",
+        "maximize_in_order": [
+          "node F1",
+          "exact set accuracy",
+          "node precision",
+          "closest threshold to 0.5"
+        ]
+      },
+      "stage": "C2 only",
+      "test_information_forbidden": true,
+      "transit_and_path": {
+        "calibration_scope": "ground-truth validation attack windows",
+        "maximize_in_order": [
+          "node F1",
+          "exact set accuracy",
+          "node recall",
+          "closest threshold to 0.5"
+        ]
+      },
+      "validation_only": true
+    },
+    "training": {
+      "batch_size": 128,
+      "checkpoint_storage": {
+        "optimizer_state_in_best_checkpoint": true,
+        "save_best_only": true,
+        "save_final_epoch_for_diagnostics": true
+      },
+      "early_stopping": {
+        "enabled": true,
+        "minimum_delta": 0.0001,
+        "minimum_training_epochs": 25,
+        "patience_epochs": 20,
+        "restore_best_checkpoint": true
+      },
+      "gradient_clip_norm": 5.0,
+      "learning_rate": 0.001,
+      "losses_and_weights": {
+        "attack": [
+          "BCEWithLogitsLoss",
+          1.0
+        ],
+        "attack_path": [
+          "BCEWithLogitsLoss",
+          0.5
+        ],
+        "attacker_count": [
+          "CrossEntropyLoss",
+          0.5
+        ],
+        "source": [
+          "BCEWithLogitsLoss",
+          1.0
+        ],
+        "transit": [
+          "BCEWithLogitsLoss",
+          0.5
+        ],
+        "victim": [
+          "BCEWithLogitsLoss",
+          0.75
+        ]
+      },
+      "maximum_epochs": 150,
+      "minimum_epochs_before_early_stop": 25,
+      "model_initialization": "from scratch for every seed",
+      "optimizer": "AdamW",
+      "positive_weight_rule": "min(20, negatives/positives)",
+      "scheduler": {
+        "factor": 0.5,
+        "minimum_learning_rate": 1e-05,
+        "mode": "max",
+        "patience_epochs": 6,
+        "threshold": 0.0001,
+        "type": "ReduceLROnPlateau"
+      },
+      "validation_frequency_epochs": 1,
+      "weight_decay": 0.0001
+    }
+  },
+  "provenance": {
+    "b3_reference_script_sha256": "27bda802362849d801e7720bad1485b06a54fae3620b62751dadd793dc4a5054",
+    "b8_contract_file_sha256": "158285664c8b0ecd27b544ef0fd9338fc5d2adb29a33a1e74d328145fa9d43ac",
+    "b8_lock_sha256": "d6efc40006e408fd6eeeb9989a0dd5841be99ccfb453319e8d282b62e8eea0c1",
+    "b8_report_sha256": "f882db7a5b15c1bb1e6da63d3ecd91a6e0cab474838f5f38d2ba859260ae4750",
+    "c0_script_sha256": "7aa0a72d633de890d7a3b271f973eefa5e40b87bad58faf8021ec0ca9690fd45",
+    "wrapper_sha256": "1dc9953682afdc5b743e9e6005a00bc9bdf41a73bd2a80bbebd9d8ebb7783d67"
+  },
+  "stage": "V5_P0_C0_FINAL_B3_TRAINING_PROTOCOL_LOCK",
+  "status": "COMPLETE",
+  "test_split_accessed": false,
+  "test_split_constructed": false,
+  "train_split_constructed": false,
+  "training_performed": false,
+  "validation_split_constructed": false,
+  "warnings": []
+}

@@ -1,0 +1,79 @@
+{
+  "dataset": {
+    "class": "V5P2PairAlignedPrimary58Dataset",
+    "train_batch": null,
+    "train_items": 70166,
+    "train_selection": {
+      "attack_items": 4,
+      "control_items": 4,
+      "items_scanned": 8,
+      "items_selected": 8,
+      "mixed_items": 0,
+      "selected_indices": [
+        1,
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "validation_batch": null,
+    "validation_items": 12528,
+    "validation_selection": {
+      "attack_items": 1,
+      "control_items": 7,
+      "items_scanned": 83,
+      "items_selected": 8,
+      "mixed_items": 0,
+      "selected_indices": [
+        0,
+        82,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  "decision": "HOLD_G1C_PENDING_SMOKE_FIX",
+  "device": null,
+  "failures": [
+    "dataset/batch preparation failed: RuntimeError: train: x tail must be [16,32,58], got (16, 58, 32)"
+  ],
+  "historical_smoke_outputs_touched": false,
+  "interface_probe": null,
+  "next_stage": "V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_FIX",
+  "operator_results": {},
+  "resolved_contract": {},
+  "security_boundary": {
+    "architecture_selected": false,
+    "b4_validation_cache_accessed": false,
+    "b6_test_cache_accessed": false,
+    "checkpoint_loaded": false,
+    "full_training_performed": false,
+    "legal_decoder_implemented": false,
+    "p2_test_directory_enumerated": false,
+    "p2_test_tensors_deserialized": false,
+    "p2_train_used": true,
+    "p2_validation_used": true,
+    "quantization_performed": false,
+    "rtl_generated": false,
+    "scientific_checkpoint_created": false,
+    "smoke_optimizer_steps_completed": 0,
+    "threshold_tuning_performed": false
+  },
+  "stage": "V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK",
+  "status": "HOLD",
+  "topology": {
+    "contract_sha256": "74112ce145cd3347148d4c784be125add7945943e80e98948368f4c076d047af",
+    "edge_index_sha256": "f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff",
+    "runtime_validation": null
+  },
+  "torch_version": "2.12.1+cu130",
+  "warnings": []
+}

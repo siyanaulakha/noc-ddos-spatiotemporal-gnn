@@ -1,0 +1,47 @@
+{
+  "canonical_edge_index_sha256": "f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff",
+  "contract_sha256": "b8871e8516c05f54d37c5a761b3e17cbf91b0722f08e63b37a93251f6e30e5b6",
+  "dataset_class": "V5P2PairAlignedPrimary58Dataset",
+  "execution_policy": "serial one-model-at-a-time",
+  "graph_layers": 2,
+  "graph_width": 64,
+  "initial_seeds": [
+    107,
+    117,
+    127
+  ],
+  "input_shape": [
+    "items",
+    16,
+    58,
+    32
+  ],
+  "name": "V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CONTRACT",
+  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+  "operators": [
+    "conv1d",
+    "gcnconv",
+    "graphconv",
+    "gatconv"
+  ],
+  "production_constraints": {
+    "clean_encoder_equivalence_required": true,
+    "clean_temporal_encoder_extraction_required": true,
+    "hook_based_full_b3_wrapper_allowed": false,
+    "unused_multitask_heads_allowed": false
+  },
+  "scientific_training_authorized": false,
+  "source_embedding_cutpoint": "source_head",
+  "source_embedding_dim": 64,
+  "source_head_clone_equivalence_max_abs_error": 0.0,
+  "source_target_semantics": "16 independent binary attacker/source labels",
+  "source_target_shape": [
+    "items",
+    16
+  ],
+  "temporal_backbone": "P2B3Conv1DOnlyCount4",
+  "temporal_backbone_parameters": 43273,
+  "train_manifest": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+  "validation_manifest": "/home/zira/research/projects/GNN-2d/reports/v5/p2_a1_r2_pair_aligned_window_contract/V5_P2_A1_R2_PAIR_ALIGNED_WINDOW_MANIFEST.csv",
+  "version": 1
+}

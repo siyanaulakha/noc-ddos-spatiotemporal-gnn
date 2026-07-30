@@ -1,0 +1,12 @@
+{
+  "best_checkpoint_sha256": "662573583cf3f67222e5777c12b0e0c489ff38537b8067c0a099bc35227fe835",
+  "best_epoch": 63,
+  "current_learning_rate": 6.25e-05,
+  "early_stop_counter": 12,
+  "epoch": 75,
+  "operator": "gcnconv",
+  "p2_test_directory_enumerated": false,
+  "p2_test_tensors_deserialized": false,
+  "seed": 117,
+  "stage": "V5_P2_G3_ROLE_AWARE_MULTILABEL_SINGLE_RUN"
+}

@@ -1,0 +1,1514 @@
+===== V5 P2-G1C FROZEN TRAINING CONTRACT EXTRACT =====
+repo=/home/zira/research/projects/GNN-2d
+
+===== ROOT: /home/zira/research/projects/GNN-2d/reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol =====
+json_file_count=9
+
+--- reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_GRAPH_BASELINE_AND_RTL_HANDOFF_PROTOCOL.json ---
+artifact_canonical_sha256.graph_operator_contracts = '2e9c81967b0737bd06b9636bd2e00412ffaf1388de89e1dd78e14e4ec395243f'
+artifact_canonical_sha256.training_selection_and_seed_policy = 'd24465718173fa64940338223fce3ba9292f79479a4486fe7f7f6d22940e7630'
+security_boundary.architecture_selected = False
+security_boundary.checkpoint_created = False
+
+--- reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_GRAPH_BASELINE_AND_RTL_HANDOFF_PROTOCOL_LOCK.json ---
+architecture_selected = False
+artifact_canonical_sha256.graph_operator_contracts = '2e9c81967b0737bd06b9636bd2e00412ffaf1388de89e1dd78e14e4ec395243f'
+artifact_canonical_sha256.training_selection_and_seed_policy = 'd24465718173fa64940338223fce3ba9292f79479a4486fe7f7f6d22940e7630'
+artifact_file_sha256.operator_contracts = '90dc352e737735da1eed2da1a5a846130440eeff3ebeafcd03fdaa2246f740dc'
+checkpoint_created = False
+
+--- reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_GRAPH_OPERATOR_CONTRACTS.json ---
+common_architecture.activation = 'same activation for every graph operator'
+common_architecture.dropout = 'same probability and placement for every graph operator'
+common_architecture.edge_index = 'fixed 4x4 bidirectional physical mesh with 48 directed edges; no learned or scenario-dependent edges'
+common_architecture.graph_layer_count = 2
+common_architecture.graph_width = 'equal to the B3 temporal encoder output width; G1 preflight must resolve and record the numeric width from frozen model source before training'
+common_architecture.heads = 'identical task-specific heads'
+common_architecture.operator_specific_hyperparameter_search = False
+common_architecture.residual_policy = 'same residual policy for every graph operator'
+common_architecture.temporal_encoder = 'unchanged B3 causal depthwise-separable Conv1D encoder'
+gat.attention_normalization = 'softmax over incoming neighbors including self'
+gat.head_count = 'single common head configuration frozen in G1 preflight'
+gat.negative_slope = 0.2
+gat.promotion_required_for_later_tasks = True
+gat.self_loops = True
+gat.status = 'screening_only'
+gcnconv.bias = True
+gcnconv.edge_weights = 'unit'
+gcnconv.equation = "H' = D_hat^(-1/2) A_hat D_hat^(-1/2) H W + b"
+gcnconv.normalization = 'symmetric'
+gcnconv.self_loops = True
+graphconv.bias = True
+graphconv.edge_weights = 'unit'
+graphconv.equation = "h'_i = W_root h_i + W_neigh sum_{j in N(i)} h_j + b"
+graphconv.neighbor_aggregation = 'unnormalized sum'
+graphconv.rtl_preference_reason = 'fixed neighbor lists, degree <= 4, additions plus two linear transforms, no attention softmax'
+graphconv.self_feature = 'explicit root transform'
+hardware_reference_rule.pytorch_geometric_is_not_rtl_specification = True
+hardware_reference_rule.selected_operator_must_be_rewritten_explicitly = True
+
+--- reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_P2_TEST_ACCESS_POLICY.json ---
+first_clean_blind_graph_comparison = 'V6'
+selection_boundary.architecture_selection = 'validation_only'
+selection_boundary.checkpoint_selection = 'validation_only'
+selection_boundary.quantization_calibration = 'validation_only'
+selection_boundary.rtl_golden_vectors = 'validation_and_hand_constructed_only'
+selection_boundary.threshold_selection = 'validation_only'
+
+--- reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_RTL_HANDOFF_REQUIREMENTS.json ---
+float_reference_acceptance.derived_graph_decision_agreement = 1.0
+float_reference_acceptance.source_ranking_agreement = 1.0
+float_reference_acceptance.thresholded_source_decision_agreement = 1.0
+forbidden_golden_vector_sources = ['P2 test tensors', 'P2 B6 cache']
+golden_vector_sources = ['validation examples', 'hand-constructed topology cases']
+primary_candidate_policy.selection_condition = 'must pass source-only validation, stability, and cost gates'
+quantization_acceptance.graph_decision_agreement_min = 0.999
+quantization_acceptance.source_node_decision_agreement_min = 0.995
+quantization_acceptance.source_ranking_agreement_min = 0.995
+quantization_acceptance.validation_source_f1_loss_max_absolute = 0.005
+
+--- reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_STAGE_PLAN.json ---
+append_only = True
+
+--- reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_STOP_GO_CRITERIA.json ---
+
+--- reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_TASK_AND_MODEL_MATRIX.json ---
+operator_suite.gat_promotion_rule = 'promote only if it beats GraphConv by at least 0.02 absolute F1 or balanced accuracy, or materially reduces multi-seed variance'
+operator_suite.mandatory = ['CONV1D_ONLY', 'GCNCONV', 'GRAPHCONV']
+operator_suite.screening_only = ['GAT']
+tasks[0].excluded_losses = ['graph', 'count', 'transit', 'victim', 'path']
+tasks[0].graph_decision = 'attack when at least one source prediction is positive'
+tasks[0].graph_score = 'maximum sigmoid source score across 16 routers'
+tasks[0].participating_losses = ['source_weighted_bce']
+tasks[1].excluded_losses = ['count', 'source', 'transit', 'victim', 'path']
+tasks[1].graph_readout = 'identical pooling and graph head across operators'
+tasks[1].graph_score = 'direct learned graph logit'
+tasks[1].participating_losses = ['graph_bce']
+tasks[2].participating_losses = ['source_weighted_bce', 'transit_weighted_bce', 'victim_weighted_bce', 'path_weighted_bce']
+tasks[3].promotion_requirement = 'operator must pass G1/G2 screening before full multitask training'
+
+--- reports/v5/p2_g0_graph_baseline_rtl_handoff_protocol/V5_P2_G0_TRAINING_SELECTION_AND_SEED_POLICY.json ---
+data_interface.directed_physical_edges = 48
+data_interface.pair_aligned_attack_control_batches = True
+data_interface.physical_port_mask_shape = [16, 10]
+data_interface.physical_port_mask_true_count = 128
+data_interface.stride = 8
+data_interface.window = 32
+reporting.inference_latency_proxy_required = True
+reporting.parameter_count_required = True
+reporting.peak_memory_estimate_required = True
+reporting.per_seed_required = True
+task_selection.A_SOURCE_ONLY_LOCALIZATION.checkpoint_score.derived_graph_average_precision = 0.25
+task_selection.A_SOURCE_ONLY_LOCALIZATION.checkpoint_score.source_auroc = 0.25
+task_selection.A_SOURCE_ONLY_LOCALIZATION.checkpoint_score.source_average_precision = 0.5
+task_selection.A_SOURCE_ONLY_LOCALIZATION.loss = 'class_weighted_source_bce_with_logits'
+task_selection.A_SOURCE_ONLY_LOCALIZATION.post_checkpoint_threshold_objective.source_exact_set_attack = 0.4
+task_selection.A_SOURCE_ONLY_LOCALIZATION.post_checkpoint_threshold_objective.source_node_f1 = 0.6
+task_selection.B_DIRECT_GRAPH_DETECTION.checkpoint_score.graph_auroc = 0.5
+task_selection.B_DIRECT_GRAPH_DETECTION.checkpoint_score.graph_average_precision = 0.5
+task_selection.B_DIRECT_GRAPH_DETECTION.loss = 'graph_bce_with_logits'
+task_selection.B_DIRECT_GRAPH_DETECTION.post_checkpoint_threshold_objective = 'maximize validation balanced accuracy'
+task_selection.C_ROLE_AWARE_MULTILABEL_LOCALIZATION.checkpoint_score.path_average_precision = 0.2
+task_selection.C_ROLE_AWARE_MULTILABEL_LOCALIZATION.checkpoint_score.source_average_precision = 0.3
+task_selection.C_ROLE_AWARE_MULTILABEL_LOCALIZATION.checkpoint_score.transit_average_precision = 0.25
+task_selection.C_ROLE_AWARE_MULTILABEL_LOCALIZATION.checkpoint_score.victim_average_precision = 0.25
+task_selection.C_ROLE_AWARE_MULTILABEL_LOCALIZATION.loss = 'weighted source + transit + victim + path BCE losses'
+task_selection.C_ROLE_AWARE_MULTILABEL_LOCALIZATION.post_checkpoint_threshold_selection = 'separate validation-only role thresholds using the same node-F1/exact-set policy for every operator'
+task_selection.D_FULL_MULTITASK_SYSTEM.loss_and_selection = 'reuse frozen P2 B1 full multitask protocol'
+task_selection.D_FULL_MULTITASK_SYSTEM.operator_count = 1
+training_base.checkpoint_selection_split = 'validation_only'
+training_base.early_stopping_patience = 12
+training_base.finalist_stability_seeds = [107, 117, 127, 137, 147]
+training_base.initial_screening_seeds = [107, 117, 127]
+training_base.learning_rate = 0.001
+training_base.max_epochs = 100
+training_base.minimum_epochs = 15
+training_base.optimizer = 'AdamW'
+training_base.scheduler = 'ReduceLROnPlateau'
+training_base.threshold_tuning_during_training = False
+===== ROOT: /home/zira/research/projects/GNN-2d/reports/v5/p2_g1a_r1_source_only_graph_baseline_preflight =====
+json_file_count=2
+
+--- reports/v5/p2_g1a_r1_source_only_graph_baseline_preflight/V5_P2_G1A_R1_SOURCE_ONLY_GRAPH_BASELINE_PREFLIGHT.json ---
+environment.operators.GATConv.cpu.finite = True
+environment.operators.GATConv.cpu.passed = True
+environment.operators.GATConv.cpu.shape = [4, 8]
+environment.operators.GATConv.cuda.device_name = 'NVIDIA GeForce RTX 4070 Laptop GPU'
+environment.operators.GATConv.cuda.finite = True
+environment.operators.GATConv.cuda.passed = True
+environment.operators.GATConv.cuda.shape = [4, 8]
+environment.operators.GCNConv.cpu.finite = True
+environment.operators.GCNConv.cpu.passed = True
+environment.operators.GCNConv.cpu.shape = [4, 8]
+environment.operators.GCNConv.cuda.device_name = 'NVIDIA GeForce RTX 4070 Laptop GPU'
+environment.operators.GCNConv.cuda.finite = True
+environment.operators.GCNConv.cuda.passed = True
+environment.operators.GCNConv.cuda.shape = [4, 8]
+environment.operators.GraphConv.cpu.finite = True
+environment.operators.GraphConv.cpu.passed = True
+environment.operators.GraphConv.cpu.shape = [4, 8]
+environment.operators.GraphConv.cuda.device_name = 'NVIDIA GeForce RTX 4070 Laptop GPU'
+environment.operators.GraphConv.cuda.finite = True
+environment.operators.GraphConv.cuda.passed = True
+environment.operators.GraphConv.cuda.shape = [4, 8]
+environment.torch_geometric_version = '2.8.0.post1'
+loader.selected_kwargs.train.stride = '8'
+loader.selected_kwargs.train.window = '32'
+loader.selected_kwargs.validation.stride = '8'
+loader.selected_kwargs.validation.window = '32'
+manifest_discovery.evidence[0].source = 'filename_search'
+manifest_discovery.evidence[1].source = 'text_reference'
+samples.train.physical_port_mask.dtype = 'torch.bool'
+samples.train.physical_port_mask.shape = [16, 10]
+samples.train.physical_port_mask.type = 'torch.Tensor'
+samples.train.role_mask.shape = [16]
+samples.train.x.shape = [16, 58, 32]
+samples.train.y_attack.shape = []
+samples.train.y_attack_path.shape = [16]
+samples.train.y_attacker_count.shape = []
+samples.train.y_source.dtype = 'torch.float32'
+samples.train.y_source.finite = True
+samples.train.y_source.shape = [16]
+samples.train.y_source.type = 'torch.Tensor'
+samples.train.y_transit.shape = [16]
+samples.train.y_victim.shape = [16]
+samples.validation.physical_port_mask.dtype = 'torch.bool'
+samples.validation.physical_port_mask.shape = [16, 10]
+samples.validation.physical_port_mask.type = 'torch.Tensor'
+samples.validation.role_mask.shape = [16]
+samples.validation.x.shape = [16, 58, 32]
+samples.validation.y_attack.shape = []
+samples.validation.y_attack_path.shape = [16]
+samples.validation.y_attacker_count.shape = []
+samples.validation.y_source.dtype = 'torch.float32'
+samples.validation.y_source.finite = True
+samples.validation.y_source.shape = [16]
+samples.validation.y_source.type = 'torch.Tensor'
+samples.validation.y_transit.shape = [16]
+samples.validation.y_victim.shape = [16]
+security_boundary.architecture_selected = False
+security_boundary.checkpoint_loaded = False
+security_boundary.threshold_tuning_performed = False
+
+--- reports/v5/p2_g1a_r1_source_only_graph_baseline_preflight/V5_P2_G1A_R1_SOURCE_ONLY_GRAPH_BASELINE_PREFLIGHT_LOCK.json ---
+architecture_selected = False
+checkpoint_loaded = False
+===== ROOT: /home/zira/research/projects/GNN-2d/reports/v5/p2_g1a_r2a_canonical_static_topology_contract =====
+json_file_count=3
+
+--- reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_NEIGHBOR_TABLE.json ---
+
+--- reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_STATIC_TOPOLOGY_CONTRACT.json ---
+canonical_contract.artifacts.adjacency.shape = [16, 16]
+canonical_contract.artifacts.coordinates.shape = [16, 2]
+canonical_contract.artifacts.edge_index.dtype = 'int64'
+canonical_contract.artifacts.edge_index.filename = 'V5_P2_G1A_R2A_CANONICAL_STATIC_EDGE_INDEX.npy'
+canonical_contract.artifacts.edge_index.sha256 = 'f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff'
+canonical_contract.artifacts.edge_index.shape = [2, 48]
+canonical_contract.batching_rule = 'for batched graphs, replicate this fixed edge list with node-index offsets of 16 per graph'
+canonical_contract.graph_operator_rules.GATConv = 'operator self-loop behavior must follow the frozen G0 operator contract'
+canonical_contract.graph_operator_rules.GCNConv = 'the stored physical graph has no self-loops; GCNConv may add normalized self-loops according to G0'
+canonical_contract.graph_operator_rules.GraphConv = 'consume the stored physical edge_index directly'
+canonical_contract.physical_routing_graph.bidirectional_links = True
+canonical_contract.physical_routing_graph.directed = True
+canonical_contract.physical_routing_graph.directed_edge_count = 48
+canonical_contract.physical_routing_graph.edge_order = 'lexicographic ascending by (source_router, destination_router)'
+canonical_contract.physical_routing_graph.physical_self_loops = False
+canonical_contract.physical_routing_graph.undirected_link_count = 24
+canonical_contract.provenance.g0_operator_contract_file_sha256 = '90dc352e737735da1eed2da1a5a846130440eeff3ebeafcd03fdaa2246f740dc'
+canonical_contract.recovered_edge_artifact_found_in_p2_dataset = False
+canonical_contract.source_kind = 'canonical_generation_from_frozen_G0_4x4_mesh_contract'
+security_boundary.architecture_selected = False
+security_boundary.checkpoint_loaded = False
+security_boundary.threshold_tuning_performed = False
+source_audit.files_scanned = 73
+source_audit.matching_files = 25
+source_audit.snippet_count = 300
+source_audit.snippets[0].line = 23
+source_audit.snippets[0].path = '/home/zira/research/projects/GNN-2d/src/data/v5_p2_pair_aligned_primary58_dataset.py'
+source_audit.snippets[0].text = 'No identifiers, metadata, edge_index, coordinates, run lengths, or window'
+source_audit.snippets[1].line = 168
+source_audit.snippets[1].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[1].text = 'def normalized_adjacency(edge_index: torch.Tensor, node_count: int = 16) -> torch.Tensor:'
+source_audit.snippets[2].line = 169
+source_audit.snippets[2].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[2].text = 'edge_index = edge_index.detach().cpu().long()'
+source_audit.snippets[3].line = 170
+source_audit.snippets[3].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[3].text = 'if edge_index.ndim != 2 or tuple(edge_index.shape)[0] != 2:'
+source_audit.snippets[4].line = 171
+source_audit.snippets[4].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[4].text = 'raise ValueError(f"edge_index must be [2,E], got {tuple(edge_index.shape)}")'
+source_audit.snippets[5].line = 172
+source_audit.snippets[5].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[5].text = 'src, dst = edge_index[0], edge_index[1]'
+source_audit.snippets[6].line = 174
+source_audit.snippets[6].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[6].text = 'raise ValueError("edge_index node index out of range")'
+source_audit.snippets[7].line = 196
+source_audit.snippets[7].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[7].text = 'def __init__(self, edge_index: torch.Tensor) -> None:'
+source_audit.snippets[8].line = 198
+source_audit.snippets[8].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[8].text = 'edge_index = edge_index.detach().cpu().long().contiguous()'
+source_audit.snippets[9].line = 199
+source_audit.snippets[9].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[9].text = 'self.register_buffer("expected_edge_index", edge_index)'
+source_audit.snippets[10].line = 200
+source_audit.snippets[10].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[10].text = 'self.register_buffer("adjacency", normalized_adjacency(edge_index))'
+source_audit.snippets[11].line = 211
+source_audit.snippets[11].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[11].text = 'def _verify_edge_index(self, edge_index: torch.Tensor) -> None:'
+source_audit.snippets[12].line = 212
+source_audit.snippets[12].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[12].text = 'if edge_index.ndim == 3:'
+source_audit.snippets[13].line = 213
+source_audit.snippets[13].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[13].text = 'ref = edge_index[0]'
+source_audit.snippets[14].line = 214
+source_audit.snippets[14].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[14].text = 'if not torch.equal(edge_index, ref.unsqueeze(0).expand_as(edge_index)):'
+source_audit.snippets[15].line = 215
+source_audit.snippets[15].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[15].text = 'raise ValueError("non-identical edge_index tensors within batch")'
+source_audit.snippets[16].line = 216
+source_audit.snippets[16].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[16].text = 'elif edge_index.ndim == 2:'
+source_audit.snippets[17].line = 217
+source_audit.snippets[17].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[17].text = 'ref = edge_index'
+source_audit.snippets[18].line = 219
+source_audit.snippets[18].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[18].text = 'raise ValueError(f"unexpected edge_index shape: {tuple(edge_index.shape)}")'
+source_audit.snippets[19].line = 221
+source_audit.snippets[19].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[19].text = 'raise ValueError("runtime edge_index differs from audited topology")'
+source_audit.snippets[20].line = 223
+source_audit.snippets[20].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[20].text = 'def forward(self, x: torch.Tensor, physical_port_mask: torch.Tensor, edge_index: torch.Tensor):'
+source_audit.snippets[21].line = 228
+source_audit.snippets[21].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[21].text = 'self._verify_edge_index(edge_index)'
+source_audit.snippets[22].line = 374
+source_audit.snippets[22].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[22].text = 'batch["edge_index"].to(device=device, dtype=torch.long),'
+source_audit.snippets[23].line = 491
+source_audit.snippets[23].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[23].text = 'if tuple(sample["edge_index"].shape) != (2, 48):'
+source_audit.snippets[24].line = 492
+source_audit.snippets[24].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[24].text = 'failures.append(f"unexpected edge_index shape: {tuple(sample[\'edge_index\'].shape)}")'
+source_audit.snippets[25].line = 506
+source_audit.snippets[25].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[25].text = 'model = GCNOnlyModel(sample["edge_index"]).to(device)'
+source_audit.snippets[26].line = 539
+source_audit.snippets[26].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b4_gcn_only.py'
+source_audit.snippets[26].text = 'batch["edge_index"].to(device=device, dtype=torch.long),'
+source_audit.snippets[27].line = 24
+source_audit.snippets[27].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b3_conv1d_only.py'
+source_audit.snippets[27].text = '- no edge_index and no graph message passing.'
+source_audit.snippets[28].line = 42
+source_audit.snippets[28].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b6_dual_temporal_fusion_no_gcn.py'
+source_audit.snippets[28].text = '- edge_index and graph message passing;'
+source_audit.snippets[29].line = 1479
+source_audit.snippets[29].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b6_dual_temporal_fusion_no_gcn.py'
+source_audit.snippets[29].text = '"do not use edge_index or message passing"'
+source_audit.snippets[30].line = 33
+source_audit.snippets[30].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[30].text = '- audited edge_index, used only to verify the fixed 4x4 mesh and construct'
+source_audit.snippets[31].line = 405
+source_audit.snippets[31].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[31].text = 'def validate_mesh_edge_index(edge_index: torch.Tensor) -> None:'
+source_audit.snippets[32].line = 406
+source_audit.snippets[32].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[32].text = 'if edge_index.ndim != 2 or tuple(edge_index.shape) != (2, 48):'
+source_audit.snippets[33].line = 408
+source_audit.snippets[33].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[33].text = 'f"expected edge_index [2,48], got {tuple(edge_index.shape)}"'
+source_audit.snippets[34].line = 411
+source_audit.snippets[34].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[34].text = 'edge_index = edge_index.detach().cpu().long()'
+source_audit.snippets[35].line = 415
+source_audit.snippets[35].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[35].text = 'edge_index[0].tolist(),'
+source_audit.snippets[36].line = 416
+source_audit.snippets[36].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[36].text = 'edge_index[1].tolist(),'
+source_audit.snippets[37].line = 424
+source_audit.snippets[37].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[37].text = '"edge_index is not the audited bidirectional 4x4 cardinal mesh; "'
+source_audit.snippets[38].line = 609
+source_audit.snippets[38].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[38].text = 'def verify_edge_index(self, edge_index: torch.Tensor) -> None:'
+source_audit.snippets[39].line = 610
+source_audit.snippets[39].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[39].text = 'if edge_index.ndim == 3:'
+source_audit.snippets[40].line = 611
+source_audit.snippets[40].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[40].text = 'reference = edge_index[0]'
+source_audit.snippets[41].line = 612
+source_audit.snippets[41].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[41].text = 'expanded = reference.unsqueeze(0).expand_as(edge_index)'
+source_audit.snippets[42].line = 613
+source_audit.snippets[42].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[42].text = 'if not torch.equal(edge_index, expanded):'
+source_audit.snippets[43].line = 615
+source_audit.snippets[43].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[43].text = '"batch contains non-identical edge_index tensors"'
+source_audit.snippets[44].line = 617
+source_audit.snippets[44].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[44].text = 'elif edge_index.ndim == 2:'
+source_audit.snippets[45].line = 618
+source_audit.snippets[45].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[45].text = 'reference = edge_index'
+source_audit.snippets[46].line = 621
+source_audit.snippets[46].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[46].text = 'f"unexpected edge_index shape: {tuple(edge_index.shape)}"'
+source_audit.snippets[47].line = 629
+source_audit.snippets[47].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[47].text = '"runtime edge_index differs from audited topology"'
+source_audit.snippets[48].line = 690
+source_audit.snippets[48].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[48].text = 'edge_index: torch.Tensor,'
+source_audit.snippets[49].line = 706
+source_audit.snippets[49].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[49].text = 'self.verify_edge_index(edge_index)'
+source_audit.snippets[50].line = 1043
+source_audit.snippets[50].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[50].text = 'edge_index=batch["edge_index"].to('
+source_audit.snippets[51].line = 1427
+source_audit.snippets[51].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[51].text = 'if tuple(sample["edge_index"].shape) != (2, 48):'
+source_audit.snippets[52].line = 1429
+source_audit.snippets[52].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[52].text = '"edge_index shape unexpected: "'
+source_audit.snippets[53].line = 1430
+source_audit.snippets[53].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[53].text = 'f"{tuple(sample[\'edge_index\'].shape)}"'
+source_audit.snippets[54].line = 1434
+source_audit.snippets[54].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[54].text = 'validate_mesh_edge_index(sample["edge_index"])'
+source_audit.snippets[55].line = 1436
+source_audit.snippets[55].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[55].text = 'failures.append(f"mesh topology validation failed: {exc}")'
+source_audit.snippets[56].line = 1486
+source_audit.snippets[56].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[56].text = 'expected_edge_index=sample["edge_index"],'
+source_audit.snippets[57].line = 1590
+source_audit.snippets[57].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[57].text = 'edge_index=batch["edge_index"].to('
+source_audit.snippets[58].line = 1926
+source_audit.snippets[58].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic.py'
+source_audit.snippets[58].text = 'sample["edge_index"]'
+source_audit.snippets[59].line = 19
+source_audit.snippets[59].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b1_static_final_epoch_mlp.py'
+source_audit.snippets[59].text = '- edge_index;'
+source_audit.snippets[60].line = 19
+source_audit.snippets[60].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b2_temporal_mean_pooling.py'
+source_audit.snippets[60].text = '- edge_index;'
+source_audit.snippets[61].line = 141
+source_audit.snippets[61].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[61].text = 'def verify_edge_index(self, edge_index: torch.Tensor) -> None:'
+source_audit.snippets[62].line = 142
+source_audit.snippets[62].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[62].text = 'if edge_index.ndim == 3:'
+source_audit.snippets[63].line = 143
+source_audit.snippets[63].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[63].text = 'reference = edge_index[0]'
+source_audit.snippets[64].line = 145
+source_audit.snippets[64].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[64].text = 'edge_index,'
+source_audit.snippets[65].line = 146
+source_audit.snippets[65].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[65].text = 'reference.unsqueeze(0).expand_as(edge_index),'
+source_audit.snippets[66].line = 148
+source_audit.snippets[66].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[66].text = 'raise ValueError("batch contains non-identical edge_index tensors")'
+source_audit.snippets[67].line = 149
+source_audit.snippets[67].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[67].text = 'elif edge_index.ndim == 2:'
+source_audit.snippets[68].line = 150
+source_audit.snippets[68].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[68].text = 'reference = edge_index'
+source_audit.snippets[69].line = 152
+source_audit.snippets[69].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[69].text = 'raise ValueError(f"unexpected edge_index shape: {tuple(edge_index.shape)}")'
+source_audit.snippets[70].line = 154
+source_audit.snippets[70].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[70].text = 'raise ValueError("runtime edge_index differs from audited topology")'
+source_audit.snippets[71].line = 160
+source_audit.snippets[71].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[71].text = 'edge_index: torch.Tensor,'
+source_audit.snippets[72].line = 170
+source_audit.snippets[72].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[72].text = 'self.verify_edge_index(edge_index)'
+source_audit.snippets[73].line = 229
+source_audit.snippets[73].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[73].text = 'edge_index: torch.Tensor,'
+source_audit.snippets[74].line = 262
+source_audit.snippets[74].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[74].text = 'model = B3Conv1DOnlyModel(module, edge_index)'
+source_audit.snippets[75].line = 266
+source_audit.snippets[75].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[75].text = 'expected_edge_index=edge_index,'
+source_audit.snippets[76].line = 308
+source_audit.snippets[76].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[76].text = 'edge_index=batch["edge_index"].to(device=device, dtype=torch.long),'
+source_audit.snippets[77].line = 625
+source_audit.snippets[77].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[77].text = 'module.validate_mesh_edge_index(sample["edge_index"])'
+source_audit.snippets[78].line = 658
+source_audit.snippets[78].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/run_v5_p0_b7b_multi_seed.py'
+source_audit.snippets[78].text = 'edge_index=sample["edge_index"],'
+source_audit.snippets[79].line = 33
+source_audit.snippets[79].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[79].text = '- audited edge_index, used only to verify the fixed 4x4 mesh and construct'
+source_audit.snippets[80].line = 405
+source_audit.snippets[80].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[80].text = 'def validate_mesh_edge_index(edge_index: torch.Tensor) -> None:'
+source_audit.snippets[81].line = 406
+source_audit.snippets[81].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[81].text = 'if edge_index.ndim != 2 or tuple(edge_index.shape) != (2, 48):'
+source_audit.snippets[82].line = 408
+source_audit.snippets[82].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[82].text = 'f"expected edge_index [2,48], got {tuple(edge_index.shape)}"'
+source_audit.snippets[83].line = 411
+source_audit.snippets[83].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[83].text = 'edge_index = edge_index.detach().cpu().long()'
+source_audit.snippets[84].line = 415
+source_audit.snippets[84].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[84].text = 'edge_index[0].tolist(),'
+source_audit.snippets[85].line = 416
+source_audit.snippets[85].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[85].text = 'edge_index[1].tolist(),'
+source_audit.snippets[86].line = 424
+source_audit.snippets[86].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[86].text = '"edge_index is not the audited bidirectional 4x4 cardinal mesh; "'
+source_audit.snippets[87].line = 609
+source_audit.snippets[87].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[87].text = 'def verify_edge_index(self, edge_index: torch.Tensor) -> None:'
+source_audit.snippets[88].line = 610
+source_audit.snippets[88].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[88].text = 'if edge_index.ndim == 3:'
+source_audit.snippets[89].line = 611
+source_audit.snippets[89].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[89].text = 'reference = edge_index[0]'
+source_audit.snippets[90].line = 612
+source_audit.snippets[90].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[90].text = 'expanded = reference.unsqueeze(0).expand_as(edge_index)'
+source_audit.snippets[91].line = 613
+source_audit.snippets[91].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[91].text = 'if not torch.equal(edge_index, expanded):'
+source_audit.snippets[92].line = 615
+source_audit.snippets[92].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[92].text = '"batch contains non-identical edge_index tensors"'
+source_audit.snippets[93].line = 617
+source_audit.snippets[93].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[93].text = 'elif edge_index.ndim == 2:'
+source_audit.snippets[94].line = 618
+source_audit.snippets[94].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[94].text = 'reference = edge_index'
+source_audit.snippets[95].line = 621
+source_audit.snippets[95].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[95].text = 'f"unexpected edge_index shape: {tuple(edge_index.shape)}"'
+source_audit.snippets[96].line = 629
+source_audit.snippets[96].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[96].text = '"runtime edge_index differs from audited topology"'
+source_audit.snippets[97].line = 693
+source_audit.snippets[97].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[97].text = 'edge_index: torch.Tensor,'
+source_audit.snippets[98].line = 709
+source_audit.snippets[98].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[98].text = 'self.verify_edge_index(edge_index)'
+source_audit.snippets[99].line = 1046
+source_audit.snippets[99].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[99].text = 'edge_index=batch["edge_index"].to('
+source_audit.snippets[100].line = 1430
+source_audit.snippets[100].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[100].text = 'if tuple(sample["edge_index"].shape) != (2, 48):'
+source_audit.snippets[101].line = 1432
+source_audit.snippets[101].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[101].text = '"edge_index shape unexpected: "'
+source_audit.snippets[102].line = 1433
+source_audit.snippets[102].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[102].text = 'f"{tuple(sample[\'edge_index\'].shape)}"'
+source_audit.snippets[103].line = 1437
+source_audit.snippets[103].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[103].text = 'validate_mesh_edge_index(sample["edge_index"])'
+source_audit.snippets[104].line = 1439
+source_audit.snippets[104].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[104].text = 'failures.append(f"mesh topology validation failed: {exc}")'
+source_audit.snippets[105].line = 1489
+source_audit.snippets[105].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[105].text = 'expected_edge_index=sample["edge_index"],'
+source_audit.snippets[106].line = 1593
+source_audit.snippets[106].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[106].text = 'edge_index=batch["edge_index"].to('
+source_audit.snippets[107].line = 1929
+source_audit.snippets[107].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b7a_directional_gated_graph_diagnostic_b7b.py'
+source_audit.snippets[107].text = 'sample["edge_index"]'
+source_audit.snippets[108].line = 31
+source_audit.snippets[108].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[108].text = '- audited edge_index.'
+source_audit.snippets[109].line = 331
+source_audit.snippets[109].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[109].text = 'edge_index: torch.Tensor,'
+source_audit.snippets[110].line = 334
+source_audit.snippets[110].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[110].text = 'if edge_index.ndim != 2 or edge_index.shape[0] != 2:'
+source_audit.snippets[111].line = 336
+source_audit.snippets[111].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[111].text = 'f"expected edge_index [2,E], got {tuple(edge_index.shape)}"'
+source_audit.snippets[112].line = 339
+source_audit.snippets[112].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[112].text = 'edge_index = edge_index.detach().cpu().long()'
+source_audit.snippets[113].line = 340
+source_audit.snippets[113].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[113].text = 'source = edge_index[0]'
+source_audit.snippets[114].line = 341
+source_audit.snippets[114].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[114].text = 'destination = edge_index[1]'
+source_audit.snippets[115].line = 344
+source_audit.snippets[115].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[115].text = 'raise ValueError("edge_index contains negative node indices")'
+source_audit.snippets[116].line = 346
+source_audit.snippets[116].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[116].text = 'raise ValueError("edge_index exceeds node_count")'
+source_audit.snippets[117].line = 492
+source_audit.snippets[117].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[117].text = 'def verify_edge_index(self, edge_index: torch.Tensor) -> None:'
+source_audit.snippets[118].line = 493
+source_audit.snippets[118].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[118].text = 'if edge_index.ndim == 3:'
+source_audit.snippets[119].line = 494
+source_audit.snippets[119].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[119].text = 'reference = edge_index[0]'
+source_audit.snippets[120].line = 495
+source_audit.snippets[120].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[120].text = 'expanded = reference.unsqueeze(0).expand_as(edge_index)'
+source_audit.snippets[121].line = 496
+source_audit.snippets[121].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[121].text = 'if not torch.equal(edge_index, expanded):'
+source_audit.snippets[122].line = 498
+source_audit.snippets[122].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[122].text = '"batch contains non-identical edge_index tensors"'
+source_audit.snippets[123].line = 500
+source_audit.snippets[123].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[123].text = 'elif edge_index.ndim == 2:'
+source_audit.snippets[124].line = 501
+source_audit.snippets[124].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[124].text = 'reference = edge_index'
+source_audit.snippets[125].line = 504
+source_audit.snippets[125].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[125].text = 'f"unexpected edge_index shape: {tuple(edge_index.shape)}"'
+source_audit.snippets[126].line = 512
+source_audit.snippets[126].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[126].text = '"runtime edge_index differs from audited topology"'
+source_audit.snippets[127].line = 519
+source_audit.snippets[127].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[127].text = 'edge_index: torch.Tensor,'
+source_audit.snippets[128].line = 534
+source_audit.snippets[128].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[128].text = 'self.verify_edge_index(edge_index)'
+source_audit.snippets[129].line = 863
+source_audit.snippets[129].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[129].text = 'edge_index=batch["edge_index"].to('
+source_audit.snippets[130].line = 1155
+source_audit.snippets[130].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[130].text = 'if tuple(sample["edge_index"].shape) != (2, 48):'
+source_audit.snippets[131].line = 1157
+source_audit.snippets[131].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[131].text = '"edge_index shape unexpected: "'
+source_audit.snippets[132].line = 1158
+source_audit.snippets[132].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[132].text = 'f"{tuple(sample[\'edge_index\'].shape)}"'
+source_audit.snippets[133].line = 1207
+source_audit.snippets[133].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[133].text = 'expected_edge_index=sample["edge_index"],'
+source_audit.snippets[134].line = 1298
+source_audit.snippets[134].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[134].text = 'edge_index=batch["edge_index"].to('
+source_audit.snippets[135].line = 1562
+source_audit.snippets[135].path = '/home/zira/research/projects/GNN-2d/scripts/v5/baselines/train_v5_p0_b5_conv1d_gcn.py'
+source_audit.snippets[135].text = 'sample["edge_index"]'
+source_audit.snippets[136].line = 51
+source_audit.snippets[136].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[136].text = '"snapshot_tick", "tick", "epoch", "epoch_id", "router", "router_id",'
+source_audit.snippets[137].line = 414
+source_audit.snippets[137].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[137].text = '"num_nodes": int(x.shape[1]),'
+source_audit.snippets[138].line = 684
+source_audit.snippets[138].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[138].text = 'edge_index = topology.get("edge_index")'
+source_audit.snippets[139].line = 685
+source_audit.snippets[139].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[139].text = 'if not isinstance(edge_index, torch.Tensor):'
+source_audit.snippets[140].line = 687
+source_audit.snippets[140].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[140].text = '"topology.pt missing tensor edge_index"'
+source_audit.snippets[141].line = 690
+source_audit.snippets[141].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[141].text = 'edge_index = edge_index.detach().cpu().long()'
+source_audit.snippets[142].line = 692
+source_audit.snippets[142].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[142].text = 'edge_index.shape'
+source_audit.snippets[143].line = 694
+source_audit.snippets[143].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[143].text = 'if tuple(edge_index.shape) != (2, 48):'
+source_audit.snippets[144].line = 696
+source_audit.snippets[144].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[144].text = '"edge_index shape="'
+source_audit.snippets[145].line = 697
+source_audit.snippets[145].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[145].text = 'f"{tuple(edge_index.shape)}, expected=(2,48)"'
+source_audit.snippets[146].line = 702
+source_audit.snippets[146].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[146].text = 'for src, dst in edge_index.t().tolist()'
+source_audit.snippets[147].line = 718
+source_audit.snippets[147].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[147].text = '"edge_index contains negative node IDs"'
+source_audit.snippets[148].line = 722
+source_audit.snippets[148].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[148].text = '"edge_index contains node IDs greater than 15"'
+source_audit.snippets[149].line = 750
+source_audit.snippets[149].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[149].text = '"incorrect 4x4 mesh degree multiset: "'
+source_audit.snippets[150].line = 765
+source_audit.snippets[150].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[150].text = 'raw_num_nodes = topology.get("num_nodes")'
+source_audit.snippets[151].line = 767
+source_audit.snippets[151].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[151].text = 'num_nodes = ('
+source_audit.snippets[152].line = 773
+source_audit.snippets[152].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[152].text = 'num_nodes = None'
+source_audit.snippets[153].line = 774
+source_audit.snippets[153].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[153].text = 'topology_report["num_nodes"] = num_nodes'
+source_audit.snippets[154].line = 775
+source_audit.snippets[154].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[154].text = 'if num_nodes != 16:'
+source_audit.snippets[155].line = 777
+source_audit.snippets[155].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_tensor_handover.py'
+source_audit.snippets[155].text = 'f"topology num_nodes={num_nodes}, expected 16"'
+source_audit.snippets[156].line = 35
+source_audit.snippets[156].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_a3_loader_contract_smoke.py'
+source_audit.snippets[156].text = '"edge_index",'
+source_audit.snippets[157].line = 387
+source_audit.snippets[157].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_a3_loader_contract_smoke.py'
+source_audit.snippets[157].text = 'topology["edge_index"].detach().cpu()'
+source_audit.snippets[158].line = 511
+source_audit.snippets[158].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_a3_loader_contract_smoke.py'
+source_audit.snippets[158].text = 'edge_index = item["edge_index"]'
+source_audit.snippets[159].line = 512
+source_audit.snippets[159].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_a3_loader_contract_smoke.py'
+source_audit.snippets[159].text = 'if not isinstance(edge_index, torch.Tensor):'
+source_audit.snippets[160].line = 514
+source_audit.snippets[160].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_a3_loader_contract_smoke.py'
+source_audit.snippets[160].text = 'f"{split}[{index}] edge_index is not tensor"'
+source_audit.snippets[161].line = 517
+source_audit.snippets[161].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_a3_loader_contract_smoke.py'
+source_audit.snippets[161].text = 'edge_index.detach().cpu(),'
+source_audit.snippets[162].line = 521
+source_audit.snippets[162].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_a3_loader_contract_smoke.py'
+source_audit.snippets[162].text = 'f"{split}[{index}] edge_index mismatch"'
+source_audit.snippets[163].line = 716
+source_audit.snippets[163].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_a3_loader_contract_smoke.py'
+source_audit.snippets[163].text = '"edge_index": (4, 2, 48),'
+source_audit.snippets[164].line = 347
+source_audit.snippets[164].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_a2_feature_normalization_contract.py'
+source_audit.snippets[164].text = 'edge_index = topology.get("edge_index")'
+source_audit.snippets[165].line = 348
+source_audit.snippets[165].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_a2_feature_normalization_contract.py'
+source_audit.snippets[165].text = 'if not isinstance(edge_index, torch.Tensor):'
+source_audit.snippets[166].line = 349
+source_audit.snippets[166].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_a2_feature_normalization_contract.py'
+source_audit.snippets[166].text = 'failures.append("topology missing edge_index tensor")'
+source_audit.snippets[167].line = 350
+source_audit.snippets[167].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_a2_feature_normalization_contract.py'
+source_audit.snippets[167].text = 'elif tuple(edge_index.shape) != (2, 48):'
+source_audit.snippets[168].line = 352
+source_audit.snippets[168].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_a2_feature_normalization_contract.py'
+source_audit.snippets[168].text = 'f"edge_index shape={tuple(edge_index.shape)}, expected (2,48)"'
+source_audit.snippets[169].line = 488
+source_audit.snippets[169].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_a2_feature_normalization_contract.py'
+source_audit.snippets[169].text = '"edge_index": {'
+source_audit.snippets[170].line = 239
+source_audit.snippets[170].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_b0_r1c_final_quarantine_release.py'
+source_audit.snippets[170].text = '"edge_index",'
+source_audit.snippets[171].line = 343
+source_audit.snippets[171].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_b0_r1c_final_quarantine_release.py'
+source_audit.snippets[171].text = '- `edge_index`'
+source_audit.snippets[172].line = 520
+source_audit.snippets[172].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/audit_v5_p0_a2_1_mask_recoverability.py'
+source_audit.snippets[172].text = '"edge_index plus topology-derived raw Boolean [16,10] "'
+source_audit.snippets[173].line = 17
+source_audit.snippets[173].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/run_v5_p0_b0_r1b_numeric_provenance_audit.py'
+source_audit.snippets[173].text = 'edge_index, or physical masks are used.'
+source_audit.snippets[174].line = 15
+source_audit.snippets[174].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_b0_r1_identifier_quarantine.py'
+source_audit.snippets[174].text = '6. A2/A3 permit only PRIMARY58, edge_index, and the audited physical mask as'
+source_audit.snippets[175].line = 370
+source_audit.snippets[175].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_b0_r1_identifier_quarantine.py'
+source_audit.snippets[175].text = '"edge_index",'
+source_audit.snippets[176].line = 463
+source_audit.snippets[176].path = '/home/zira/research/projects/GNN-2d/scripts/v5/common/freeze_v5_p0_b0_r1_identifier_quarantine.py'
+source_audit.snippets[176].text = '- `edge_index`'
+source_audit.snippets[177].line = 171
+source_audit.snippets[177].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[177].text = '"num_nodes": 16,'
+source_audit.snippets[178].line = 218
+source_audit.snippets[178].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[178].text = 'edge_index = sample.get("edge_index")'
+source_audit.snippets[179].line = 229
+source_audit.snippets[179].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[179].text = 'if "edge_index" in names:'
+source_audit.snippets[180].line = 230
+source_audit.snippets[180].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[180].text = 'ei = edge_index'
+source_audit.snippets[181].line = 234
+source_audit.snippets[181].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[181].text = '("keyword", (), {"x": x_batched, "edge_index": edge_index})'
+source_audit.snippets[182].line = 509
+source_audit.snippets[182].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[182].text = 'required = {"x", "edge_index", "y_attack", "y_source"}'
+source_audit.snippets[183].line = 594
+source_audit.snippets[183].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[183].text = 'train_sample.get("edge_index")'
+source_audit.snippets[184].line = 596
+source_audit.snippets[184].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[184].text = 'edge_index = train_sample["edge_index"].detach().cpu()'
+source_audit.snippets[185].line = 598
+source_audit.snippets[185].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[185].text = '"shape": list(edge_index.shape),'
+source_audit.snippets[186].line = 599
+source_audit.snippets[186].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[186].text = '"dtype": str(edge_index.dtype),'
+source_audit.snippets[187].line = 600
+source_audit.snippets[187].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[187].text = '"min": int(edge_index.min().item()),'
+source_audit.snippets[188].line = 601
+source_audit.snippets[188].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[188].text = '"max": int(edge_index.max().item()),'
+source_audit.snippets[189].line = 602
+source_audit.snippets[189].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[189].text = '"directed_edge_count": int(edge_index.shape[1])'
+source_audit.snippets[190].line = 603
+source_audit.snippets[190].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[190].text = 'if edge_index.ndim == 2'
+source_audit.snippets[191].line = 606
+source_audit.snippets[191].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[191].text = 'torch.unique(edge_index.t(), dim=0).shape[0]'
+source_audit.snippets[192].line = 608
+source_audit.snippets[192].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[192].text = 'if edge_index.ndim == 2'
+source_audit.snippets[193].line = 611
+source_audit.snippets[193].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[193].text = '(edge_index[0] == edge_index[1]).sum().item()'
+source_audit.snippets[194].line = 613
+source_audit.snippets[194].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[194].text = 'if edge_index.ndim == 2'
+source_audit.snippets[195].line = 618
+source_audit.snippets[195].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[195].text = 'f"unexpected edge_index shape: {topology_checks[\'shape\']}"'
+source_audit.snippets[196].line = 621
+source_audit.snippets[196].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[196].text = 'failures.append("edge_index node range is not 0..15")'
+source_audit.snippets[197].line = 664
+source_audit.snippets[197].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/inspect_v5_p2_g1a_source_only_graph_preflight.py'
+source_audit.snippets[197].text = '"required_topology_key": "edge_index",'
+source_audit.snippets[198].line = 43
+source_audit.snippets[198].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[198].text = 'NUM_NODES = 16'
+source_audit.snippets[199].line = 83
+source_audit.snippets[199].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[199].text = '"router_id",'
+source_audit.snippets[200].line = 100
+source_audit.snippets[200].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[200].text = '"router_id",'
+source_audit.snippets[201].line = 131
+source_audit.snippets[201].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[201].text = '"edge_index for frozen B3",'
+source_audit.snippets[202].line = 525
+source_audit.snippets[202].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[202].text = '"router_id",'
+source_audit.snippets[203].line = 591
+source_audit.snippets[203].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[203].text = 'edge_index = None'
+source_audit.snippets[204].line = 595
+source_audit.snippets[204].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[204].text = 'edge_index = topology.get("edge_index")'
+source_audit.snippets[205].line = 599
+source_audit.snippets[205].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[205].text = '"num_nodes": 16,'
+source_audit.snippets[206].line = 613
+source_audit.snippets[206].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[206].text = 'not isinstance(edge_index, torch.Tensor)'
+source_audit.snippets[207].line = 614
+source_audit.snippets[207].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[207].text = 'or edge_index.dtype != torch.int64'
+source_audit.snippets[208].line = 615
+source_audit.snippets[208].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[208].text = 'or tuple(edge_index.shape) != (2, 48)'
+source_audit.snippets[209].line = 617
+source_audit.snippets[209].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[209].text = 'failures.append("edge_index is not int64 [2,48]")'
+source_audit.snippets[210].line = 629
+source_audit.snippets[210].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[210].text = 'isinstance(edge_index, torch.Tensor)'
+source_audit.snippets[211].line = 630
+source_audit.snippets[211].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[211].text = 'and tuple(edge_index.shape) == (2, 48)'
+source_audit.snippets[212].line = 645
+source_audit.snippets[212].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[212].text = '"router coordinates do not cover a 4x4 grid"'
+source_audit.snippets[213].line = 650
+source_audit.snippets[213].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[213].text = 'for source, target in edge_index.t().tolist()'
+source_audit.snippets[214].line = 656
+source_audit.snippets[214].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[214].text = '"edge_index does not match coordinate-derived "'
+source_audit.snippets[215].line = 657
+source_audit.snippets[215].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[215].text = '"directed 4-neighbor mesh"'
+source_audit.snippets[216].line = 660
+source_audit.snippets[216].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[216].text = 'failures.append("edge_index contains self loops")'
+source_audit.snippets[217].line = 665
+source_audit.snippets[217].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[217].text = 'failures.append("edge_index is not symmetric")'
+source_audit.snippets[218].line = 708
+source_audit.snippets[218].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[218].text = '"returns_edge_index": \'"edge_index"\' in loader_source,'
+source_audit.snippets[219].line = 848
+source_audit.snippets[219].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[219].text = '"edge_index",'
+source_audit.snippets[220].line = 953
+source_audit.snippets[220].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[220].text = 'B3 has no graph message passing. `edge_index` and router coordinates remain'
+source_audit.snippets[221].line = 1019
+source_audit.snippets[221].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_r2_feature_normalization_mask_contract.py'
+source_audit.snippets[221].text = '"num_nodes": topology.get("num_nodes"),'
+source_audit.snippets[222].line = 50
+source_audit.snippets[222].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_r1_pair_length_window_shortcut.py'
+source_audit.snippets[222].text = '"num_nodes",'
+source_audit.snippets[223].line = 202
+source_audit.snippets[223].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_r1_pair_length_window_shortcut.py'
+source_audit.snippets[223].text = '"num_nodes": payload["num_nodes"],'
+source_audit.snippets[224].line = 228
+source_audit.snippets[224].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_r1_pair_length_window_shortcut.py'
+source_audit.snippets[224].text = 'if payload["num_nodes"] != 16:'
+source_audit.snippets[225].line = 230
+source_audit.snippets[225].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_r1_pair_length_window_shortcut.py'
+source_audit.snippets[225].text = 'f"{expected_split}/{path.name}: num_nodes="'
+source_audit.snippets[226].line = 231
+source_audit.snippets[226].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_r1_pair_length_window_shortcut.py'
+source_audit.snippets[226].text = 'f"{payload[\'num_nodes\']!r}"'
+source_audit.snippets[227].line = 423
+source_audit.snippets[227].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_r1_pair_length_window_shortcut.py'
+source_audit.snippets[227].text = '"num_nodes",'
+source_audit.snippets[228].line = 14
+source_audit.snippets[228].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[228].text = '- topology integrity for the 4x4, 16-router directed mesh;'
+source_audit.snippets[229].line = 27
+source_audit.snippets[229].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[229].text = '- always returns edge_index although frozen B3 has no graph message passing.'
+source_audit.snippets[230].line = 48
+source_audit.snippets[230].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[230].text = 'NUM_NODES = 16'
+source_audit.snippets[231].line = 84
+source_audit.snippets[231].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[231].text = '"router_id",'
+source_audit.snippets[232].line = 101
+source_audit.snippets[232].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[232].text = '"router_id",'
+source_audit.snippets[233].line = 207
+source_audit.snippets[233].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[233].text = 'Return Boolean [num_nodes,10] in this exact order:'
+source_audit.snippets[234].line = 506
+source_audit.snippets[234].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[234].text = '"router_id",'
+source_audit.snippets[235].line = 581
+source_audit.snippets[235].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[235].text = '"edge_index",'
+source_audit.snippets[236].line = 582
+source_audit.snippets[236].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[236].text = '"num_nodes",'
+source_audit.snippets[237].line = 591
+source_audit.snippets[237].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[237].text = 'edge_index = None'
+source_audit.snippets[238].line = 599
+source_audit.snippets[238].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[238].text = 'edge_index = topology.get("edge_index")'
+source_audit.snippets[239].line = 602
+source_audit.snippets[239].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[239].text = 'if topology.get("num_nodes") != NUM_NODES:'
+source_audit.snippets[240].line = 603
+source_audit.snippets[240].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[240].text = 'failures.append("topology num_nodes is not 16")'
+source_audit.snippets[241].line = 614
+source_audit.snippets[241].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[241].text = 'not isinstance(edge_index, torch.Tensor)'
+source_audit.snippets[242].line = 615
+source_audit.snippets[242].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[242].text = 'or edge_index.dtype != torch.int64'
+source_audit.snippets[243].line = 616
+source_audit.snippets[243].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[243].text = 'or tuple(edge_index.shape) != (2, 48)'
+source_audit.snippets[244].line = 618
+source_audit.snippets[244].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[244].text = 'failures.append("edge_index is not int64 [2,48]")'
+source_audit.snippets[245].line = 630
+source_audit.snippets[245].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[245].text = 'isinstance(edge_index, torch.Tensor)'
+source_audit.snippets[246].line = 631
+source_audit.snippets[246].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[246].text = 'and tuple(edge_index.shape) == (2, 48)'
+source_audit.snippets[247].line = 646
+source_audit.snippets[247].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[247].text = '"router coordinates do not cover the 4x4 grid"'
+source_audit.snippets[248].line = 651
+source_audit.snippets[248].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[248].text = 'for source, target in edge_index.t().tolist()'
+source_audit.snippets[249].line = 657
+source_audit.snippets[249].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[249].text = 'f"edge_index has {len(actual_edges)} unique edges"'
+source_audit.snippets[250].line = 660
+source_audit.snippets[250].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[250].text = 'failures.append("edge_index contains self loops")'
+source_audit.snippets[251].line = 663
+source_audit.snippets[251].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[251].text = '"edge_index does not match coordinate-derived "'
+source_audit.snippets[252].line = 664
+source_audit.snippets[252].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[252].text = '"4-neighbor directed mesh"'
+source_audit.snippets[253].line = 671
+source_audit.snippets[253].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[253].text = '"edge_index is not directionally symmetric"'
+source_audit.snippets[254].line = 812
+source_audit.snippets[254].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[254].text = '\'"edge_index"\' in loader_source'
+source_audit.snippets[255].line = 947
+source_audit.snippets[255].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[255].text = '"edge_index",'
+source_audit.snippets[256].line = 1032
+source_audit.snippets[256].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[256].text = 'The frozen B3 architecture has no graph message passing. `edge_index` and'
+source_audit.snippets[257].line = 1092
+source_audit.snippets[257].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_a2_feature_normalization_mask_contract.py'
+source_audit.snippets[257].text = '"num_nodes": topology.get("num_nodes"),'
+source_audit.snippets[258].line = 11
+source_audit.snippets[258].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_tensor_schema_nontest.py'
+source_audit.snippets[258].text = '- feature_count=81 and num_nodes=16 compatibility;'
+source_audit.snippets[259].line = 56
+source_audit.snippets[259].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_tensor_schema_nontest.py'
+source_audit.snippets[259].text = '"edge_index": ("edge_index", "edges"),'
+source_audit.snippets[260].line = 358
+source_audit.snippets[260].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_tensor_schema_nontest.py'
+source_audit.snippets[260].text = 'expected_nodes = dataset_summary.get("num_nodes")'
+source_audit.snippets[261].line = 365
+source_audit.snippets[261].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_tensor_schema_nontest.py'
+source_audit.snippets[261].text = 'f"num_nodes={expected_nodes!r}, expected 16"'
+source_audit.snippets[262].line = 501
+source_audit.snippets[262].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_tensor_schema_nontest.py'
+source_audit.snippets[262].text = '"edge_index",'
+source_audit.snippets[263].line = 749
+source_audit.snippets[263].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_tensor_schema_nontest.py'
+source_audit.snippets[263].text = '"num_nodes": expected_nodes,'
+source_audit.snippets[264].line = 829
+source_audit.snippets[264].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_tensor_schema_nontest.py'
+source_audit.snippets[264].text = '"num_nodes": expected_nodes,'
+source_audit.snippets[265].line = 852
+source_audit.snippets[265].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/audit_v5_p2_a1_tensor_schema_nontest.py'
+source_audit.snippets[265].text = 'print("num_nodes:", expected_nodes)'
+source_audit.snippets[266].line = 657
+source_audit.snippets[266].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_b1_training_protocol.py'
+source_audit.snippets[266].text = '"lengths, window positions, epoch IDs, coordinates, edge_index, "'
+source_audit.snippets[267].line = 275
+source_audit.snippets[267].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_c2_next_revision_contract.py'
+source_audit.snippets[267].text = '"primary": "4x4 2D mesh, 16 routers",'
+source_audit.snippets[268].line = 277
+source_audit.snippets[268].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/freeze_v5_p2_c2_next_revision_contract.py'
+source_audit.snippets[268].text = '"Resolve the 4x4 regional-expert discrimination problem "'
+source_audit.snippets[269].line = 11
+source_audit.snippets[269].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[269].text = 'R1 stopped only because it assumed edge_index must be present in every sample.'
+source_audit.snippets[270].line = 12
+source_audit.snippets[270].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[270].text = 'For a fixed 4x4 NoC, the loader may store topology once on the dataset/module'
+source_audit.snippets[271].line = 23
+source_audit.snippets[271].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[271].text = '- inspect non-test files inside the P2 data root for edge_index;'
+source_audit.snippets[272].line = 24
+source_audit.snippets[272].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[272].text = '- write a resolved static edge_index artifact and contract.'
+source_audit.snippets[273].line = 62
+source_audit.snippets[273].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[273].text = '"edge_index",'
+source_audit.snippets[274].line = 69
+source_audit.snippets[274].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[274].text = '"edge_index.npy",'
+source_audit.snippets[275].line = 70
+source_audit.snippets[275].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[275].text = '"edge_index.npz",'
+source_audit.snippets[276].line = 71
+source_audit.snippets[276].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[276].text = '"edge_index.pt",'
+source_audit.snippets[277].line = 72
+source_audit.snippets[277].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[277].text = '"edge_index.pth",'
+source_audit.snippets[278].line = 73
+source_audit.snippets[278].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[278].text = '"edge_index.json",'
+source_audit.snippets[279].line = 200
+source_audit.snippets[279].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[279].text = 'edge_index = tensor'
+source_audit.snippets[280].line = 202
+source_audit.snippets[280].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[280].text = 'edge_index = tensor.t()'
+source_audit.snippets[281].line = 206
+source_audit.snippets[281].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[281].text = 'if edge_index.numel() == 0:'
+source_audit.snippets[282].line = 209
+source_audit.snippets[282].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[282].text = 'return edge_index.to(dtype=torch.long).contiguous()'
+source_audit.snippets[283].line = 221
+source_audit.snippets[283].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[283].text = '"edge_index",'
+source_audit.snippets[284].line = 239
+source_audit.snippets[284].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[284].text = 'for key in ("edge_index", "edges"):'
+source_audit.snippets[285].line = 249
+source_audit.snippets[285].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[285].text = 'for key in ("edge_index", "edges"):'
+source_audit.snippets[286].line = 259
+source_audit.snippets[286].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[286].text = 'def edge_summary(edge_index: torch.Tensor) -> dict[str, Any]:'
+source_audit.snippets[287].line = 260
+source_audit.snippets[287].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[287].text = 'edges = edge_index.t().contiguous()'
+source_audit.snippets[288].line = 264
+source_audit.snippets[288].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[288].text = '"shape": list(edge_index.shape),'
+source_audit.snippets[289].line = 265
+source_audit.snippets[289].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[289].text = '"dtype": str(edge_index.dtype),'
+source_audit.snippets[290].line = 266
+source_audit.snippets[290].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[290].text = '"minimum_node": int(edge_index.min().item()),'
+source_audit.snippets[291].line = 267
+source_audit.snippets[291].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[291].text = '"maximum_node": int(edge_index.max().item()),'
+source_audit.snippets[292].line = 268
+source_audit.snippets[292].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[292].text = '"directed_edge_count": int(edge_index.shape[1]),'
+source_audit.snippets[293].line = 271
+source_audit.snippets[293].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[293].text = '(edge_index[0] == edge_index[1]).sum().item()'
+source_audit.snippets[294].line = 274
+source_audit.snippets[294].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[294].text = 'edge_index.numpy().astype(np.int64, copy=False).tobytes()'
+source_audit.snippets[295].line = 280
+source_audit.snippets[295].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[295].text = 'edge_index: torch.Tensor,'
+source_audit.snippets[296].line = 283
+source_audit.snippets[296].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[296].text = 'summary = edge_summary(edge_index)'
+source_audit.snippets[297].line = 287
+source_audit.snippets[297].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[297].text = 'f"edge_index shape is {summary[\'shape\']}, expected [2, 48]"'
+source_audit.snippets[298].line = 291
+source_audit.snippets[298].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[298].text = '"edge_index node range is not exactly 0..15"'
+source_audit.snippets[299].line = 295
+source_audit.snippets[299].path = '/home/zira/research/projects/GNN-2d/scripts/v5/p2/resolve_v5_p2_g1a_r2_static_edge_index.py'
+source_audit.snippets[299].text = '"edge_index does not contain 48 unique directed edges"'
+
+--- reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_STATIC_TOPOLOGY_CONTRACT_LOCK.json ---
+architecture_selected = False
+checkpoint_loaded = False
+edge_index_sha256 = 'f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff'
+===== ROOT: /home/zira/research/projects/GNN-2d/reports/v5/p2_g1_source_only_graph_smoke_check =====
+json_file_count=3
+
+--- reports/v5/p2_g1_source_only_graph_smoke_check/G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK_LOCK.json ---
+architecture_selected = False
+checkpoint_loaded = False
+edge_index_sha256 = 'f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff'
+scientific_checkpoint_created = False
+
+--- reports/v5/p2_g1_source_only_graph_smoke_check/G1_SOURCE_ONLY_GRAPH_SMOKE_CONTRACT.json ---
+canonical_edge_index_sha256 = 'f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff'
+graph_layers = 2
+graph_width = 64
+initial_seeds = [107, 117, 127]
+input_shape = ['items', 16, 58, 32]
+operators = ['conv1d', 'gcnconv', 'graphconv', 'gatconv']
+production_constraints.hook_based_full_b3_wrapper_allowed = False
+source_embedding_cutpoint = 'source_head'
+source_embedding_dim = 64
+source_head_clone_equivalence_max_abs_error = 0.0
+source_target_semantics = '16 independent binary attacker/source labels'
+source_target_shape = ['items', 16]
+temporal_backbone_parameters = 43273
+
+--- reports/v5/p2_g1_source_only_graph_smoke_check/V5_P2_G1_SOURCE_ONLY_GRAPH_SMOKE_CHECK.json ---
+dataset.train_batch.attack_rows = 4
+dataset.train_batch.binary_values = [0, 1]
+dataset.train_batch.control_rows = 4
+dataset.train_batch.flattened_x_shape = [8, 16, 58, 32]
+dataset.train_batch.flattened_y_source_shape = [8, 16]
+dataset.train_batch.original_prefix_shape = [8]
+dataset.train_batch.pair_aligned_input = False
+dataset.train_batch.rows = 8
+dataset.train_batch.x_dtype = 'torch.float32'
+dataset.train_batch.x_shape = [8, 16, 58, 32]
+dataset.train_batch.y_source_dtype = 'torch.float32'
+dataset.train_batch.y_source_shape = [8, 16]
+dataset.train_selection.attack_items = 4
+dataset.train_selection.control_items = 4
+dataset.train_selection.items_scanned = 8
+dataset.train_selection.items_selected = 8
+dataset.train_selection.mixed_items = 0
+dataset.train_selection.selected_indices = [1, 0, 2, 3, 4, 5, 6, 7]
+dataset.validation_batch.attack_rows = 1
+dataset.validation_batch.binary_values = [0, 1]
+dataset.validation_batch.control_rows = 7
+dataset.validation_batch.flattened_x_shape = [8, 16, 58, 32]
+dataset.validation_batch.flattened_y_source_shape = [8, 16]
+dataset.validation_batch.original_prefix_shape = [8]
+dataset.validation_batch.pair_aligned_input = False
+dataset.validation_batch.rows = 8
+dataset.validation_batch.x_dtype = 'torch.float32'
+dataset.validation_batch.x_shape = [8, 16, 58, 32]
+dataset.validation_batch.y_source_dtype = 'torch.float32'
+dataset.validation_batch.y_source_shape = [8, 16]
+dataset.validation_selection.attack_items = 1
+dataset.validation_selection.control_items = 7
+dataset.validation_selection.items_scanned = 83
+dataset.validation_selection.items_selected = 8
+dataset.validation_selection.mixed_items = 0
+dataset.validation_selection.selected_indices = [0, 82, 1, 2, 3, 4, 5, 6]
+interface_probe.b3_instantiation_attempts[0].parameter_count = 4416
+interface_probe.b3_instantiation_attempts[1].parameter_count = 43273
+interface_probe.b3_parameter_count = 43273
+interface_probe.cloned_source_head_state_sha256 = '102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b'
+interface_probe.cloned_source_logits_shape = [8, 16]
+interface_probe.normalized_embedding_shape = [8, 16, 64]
+interface_probe.original_source_head_state_sha256 = '102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b'
+interface_probe.original_source_logits_shape = [8, 16]
+interface_probe.raw_cutpoint_input_shape = [8, 16, 64]
+operator_results.conv1d.b3_class = 'P2B3Conv1DOnlyCount4'
+operator_results.conv1d.b3_failed_instantiation_attempts[0].class = 'CausalDepthwiseSeparableResidualBlock'
+operator_results.conv1d.b3_failed_instantiation_attempts[0].parameter_count = 4416
+operator_results.conv1d.b3_failed_instantiation_attempts[1].class = 'P2B3Conv1DOnlyCount4'
+operator_results.conv1d.b3_failed_instantiation_attempts[1].parameter_count = 43273
+operator_results.conv1d.b3_forward_variant = 'signature_batch_kwargs'
+operator_results.conv1d.b3_parameter_count = 43273
+operator_results.conv1d.cuda_memory.allocated_bytes = 19500032
+operator_results.conv1d.cuda_memory.max_allocated_bytes = 36950528
+operator_results.conv1d.cuda_memory.reserved_bytes = 56623104
+operator_results.conv1d.embedding_dim = 64
+operator_results.conv1d.gradient_groups.graph1.all_gradient_tensors_finite = False
+operator_results.conv1d.gradient_groups.graph1.gradient_parameter_names = []
+operator_results.conv1d.gradient_groups.graph1.parameter_tensors = 0
+operator_results.conv1d.gradient_groups.graph1.total_absolute_gradient = 0.0
+operator_results.conv1d.gradient_groups.graph1.with_gradient = 0
+operator_results.conv1d.gradient_groups.graph2.all_gradient_tensors_finite = False
+operator_results.conv1d.gradient_groups.graph2.gradient_parameter_names = []
+operator_results.conv1d.gradient_groups.graph2.parameter_tensors = 0
+operator_results.conv1d.gradient_groups.graph2.total_absolute_gradient = 0.0
+operator_results.conv1d.gradient_groups.graph2.with_gradient = 0
+operator_results.conv1d.gradient_groups.other.all_gradient_tensors_finite = False
+operator_results.conv1d.gradient_groups.other.gradient_parameter_names = []
+operator_results.conv1d.gradient_groups.other.parameter_tensors = 4
+operator_results.conv1d.gradient_groups.other.total_absolute_gradient = 0.0
+operator_results.conv1d.gradient_groups.other.with_gradient = 0
+operator_results.conv1d.gradient_groups.source_head.all_gradient_tensors_finite = True
+operator_results.conv1d.gradient_groups.source_head.gradient_parameter_names = ['source_head.0.weight', 'source_head.0.bias', 'source_head.2.weight', 'source_head.2.bias']
+operator_results.conv1d.gradient_groups.source_head.parameter_tensors = 4
+operator_results.conv1d.gradient_groups.source_head.total_absolute_gradient = 6.9514288902282715
+operator_results.conv1d.gradient_groups.source_head.with_gradient = 4
+operator_results.conv1d.gradient_groups.temporal_backbone.all_gradient_tensors_finite = True
+operator_results.conv1d.gradient_groups.temporal_backbone.gradient_parameter_names = ['adapter.b3.input_projection.weight', 'adapter.b3.input_projection.bias', 'adapter.b3.temporal_blocks.0.depthwise.weight', 'adapter.b3.temporal_blocks.0.depthwise.bias', 'adapter.b3.temporal_blocks.0.pointwise.weight', 'adapter.b3.temporal_blocks.0.pointwise.bias', 'adapter.b3.temporal_blocks.1.depthwise.weight', 'adapter.b3.temporal_blocks.1.depthwise.bias', 'adapter.b3.temporal_blocks.1.pointwise.weight', 'adapter.b3.temporal_blocks.1.pointwise.bias', 'adapter.b3.temporal_blocks.2.depthwise.weight', 'adapter.b3.temporal_blocks.2.depthwise.bias', 'adapter.b3.temporal_blocks.2.pointwise.weight', 'adapter.b3.temporal_blocks.2.pointwise.bias', 'adapter.b3.temporal_blocks.3.depthwise.weight', 'adapter.b3.temporal_blocks.3.depthwise.bias', 'adapter.b3.temporal_blocks.3.pointwise.weight', 'adapter.b3.temporal_blocks.3.pointwise.bias', 'adapter.b3.node_projection.weight', 'adapter.b3.node_projection.bias']
+operator_results.conv1d.gradient_groups.temporal_backbone.parameter_tensors = 38
+operator_results.conv1d.gradient_groups.temporal_backbone.total_absolute_gradient = 14.57801990956068
+operator_results.conv1d.gradient_groups.temporal_backbone.with_gradient = 20
+operator_results.conv1d.gradient_summary.parameter_tensors_with_finite_gradient = 24
+operator_results.conv1d.gradient_summary.parameter_tensors_with_gradient = 24
+operator_results.conv1d.gradient_summary.total_absolute_gradient = 21.529448799788952
+operator_results.conv1d.gradient_summary.trainable_parameter_tensors = 46
+operator_results.conv1d.initial_b3_state_sha256 = 'b66f4cea227d5f72e936ca8b691a9b74ffdde37f581a441df362711e51a5d37c'
+operator_results.conv1d.initial_source_head_state_sha256 = '102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b'
+operator_results.conv1d.node_embedding_shape = [8, 16, 64]
+operator_results.conv1d.operator = 'conv1d'
+operator_results.conv1d.seed = 107
+operator_results.conv1d.source_cutpoint_candidates[0].class = 'Sequential'
+operator_results.conv1d.source_cutpoint_candidates[0].name = 'source_head'
+operator_results.conv1d.source_cutpoint_candidates[0].score = 270
+operator_results.conv1d.source_cutpoint_candidates[1].class = 'Linear'
+operator_results.conv1d.source_cutpoint_candidates[1].name = 'source_head.0'
+operator_results.conv1d.source_cutpoint_candidates[1].score = 45
+operator_results.conv1d.source_cutpoint_candidates[2].class = 'Linear'
+operator_results.conv1d.source_cutpoint_candidates[2].name = 'source_head.2'
+operator_results.conv1d.source_cutpoint_candidates[2].score = 45
+operator_results.conv1d.source_cutpoint_class = 'Sequential'
+operator_results.conv1d.source_cutpoint_name = 'source_head'
+operator_results.conv1d.source_head_clone_class = 'Sequential'
+operator_results.conv1d.status = 'PASS'
+operator_results.conv1d.total_parameter_count = 45386
+operator_results.conv1d.train_logits_shape = [8, 16]
+operator_results.conv1d.train_loss_before_step = 0.6296700239181519
+operator_results.conv1d.trainable_parameter_count = 45386
+operator_results.conv1d.validation_logits_shape = [8, 16]
+operator_results.conv1d.validation_loss_after_step = 0.6032592058181763
+operator_results.gatconv.b3_class = 'P2B3Conv1DOnlyCount4'
+operator_results.gatconv.b3_failed_instantiation_attempts[0].class = 'CausalDepthwiseSeparableResidualBlock'
+operator_results.gatconv.b3_failed_instantiation_attempts[0].parameter_count = 4416
+operator_results.gatconv.b3_failed_instantiation_attempts[1].class = 'P2B3Conv1DOnlyCount4'
+operator_results.gatconv.b3_failed_instantiation_attempts[1].parameter_count = 43273
+operator_results.gatconv.b3_forward_variant = 'signature_batch_kwargs'
+operator_results.gatconv.b3_parameter_count = 43273
+operator_results.gatconv.cuda_memory.allocated_bytes = 19643392
+operator_results.gatconv.cuda_memory.max_allocated_bytes = 37022208
+operator_results.gatconv.cuda_memory.reserved_bytes = 56623104
+operator_results.gatconv.embedding_dim = 64
+operator_results.gatconv.gradient_groups.graph1.all_gradient_tensors_finite = True
+operator_results.gatconv.gradient_groups.graph1.gradient_parameter_names = ['graph1.att_src', 'graph1.att_dst', 'graph1.bias', 'graph1.lin.weight']
+operator_results.gatconv.gradient_groups.graph1.parameter_tensors = 4
+operator_results.gatconv.gradient_groups.graph1.total_absolute_gradient = 2.8551281162071973
+operator_results.gatconv.gradient_groups.graph1.with_gradient = 4
+operator_results.gatconv.gradient_groups.graph2.all_gradient_tensors_finite = True
+operator_results.gatconv.gradient_groups.graph2.gradient_parameter_names = ['graph2.att_src', 'graph2.att_dst', 'graph2.bias', 'graph2.lin.weight']
+operator_results.gatconv.gradient_groups.graph2.parameter_tensors = 4
+operator_results.gatconv.gradient_groups.graph2.total_absolute_gradient = 2.7894047447996773
+operator_results.gatconv.gradient_groups.graph2.with_gradient = 4
+operator_results.gatconv.gradient_groups.other.all_gradient_tensors_finite = False
+operator_results.gatconv.gradient_groups.other.gradient_parameter_names = []
+operator_results.gatconv.gradient_groups.other.parameter_tensors = 4
+operator_results.gatconv.gradient_groups.other.total_absolute_gradient = 0.0
+operator_results.gatconv.gradient_groups.other.with_gradient = 0
+operator_results.gatconv.gradient_groups.source_head.all_gradient_tensors_finite = True
+operator_results.gatconv.gradient_groups.source_head.gradient_parameter_names = ['source_head.0.weight', 'source_head.0.bias', 'source_head.2.weight', 'source_head.2.bias']
+operator_results.gatconv.gradient_groups.source_head.parameter_tensors = 4
+operator_results.gatconv.gradient_groups.source_head.total_absolute_gradient = 5.271833270788193
+operator_results.gatconv.gradient_groups.source_head.with_gradient = 4
+operator_results.gatconv.gradient_groups.temporal_backbone.all_gradient_tensors_finite = True
+operator_results.gatconv.gradient_groups.temporal_backbone.gradient_parameter_names = ['adapter.b3.input_projection.weight', 'adapter.b3.input_projection.bias', 'adapter.b3.temporal_blocks.0.depthwise.weight', 'adapter.b3.temporal_blocks.0.depthwise.bias', 'adapter.b3.temporal_blocks.0.pointwise.weight', 'adapter.b3.temporal_blocks.0.pointwise.bias', 'adapter.b3.temporal_blocks.1.depthwise.weight', 'adapter.b3.temporal_blocks.1.depthwise.bias', 'adapter.b3.temporal_blocks.1.pointwise.weight', 'adapter.b3.temporal_blocks.1.pointwise.bias', 'adapter.b3.temporal_blocks.2.depthwise.weight', 'adapter.b3.temporal_blocks.2.depthwise.bias', 'adapter.b3.temporal_blocks.2.pointwise.weight', 'adapter.b3.temporal_blocks.2.pointwise.bias', 'adapter.b3.temporal_blocks.3.depthwise.weight', 'adapter.b3.temporal_blocks.3.depthwise.bias', 'adapter.b3.temporal_blocks.3.pointwise.weight', 'adapter.b3.temporal_blocks.3.pointwise.bias', 'adapter.b3.node_projection.weight', 'adapter.b3.node_projection.bias']
+operator_results.gatconv.gradient_groups.temporal_backbone.parameter_tensors = 38
+operator_results.gatconv.gradient_groups.temporal_backbone.total_absolute_gradient = 8.906600330024958
+operator_results.gatconv.gradient_groups.temporal_backbone.with_gradient = 20
+operator_results.gatconv.gradient_summary.parameter_tensors_with_finite_gradient = 32
+operator_results.gatconv.gradient_summary.parameter_tensors_with_gradient = 32
+operator_results.gatconv.gradient_summary.total_absolute_gradient = 19.822966461820027
+operator_results.gatconv.gradient_summary.trainable_parameter_tensors = 54
+operator_results.gatconv.initial_b3_state_sha256 = 'b66f4cea227d5f72e936ca8b691a9b74ffdde37f581a441df362711e51a5d37c'
+operator_results.gatconv.initial_source_head_state_sha256 = '102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b'
+operator_results.gatconv.node_embedding_shape = [8, 16, 64]
+operator_results.gatconv.operator = 'gatconv'
+operator_results.gatconv.seed = 107
+operator_results.gatconv.source_cutpoint_candidates[0].class = 'Sequential'
+operator_results.gatconv.source_cutpoint_candidates[0].name = 'source_head'
+operator_results.gatconv.source_cutpoint_candidates[0].score = 270
+operator_results.gatconv.source_cutpoint_candidates[1].class = 'Linear'
+operator_results.gatconv.source_cutpoint_candidates[1].name = 'source_head.0'
+operator_results.gatconv.source_cutpoint_candidates[1].score = 45
+operator_results.gatconv.source_cutpoint_candidates[2].class = 'Linear'
+operator_results.gatconv.source_cutpoint_candidates[2].name = 'source_head.2'
+operator_results.gatconv.source_cutpoint_candidates[2].score = 45
+operator_results.gatconv.source_cutpoint_class = 'Sequential'
+operator_results.gatconv.source_cutpoint_name = 'source_head'
+operator_results.gatconv.source_head_clone_class = 'Sequential'
+operator_results.gatconv.status = 'PASS'
+operator_results.gatconv.total_parameter_count = 53962
+operator_results.gatconv.train_logits_shape = [8, 16]
+operator_results.gatconv.train_loss_before_step = 0.6488603353500366
+operator_results.gatconv.trainable_parameter_count = 53962
+operator_results.gatconv.validation_logits_shape = [8, 16]
+operator_results.gatconv.validation_loss_after_step = 0.631184995174408
+operator_results.gcnconv.b3_class = 'P2B3Conv1DOnlyCount4'
+operator_results.gcnconv.b3_failed_instantiation_attempts[0].class = 'CausalDepthwiseSeparableResidualBlock'
+operator_results.gcnconv.b3_failed_instantiation_attempts[0].parameter_count = 4416
+operator_results.gcnconv.b3_failed_instantiation_attempts[1].class = 'P2B3Conv1DOnlyCount4'
+operator_results.gcnconv.b3_failed_instantiation_attempts[1].parameter_count = 43273
+operator_results.gcnconv.b3_forward_variant = 'signature_batch_kwargs'
+operator_results.gcnconv.b3_parameter_count = 43273
+operator_results.gcnconv.cuda_memory.allocated_bytes = 19635200
+operator_results.gcnconv.cuda_memory.max_allocated_bytes = 37018112
+operator_results.gcnconv.cuda_memory.reserved_bytes = 56623104
+operator_results.gcnconv.embedding_dim = 64
+operator_results.gcnconv.gradient_groups.graph1.all_gradient_tensors_finite = True
+operator_results.gcnconv.gradient_groups.graph1.gradient_parameter_names = ['graph1.bias', 'graph1.lin.weight']
+operator_results.gcnconv.gradient_groups.graph1.parameter_tensors = 2
+operator_results.gcnconv.gradient_groups.graph1.total_absolute_gradient = 2.7624681442976
+operator_results.gcnconv.gradient_groups.graph1.with_gradient = 2
+operator_results.gcnconv.gradient_groups.graph2.all_gradient_tensors_finite = True
+operator_results.gcnconv.gradient_groups.graph2.gradient_parameter_names = ['graph2.bias', 'graph2.lin.weight']
+operator_results.gcnconv.gradient_groups.graph2.parameter_tensors = 2
+operator_results.gcnconv.gradient_groups.graph2.total_absolute_gradient = 2.69996640086174
+operator_results.gcnconv.gradient_groups.graph2.with_gradient = 2
+operator_results.gcnconv.gradient_groups.other.all_gradient_tensors_finite = False
+operator_results.gcnconv.gradient_groups.other.gradient_parameter_names = []
+operator_results.gcnconv.gradient_groups.other.parameter_tensors = 4
+operator_results.gcnconv.gradient_groups.other.total_absolute_gradient = 0.0
+operator_results.gcnconv.gradient_groups.other.with_gradient = 0
+operator_results.gcnconv.gradient_groups.source_head.all_gradient_tensors_finite = True
+operator_results.gcnconv.gradient_groups.source_head.gradient_parameter_names = ['source_head.0.weight', 'source_head.0.bias', 'source_head.2.weight', 'source_head.2.bias']
+operator_results.gcnconv.gradient_groups.source_head.parameter_tensors = 4
+operator_results.gcnconv.gradient_groups.source_head.total_absolute_gradient = 3.897789776325226
+operator_results.gcnconv.gradient_groups.source_head.with_gradient = 4
+operator_results.gcnconv.gradient_groups.temporal_backbone.all_gradient_tensors_finite = True
+operator_results.gcnconv.gradient_groups.temporal_backbone.gradient_parameter_names = ['adapter.b3.input_projection.weight', 'adapter.b3.input_projection.bias', 'adapter.b3.temporal_blocks.0.depthwise.weight', 'adapter.b3.temporal_blocks.0.depthwise.bias', 'adapter.b3.temporal_blocks.0.pointwise.weight', 'adapter.b3.temporal_blocks.0.pointwise.bias', 'adapter.b3.temporal_blocks.1.depthwise.weight', 'adapter.b3.temporal_blocks.1.depthwise.bias', 'adapter.b3.temporal_blocks.1.pointwise.weight', 'adapter.b3.temporal_blocks.1.pointwise.bias', 'adapter.b3.temporal_blocks.2.depthwise.weight', 'adapter.b3.temporal_blocks.2.depthwise.bias', 'adapter.b3.temporal_blocks.2.pointwise.weight', 'adapter.b3.temporal_blocks.2.pointwise.bias', 'adapter.b3.temporal_blocks.3.depthwise.weight', 'adapter.b3.temporal_blocks.3.depthwise.bias', 'adapter.b3.temporal_blocks.3.pointwise.weight', 'adapter.b3.temporal_blocks.3.pointwise.bias', 'adapter.b3.node_projection.weight', 'adapter.b3.node_projection.bias']
+operator_results.gcnconv.gradient_groups.temporal_backbone.parameter_tensors = 38
+operator_results.gcnconv.gradient_groups.temporal_backbone.total_absolute_gradient = 10.170749383978546
+operator_results.gcnconv.gradient_groups.temporal_backbone.with_gradient = 20
+operator_results.gcnconv.gradient_summary.parameter_tensors_with_finite_gradient = 28
+operator_results.gcnconv.gradient_summary.parameter_tensors_with_gradient = 28
+operator_results.gcnconv.gradient_summary.total_absolute_gradient = 19.53097370546311
+operator_results.gcnconv.gradient_summary.trainable_parameter_tensors = 50
+operator_results.gcnconv.initial_b3_state_sha256 = 'b66f4cea227d5f72e936ca8b691a9b74ffdde37f581a441df362711e51a5d37c'
+operator_results.gcnconv.initial_source_head_state_sha256 = '102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b'
+operator_results.gcnconv.node_embedding_shape = [8, 16, 64]
+operator_results.gcnconv.operator = 'gcnconv'
+operator_results.gcnconv.seed = 107
+operator_results.gcnconv.source_cutpoint_candidates[0].class = 'Sequential'
+operator_results.gcnconv.source_cutpoint_candidates[0].name = 'source_head'
+operator_results.gcnconv.source_cutpoint_candidates[0].score = 270
+operator_results.gcnconv.source_cutpoint_candidates[1].class = 'Linear'
+operator_results.gcnconv.source_cutpoint_candidates[1].name = 'source_head.0'
+operator_results.gcnconv.source_cutpoint_candidates[1].score = 45
+operator_results.gcnconv.source_cutpoint_candidates[2].class = 'Linear'
+operator_results.gcnconv.source_cutpoint_candidates[2].name = 'source_head.2'
+operator_results.gcnconv.source_cutpoint_candidates[2].score = 45
+operator_results.gcnconv.source_cutpoint_class = 'Sequential'
+operator_results.gcnconv.source_cutpoint_name = 'source_head'
+operator_results.gcnconv.source_head_clone_class = 'Sequential'
+operator_results.gcnconv.status = 'PASS'
+operator_results.gcnconv.total_parameter_count = 53706
+operator_results.gcnconv.train_logits_shape = [8, 16]
+operator_results.gcnconv.train_loss_before_step = 0.632455050945282
+operator_results.gcnconv.trainable_parameter_count = 53706
+operator_results.gcnconv.validation_logits_shape = [8, 16]
+operator_results.gcnconv.validation_loss_after_step = 0.6073439121246338
+operator_results.graphconv.b3_class = 'P2B3Conv1DOnlyCount4'
+operator_results.graphconv.b3_failed_instantiation_attempts[0].class = 'CausalDepthwiseSeparableResidualBlock'
+operator_results.graphconv.b3_failed_instantiation_attempts[0].parameter_count = 4416
+operator_results.graphconv.b3_failed_instantiation_attempts[1].class = 'P2B3Conv1DOnlyCount4'
+operator_results.graphconv.b3_failed_instantiation_attempts[1].parameter_count = 43273
+operator_results.graphconv.b3_forward_variant = 'signature_batch_kwargs'
+operator_results.graphconv.b3_parameter_count = 43273
+operator_results.graphconv.cuda_memory.allocated_bytes = 19766272
+operator_results.graphconv.cuda_memory.max_allocated_bytes = 37083648
+operator_results.graphconv.cuda_memory.reserved_bytes = 56623104
+operator_results.graphconv.embedding_dim = 64
+operator_results.graphconv.gradient_groups.graph1.all_gradient_tensors_finite = True
+operator_results.graphconv.gradient_groups.graph1.gradient_parameter_names = ['graph1.lin_rel.weight', 'graph1.lin_rel.bias', 'graph1.lin_root.weight']
+operator_results.graphconv.gradient_groups.graph1.parameter_tensors = 3
+operator_results.graphconv.gradient_groups.graph1.total_absolute_gradient = 12.511689335107803
+operator_results.graphconv.gradient_groups.graph1.with_gradient = 3
+operator_results.graphconv.gradient_groups.graph2.all_gradient_tensors_finite = True
+operator_results.graphconv.gradient_groups.graph2.gradient_parameter_names = ['graph2.lin_rel.weight', 'graph2.lin_rel.bias', 'graph2.lin_root.weight']
+operator_results.graphconv.gradient_groups.graph2.parameter_tensors = 3
+operator_results.graphconv.gradient_groups.graph2.total_absolute_gradient = 12.011546909809113
+operator_results.graphconv.gradient_groups.graph2.with_gradient = 3
+operator_results.graphconv.gradient_groups.other.all_gradient_tensors_finite = False
+operator_results.graphconv.gradient_groups.other.gradient_parameter_names = []
+operator_results.graphconv.gradient_groups.other.parameter_tensors = 4
+operator_results.graphconv.gradient_groups.other.total_absolute_gradient = 0.0
+operator_results.graphconv.gradient_groups.other.with_gradient = 0
+operator_results.graphconv.gradient_groups.source_head.all_gradient_tensors_finite = True
+operator_results.graphconv.gradient_groups.source_head.gradient_parameter_names = ['source_head.0.weight', 'source_head.0.bias', 'source_head.2.weight', 'source_head.2.bias']
+operator_results.graphconv.gradient_groups.source_head.parameter_tensors = 4
+operator_results.graphconv.gradient_groups.source_head.total_absolute_gradient = 10.86055314540863
+operator_results.graphconv.gradient_groups.source_head.with_gradient = 4
+operator_results.graphconv.gradient_groups.temporal_backbone.all_gradient_tensors_finite = True
+operator_results.graphconv.gradient_groups.temporal_backbone.gradient_parameter_names = ['adapter.b3.input_projection.weight', 'adapter.b3.input_projection.bias', 'adapter.b3.temporal_blocks.0.depthwise.weight', 'adapter.b3.temporal_blocks.0.depthwise.bias', 'adapter.b3.temporal_blocks.0.pointwise.weight', 'adapter.b3.temporal_blocks.0.pointwise.bias', 'adapter.b3.temporal_blocks.1.depthwise.weight', 'adapter.b3.temporal_blocks.1.depthwise.bias', 'adapter.b3.temporal_blocks.1.pointwise.weight', 'adapter.b3.temporal_blocks.1.pointwise.bias', 'adapter.b3.temporal_blocks.2.depthwise.weight', 'adapter.b3.temporal_blocks.2.depthwise.bias', 'adapter.b3.temporal_blocks.2.pointwise.weight', 'adapter.b3.temporal_blocks.2.pointwise.bias', 'adapter.b3.temporal_blocks.3.depthwise.weight', 'adapter.b3.temporal_blocks.3.depthwise.bias', 'adapter.b3.temporal_blocks.3.pointwise.weight', 'adapter.b3.temporal_blocks.3.pointwise.bias', 'adapter.b3.node_projection.weight', 'adapter.b3.node_projection.bias']
+operator_results.graphconv.gradient_groups.temporal_backbone.parameter_tensors = 38
+operator_results.graphconv.gradient_groups.temporal_backbone.total_absolute_gradient = 29.319973807781935
+operator_results.graphconv.gradient_groups.temporal_backbone.with_gradient = 20
+operator_results.graphconv.gradient_summary.parameter_tensors_with_finite_gradient = 30
+operator_results.graphconv.gradient_summary.parameter_tensors_with_gradient = 30
+operator_results.graphconv.gradient_summary.total_absolute_gradient = 64.70376319810748
+operator_results.graphconv.gradient_summary.trainable_parameter_tensors = 52
+operator_results.graphconv.initial_b3_state_sha256 = 'b66f4cea227d5f72e936ca8b691a9b74ffdde37f581a441df362711e51a5d37c'
+operator_results.graphconv.initial_source_head_state_sha256 = '102b2b3a719798553134cab368ea6db9b9d198808cc013391e81bf3f41eb787b'
+operator_results.graphconv.node_embedding_shape = [8, 16, 64]
+operator_results.graphconv.operator = 'graphconv'
+operator_results.graphconv.seed = 107
+operator_results.graphconv.source_cutpoint_candidates[0].class = 'Sequential'
+operator_results.graphconv.source_cutpoint_candidates[0].name = 'source_head'
+operator_results.graphconv.source_cutpoint_candidates[0].score = 270
+operator_results.graphconv.source_cutpoint_candidates[1].class = 'Linear'
+operator_results.graphconv.source_cutpoint_candidates[1].name = 'source_head.0'
+operator_results.graphconv.source_cutpoint_candidates[1].score = 45
+operator_results.graphconv.source_cutpoint_candidates[2].class = 'Linear'
+operator_results.graphconv.source_cutpoint_candidates[2].name = 'source_head.2'
+operator_results.graphconv.source_cutpoint_candidates[2].score = 45
+operator_results.graphconv.source_cutpoint_class = 'Sequential'
+operator_results.graphconv.source_cutpoint_name = 'source_head'
+operator_results.graphconv.source_head_clone_class = 'Sequential'
+operator_results.graphconv.status = 'PASS'
+operator_results.graphconv.total_parameter_count = 61898
+operator_results.graphconv.train_logits_shape = [8, 16]
+operator_results.graphconv.train_loss_before_step = 0.5590621829032898
+operator_results.graphconv.trainable_parameter_count = 61898
+operator_results.graphconv.validation_logits_shape = [8, 16]
+operator_results.graphconv.validation_loss_after_step = 0.47001153230667114
+resolved_contract.canonical_edge_index_sha256 = 'f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff'
+resolved_contract.graph_layers = 2
+resolved_contract.graph_width = 64
+resolved_contract.initial_seeds = [107, 117, 127]
+resolved_contract.input_shape = ['items', 16, 58, 32]
+resolved_contract.operators = ['conv1d', 'gcnconv', 'graphconv', 'gatconv']
+resolved_contract.production_constraints.hook_based_full_b3_wrapper_allowed = False
+resolved_contract.source_embedding_cutpoint = 'source_head'
+resolved_contract.source_embedding_dim = 64
+resolved_contract.source_head_clone_equivalence_max_abs_error = 0.0
+resolved_contract.source_target_semantics = '16 independent binary attacker/source labels'
+resolved_contract.source_target_shape = ['items', 16]
+resolved_contract.temporal_backbone_parameters = 43273
+security_boundary.architecture_selected = False
+security_boundary.checkpoint_loaded = False
+security_boundary.scientific_checkpoint_created = False
+security_boundary.smoke_optimizer_steps_completed = 4
+security_boundary.threshold_tuning_performed = False
+topology.edge_index_sha256 = 'f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff'
+topology.runtime_validation.directed_edges = 48
+topology.runtime_validation.shape = [2, 48]
+
+===== IMPLEMENTATION SYMBOLS =====
+170: def source_rows(value: Any) -> torch.Tensor:
+181: def source_row_profile(value: Any) -> dict[str, int]:
+312: def flatten_pair_aligned_batch(
+434: def gradient_groups(model: nn.Module) -> dict[str, Any]:
+539: def find_model_classes(module) -> list[type]:
+633: def select_source_cutpoint(model: nn.Module):
+687: def batch_tensor(batch: dict[str, Any], names: tuple[str, ...]):
+694: def call_b3(model: nn.Module, batch: dict[str, Any]):
+739: def normalize_node_embedding(
+768: class B3NodeEmbeddingAdapter(nn.Module):
+817: def batched_edge_index(
+838: class SourceOnlyBaseline(nn.Module):
+945: def move_batch_to_device(
+959: def gradient_summary(model: nn.Module) -> dict[str, Any]:
+1161: def infer_embedding_dim(
+1198: def validate_flat_batch(
+1260: def normalize_source_output(
+1287: def probe_source_head_equivalence(
+1388: def validate_edge_index(edge_index: torch.Tensor) -> dict[str, Any]:
+
+===== CANONICAL TOPOLOGY FILES =====
+reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_ADJACENCY_MATRIX.npy
+reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_NEIGHBOR_TABLE.json
+reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_STATIC_EDGE_INDEX.npy
+reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_STATIC_TOPOLOGY_CONTRACT.json
+reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_STATIC_TOPOLOGY_CONTRACT.md
+reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_STATIC_TOPOLOGY_CONTRACT_COMPLETE
+reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_CANONICAL_STATIC_TOPOLOGY_CONTRACT_LOCK.json
+reports/v5/p2_g1a_r2a_canonical_static_topology_contract/V5_P2_G1A_R2A_ROUTER_COORDINATES_ROW_MAJOR.npy
+
+p2_test_directory_enumerated=false
+p2_test_tensors_deserialized=false
+training_started=false
+V5_P2_G1C_FROZEN_TRAINING_CONTRACT_EXTRACT_COMPLETE

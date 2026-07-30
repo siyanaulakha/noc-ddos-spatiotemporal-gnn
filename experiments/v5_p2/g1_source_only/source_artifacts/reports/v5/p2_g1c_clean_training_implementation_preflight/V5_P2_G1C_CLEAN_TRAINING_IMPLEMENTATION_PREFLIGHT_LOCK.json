@@ -1,0 +1,17 @@
+{
+  "architecture_selected": false,
+  "b3_model_sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def",
+  "edge_index_sha256": "f6b8050bc158de509b0ff1c5d1d7cb1ffe32c08b0f2287398270b1b891b57aff",
+  "full_training_performed": false,
+  "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+  "next_stage": "V5_P2_G1C_SOURCE_ONLY_GRAPH_TRAINING_MATRIX",
+  "operator_pass_count": 4,
+  "p2_test_directory_enumerated": false,
+  "p2_test_tensors_deserialized": false,
+  "preflight_script_sha256": "804e708cc3b030f396a761206ad1c4bce2b2560abf849e111a10c191bb7ffc63",
+  "report_sha256": "98e9c4ade72b9ef7ae509ed14d637a2b18aa30a823fc1f79453f085759e4ece1",
+  "scientific_checkpoint_created": false,
+  "scientific_training_authorized": true,
+  "status": "V5_P2_G1C_CLEAN_TRAINING_IMPLEMENTATION_PREFLIGHT_COMPLETE",
+  "trainer_sha256": "b5590cf4d237908cec658a270521020470b21d8d3b96d14c755a132a5c845c6d"
+}

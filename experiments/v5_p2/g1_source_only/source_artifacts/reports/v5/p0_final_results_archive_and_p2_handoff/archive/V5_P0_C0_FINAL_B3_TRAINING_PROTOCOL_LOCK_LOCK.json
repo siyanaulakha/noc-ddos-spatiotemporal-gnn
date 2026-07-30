@@ -1,0 +1,14 @@
+{
+  "architecture_contract_sha256": "86624dd842a57fe289f7d747151ad2aabf0fb5203d8fbc618f48ce3c91ef71b2",
+  "c0_script_sha256": "7aa0a72d633de890d7a3b271f973eefa5e40b87bad58faf8021ec0ca9690fd45",
+  "decision": "LOCK_FINAL_P0_B3_TRAINING_PROTOCOL",
+  "next_stage": "V5_P0_C1_B3_MULTI_SEED_VALIDATION_TRAINING",
+  "protocol_file_sha256": "dc345753ce2cbfcb89bc460cb6b9369bd3bb50cd0bfce50d863cba5881f69dac",
+  "protocol_markdown_sha256": "6783735a636c99e7597025a8dc40e83947cdf75eadcea0e346ce9022716b08c2",
+  "protocol_sha256": "337fcd031b4ad4963c9a959a1c91075bda84dc913f35113e53077b26bfcd33e7",
+  "report_sha256": "e8af4a9f5b0463f2108cda0ad87bbd2b3913cd3c152e77214f478b8d816e9e5a",
+  "status": "V5_P0_C0_FINAL_B3_TRAINING_PROTOCOL_LOCK_COMPLETE",
+  "test_split_accessed": false,
+  "test_split_constructed": false,
+  "training_performed": false
+}

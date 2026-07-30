@@ -1,0 +1,252 @@
+{
+  "architecture": {
+    "b1_protocol_sha256": "0817ae7812f91e3c75260589acaf52bd8a74b07b2114a451b4773578efde4b60",
+    "b3_model_sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def",
+    "common_initial_state_sha256": "fcadfc523fda012b366d481489d0269266f1d708dbaf44a41150b46290b558fe",
+    "full_initial_state_sha256": "77deb4a62ec1687f1d6f31c20e0dce37a265c1f235192b8e0732315cad33fa88",
+    "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+    "name": "TASK_D_B3_TEMPORAL_PLUS_2X_GRAPHCONV_COUNT4",
+    "parameter_count": 59785,
+    "promotion_report_sha256": "130e47a3246f69f5de3f3cb5e212278e09f10368ef131cad9e9306141c4d8b6e",
+    "task_d_model_sha256": "ccdfcb74c1ddab7f20b98c922444873ad76c204ec4b5fd6827d52fb716f11fd9"
+  },
+  "artifacts": {
+    "best_checkpoint": [
+      "/home/zira/research/projects/GNN-2d/models/v5/p2_task_d_full_multitask/graphconv/seed_127/best_checkpoint.pt",
+      "355772aa4d0fe1aed521cc4d5dd013217b02e19fc4727f9bb86988567d152d95"
+    ],
+    "history_csv": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p2_task_d_full_multitask_training/graphconv/seed_127/V5_P2_TASK_D_GRAPHCONV_SEED_127_HISTORY.csv",
+      "e031a0c1762772db282efd9e76bdde0566879856b387a9ec9ddbbe9cabd3fa8e"
+    ],
+    "progress_json": [
+      "/home/zira/research/projects/GNN-2d/reports/v5/p2_task_d_full_multitask_training/graphconv/seed_127/V5_P2_TASK_D_GRAPHCONV_SEED_127_PROGRESS.json",
+      "2877ab30545f5ff6bdccde094aba22b543658f98be6c672ebf72769e5502d60a"
+    ]
+  },
+  "best": {
+    "checkpoint_path": "/home/zira/research/projects/GNN-2d/models/v5/p2_task_d_full_multitask/graphconv/seed_127/best_checkpoint.pt",
+    "checkpoint_sha256": "355772aa4d0fe1aed521cc4d5dd013217b02e19fc4727f9bb86988567d152d95",
+    "epoch": 73,
+    "ranking_tuple": [
+      0.7802472901108327,
+      0.8954408471596143,
+      0.7214666687420987,
+      -1.4870431170457472,
+      -73
+    ],
+    "validation_metrics": {
+      "attack_loss": 0.7114942097420285,
+      "count_active": {
+        "accuracy": 0.9978225367446925,
+        "confusion_matrix": [
+          [
+            921,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            843,
+            1,
+            0
+          ],
+          [
+            0,
+            6,
+            969,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            933
+          ]
+        ],
+        "macro_f1": 0.9978046780660391,
+        "support": 3674
+      },
+      "count_loss": 0.0038651529716151873,
+      "graph": {
+        "auroc": 0.8954408471596143,
+        "average_precision": 0.7214666687420987,
+        "fixed_0_5": {
+          "accuracy": 0.8115421455938697,
+          "f1": 0.7065987324468747,
+          "fn": 831,
+          "fp": 1530,
+          "fpr": 0.17280325276711092,
+          "precision": 0.6501257717813858,
+          "recall": 0.7738160043549265,
+          "tn": 7324,
+          "tp": 2843
+        },
+        "negative_items": 8854,
+        "positive_items": 3674
+      },
+      "loss": 1.4870431170457472,
+      "path_loss": 0.3743481279028482,
+      "roles": {
+        "path": {
+          "auroc": 0.9571708420845426,
+          "average_precision": 0.6502327563598307,
+          "fixed_0_5": {
+            "accuracy": 0.911622964559387,
+            "f1": 0.7298513152878383,
+            "fn": 915,
+            "fp": 16800,
+            "fpr": 0.09567034731752874,
+            "precision": 0.5875276209182421,
+            "recall": 0.9631716643187764,
+            "tn": 158803,
+            "tp": 23930
+          },
+          "negative_entries": 175603,
+          "positive_entries": 24845
+        },
+        "source": {
+          "auroc": 0.9845072341072587,
+          "average_precision": 0.6343148996498615,
+          "fixed_0_5": {
+            "accuracy": 0.9635965437420179,
+            "f1": 0.7135398264829428,
+            "fn": 182,
+            "fp": 7115,
+            "fpr": 0.037216625343920326,
+            "precision": 0.5608837869530334,
+            "recall": 0.9803667745415319,
+            "tn": 184063,
+            "tp": 9088
+          },
+          "negative_entries": 191178,
+          "positive_entries": 9270
+        },
+        "transit": {
+          "auroc": 0.9730997572869686,
+          "average_precision": 0.5953689112156326,
+          "fixed_0_5": {
+            "accuracy": 0.9398048371647509,
+            "f1": 0.6754357650096836,
+            "fn": 687,
+            "fp": 11379,
+            "fpr": 0.06078330822730041,
+            "precision": 0.5245675607921785,
+            "recall": 0.948119619392841,
+            "tn": 175827,
+            "tp": 12555
+          },
+          "negative_entries": 187206,
+          "positive_entries": 13242
+        },
+        "victim": {
+          "auroc": 0.988229575969152,
+          "average_precision": 0.6573267721919525,
+          "fixed_0_5": {
+            "accuracy": 0.9735692049808429,
+            "f1": 0.7436368915126295,
+            "fn": 338,
+            "fp": 4960,
+            "fpr": 0.025776142517123464,
+            "precision": 0.6077190762416956,
+            "recall": 0.9578658688606333,
+            "tn": 187466,
+            "tp": 7684
+          },
+          "negative_entries": 192426,
+          "positive_entries": 8022
+        }
+      },
+      "selection_score": 0.7802472901108327,
+      "source_loss": 0.21312728615556184,
+      "transit_loss": 0.39455035950936196,
+      "victim_loss": 0.23471972635574875
+    }
+  },
+  "candidate": "graphconv",
+  "data": {
+    "item_batch_size": 256,
+    "pair_block_batch_size": 128,
+    "pair_keys_returned_to_model": false,
+    "train_batches": 275,
+    "train_items": 70166,
+    "validation_batches": 49,
+    "validation_items": 12528
+  },
+  "deployment_proxies": {
+    "graph_linear_macs": 262144,
+    "graph_message_scalar_ops": 6144,
+    "inference_microseconds_per_item": 54.26225605518198,
+    "peak_cuda_memory_bytes": 668014080,
+    "total_linear_macs": 11161920
+  },
+  "failures": [],
+  "label_weights": {
+    "count_class_weights_applied": false,
+    "count_distribution": {
+      "1": 5855,
+      "2": 5441,
+      "3": 4728,
+      "4": 4294
+    },
+    "graph_positive_weight": 2.45339108179939,
+    "role_positive_weights": {
+      "path": {
+        "clamped_positive_weight": 7.375342240922689,
+        "negative_entries": 988613,
+        "positive_entries": 134043,
+        "raw_positive_weight": 7.375342240922689
+      },
+      "source": {
+        "clamped_positive_weight": 20.0,
+        "negative_entries": 1074559,
+        "positive_entries": 48097,
+        "raw_positive_weight": 22.341497390689646
+      },
+      "transit": {
+        "clamped_positive_weight": 15.7433147902343,
+        "negative_entries": 1055605,
+        "positive_entries": 67051,
+        "raw_positive_weight": 15.7433147902343
+      },
+      "victim": {
+        "clamped_positive_weight": 20.0,
+        "negative_entries": 1081671,
+        "positive_entries": 40985,
+        "raw_positive_weight": 26.39187507624741
+      }
+    }
+  },
+  "next_stage": "V5_P2_TASK_D_FULL_MULTITASK_MATRIX_AGGREGATION",
+  "security_boundary": {
+    "test_dataset_constructed": false,
+    "test_directory_enumerated": false,
+    "test_directory_existence_checked": false,
+    "test_evaluation_performed": false,
+    "test_tensor_files_opened": false,
+    "test_tensors_deserialized": false,
+    "threshold_tuning_performed": false,
+    "train_tensor_contents_accessed": true,
+    "validation_tensor_contents_accessed": true
+  },
+  "seed": 127,
+  "stage": "V5_P2_TASK_D_FULL_MULTITASK_SINGLE_RUN",
+  "status": "COMPLETE",
+  "training": {
+    "automatic_mixed_precision": false,
+    "completed_epoch": 85,
+    "device": "cuda",
+    "early_stopping_patience": 12,
+    "gradient_clip_global_norm": 1.0,
+    "initial_learning_rate": 0.001,
+    "maximum_epochs": 100,
+    "minimum_epochs_before_stop": 15,
+    "optimizer": "AdamW",
+    "scheduler": "ReduceLROnPlateau",
+    "stopped_early": true,
+    "total_elapsed_seconds": 2155.2288615703583,
+    "weight_decay": 0.0001
+  },
+  "warnings": []
+}

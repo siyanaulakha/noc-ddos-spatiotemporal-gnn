@@ -1,0 +1,40 @@
+usage: train_temporal_gcn_v3_g1_graphconv.py [-h] [--data DATA]
+                                             [--out-dir OUT_DIR]
+                                             [--split-mode {prototype,placement,v3}]
+                                             [--splits-file SPLITS_FILE]
+                                             [--epochs EPOCHS]
+                                             [--patience PATIENCE]
+                                             [--min-delta MIN_DELTA]
+                                             [--batch-size BATCH_SIZE]
+                                             [--lr LR]
+                                             [--weight-decay WEIGHT_DECAY]
+                                             [--temporal-dim TEMPORAL_DIM]
+                                             [--gcn-hidden GCN_HIDDEN]
+                                             [--gcn-out GCN_OUT]
+                                             [--node-loss-weight NODE_LOSS_WEIGHT]
+                                             [--graph-threshold GRAPH_THRESHOLD]
+                                             [--node-threshold NODE_THRESHOLD]
+                                             [--seed SEED]
+
+options:
+  -h, --help            show this help message and exit
+  --data DATA
+  --out-dir OUT_DIR
+  --split-mode {prototype,placement,v3}
+  --splits-file SPLITS_FILE
+                        Optional .npz file containing train_idx, val_idx,
+                        test_idx.
+  --epochs EPOCHS
+  --patience PATIENCE
+  --min-delta MIN_DELTA
+  --batch-size BATCH_SIZE
+  --lr LR
+  --weight-decay WEIGHT_DECAY
+  --temporal-dim TEMPORAL_DIM
+  --gcn-hidden GCN_HIDDEN
+  --gcn-out GCN_OUT
+  --node-loss-weight NODE_LOSS_WEIGHT
+  --graph-threshold GRAPH_THRESHOLD
+  --node-threshold NODE_THRESHOLD
+  --seed SEED
+

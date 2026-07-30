@@ -1,0 +1,228 @@
+{
+  "data_root": "/home/zira/tools/architecture/gem5/experiments/v5_p2_complete558_dynamic_graph_tensors/p2_complete558_dynamic_graph",
+  "decision": "HOLD_G1_SOURCE_ONLY_IMPLEMENTATION_PENDING_INTERFACE_FIX",
+  "environment": {
+    "cuda_available": true,
+    "cuda_version": "13.0",
+    "operators": {
+      "GATConv": {
+        "forward_signature": "(self, x: Union[torch.Tensor, Tuple[torch.Tensor, Optional[torch.Tensor]]], edge_index: Union[torch.Tensor, torch_sparse.tensor.SparseTensor], edge_attr: Optional[torch.Tensor] = None, size: Optional[Tuple[int, int]] = None, return_attention_weights: Optional[bool] = None) -> Union[torch.Tensor, Tuple[torch.Tensor, Tuple[torch.Tensor, torch.Tensor]], Tuple[torch.Tensor, torch_sparse.tensor.SparseTensor]]",
+        "module": "torch_geometric.nn.conv.gat_conv",
+        "signature": "(in_channels: Union[int, Tuple[int, int]], out_channels: int, heads: int = 1, concat: bool = True, negative_slope: float = 0.2, dropout: float = 0.0, add_self_loops: bool = True, edge_dim: Optional[int] = None, fill_value: Union[float, torch.Tensor, str] = 'mean', bias: bool = True, residual: bool = False, **kwargs)"
+      },
+      "GCNConv": {
+        "forward_signature": "(self, x: torch.Tensor, edge_index: Union[torch.Tensor, torch_sparse.tensor.SparseTensor], edge_weight: Optional[torch.Tensor] = None) -> torch.Tensor",
+        "module": "torch_geometric.nn.conv.gcn_conv",
+        "signature": "(in_channels: int, out_channels: int, improved: bool = False, cached: bool = False, add_self_loops: Optional[bool] = None, normalize: bool = True, bias: bool = True, **kwargs)"
+      },
+      "GraphConv": {
+        "forward_signature": "(self, x: Union[torch.Tensor, Tuple[torch.Tensor, Optional[torch.Tensor]]], edge_index: Union[torch.Tensor, torch_sparse.tensor.SparseTensor], edge_weight: Optional[torch.Tensor] = None, size: Optional[Tuple[int, int]] = None) -> torch.Tensor",
+        "module": "torch_geometric.nn.conv.graph_conv",
+        "signature": "(in_channels: Union[int, Tuple[int, int]], out_channels: int, aggr: str = 'add', bias: bool = True, **kwargs)"
+      }
+    },
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "torch_geometric_available": true,
+    "torch_geometric_version": "2.8.0.post1",
+    "torch_version": "2.12.1+cu130"
+  },
+  "failures": [
+    "unable to construct train/validation datasets: [{'class': 'V5P2PairAlignedPrimary58Dataset', 'signature': \"(root: 'str | Path', split: 'str', pair_manifest: 'str | Path', *, window: 'int' = 32, stride: 'int' = 8) -> 'None'\", 'error': \"TypeError: unresolved required parameters for V5P2PairAlignedPrimary58Dataset: ['pair_manifest']\"}]"
+  ],
+  "implementation_requirements": {
+    "graph_layer_count": 2,
+    "graph_target_key": "y_attack",
+    "initial_seeds": [
+      107,
+      117,
+      127
+    ],
+    "mandatory_models": [
+      "CONV1D_ONLY",
+      "CONV1D_PLUS_GCNCONV",
+      "CONV1D_PLUS_GRAPHCONV"
+    ],
+    "required_input_key": "x",
+    "required_topology_key": "edge_index",
+    "screening_model": "CONV1D_PLUS_GAT",
+    "source_target_key": "y_source",
+    "test_access": false
+  },
+  "loader": {
+    "dataset_candidates": [
+      {
+        "class": "V5P2PairAlignedPrimary58Dataset",
+        "signature": "(root: 'str | Path', split: 'str', pair_manifest: 'str | Path', *, window: 'int' = 32, stride: 'int' = 8) -> 'None'"
+      }
+    ],
+    "failed_attempts": [
+      {
+        "class": "V5P2PairAlignedPrimary58Dataset",
+        "error": "TypeError: unresolved required parameters for V5P2PairAlignedPrimary58Dataset: ['pair_manifest']",
+        "signature": "(root: 'str | Path', split: 'str', pair_manifest: 'str | Path', *, window: 'int' = 32, stride: 'int' = 8) -> 'None'"
+      }
+    ],
+    "path": "/home/zira/research/projects/GNN-2d/src/data/v5_p2_pair_aligned_primary58_dataset.py",
+    "selected_class": null,
+    "selected_kwargs": {},
+    "sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+    "source_classes": [
+      {
+        "bases": [],
+        "class": "IndexEntry",
+        "methods": []
+      },
+      {
+        "bases": [
+          "Dataset"
+        ],
+        "class": "V5P2PairAlignedPrimary58Dataset",
+        "methods": [
+          "__init__",
+          "_load_run",
+          "__len__",
+          "pair_count",
+          "__getitem__"
+        ]
+      }
+    ]
+  },
+  "model": {
+    "candidate_classes": [
+      {
+        "class": "CausalDepthwiseSeparableResidualBlock",
+        "forward_signature": "(self, x: 'torch.Tensor') -> 'torch.Tensor'",
+        "signature": "(channels: 'int' = 64, kernel_size: 'int' = 3, dilation: 'int' = 1) -> 'None'"
+      },
+      {
+        "class": "P2B3Conv1DOnlyCount4",
+        "forward_signature": "(self, x: 'torch.Tensor', physical_port_mask: 'torch.Tensor') -> 'dict[str, torch.Tensor]'",
+        "signature": "() -> 'None'"
+      }
+    ],
+    "failed_instantiation_attempts": [],
+    "module_tree": [
+      {
+        "bias": true,
+        "class": "Conv1d",
+        "dilation": [
+          1
+        ],
+        "groups": 64,
+        "in_channels": 64,
+        "kernel_size": [
+          3
+        ],
+        "name": "depthwise",
+        "out_channels": 64,
+        "padding": [
+          0
+        ],
+        "stride": [
+          1
+        ]
+      },
+      {
+        "bias": true,
+        "class": "Conv1d",
+        "dilation": [
+          1
+        ],
+        "groups": 1,
+        "in_channels": 64,
+        "kernel_size": [
+          1
+        ],
+        "name": "pointwise",
+        "out_channels": 64,
+        "padding": [
+          0
+        ],
+        "stride": [
+          1
+        ]
+      }
+    ],
+    "parameter_count": 4416,
+    "path": "/home/zira/research/projects/GNN-2d/src/models/v5_p2_b3_conv1d_only_count4.py",
+    "selected_class": "CausalDepthwiseSeparableResidualBlock",
+    "selected_kwargs": {},
+    "sha256": "56ee3207d039b60e8e3a898a689cd8e361247c86b7450a3a5e95f423ebe30def",
+    "source_classes": [
+      {
+        "bases": [
+          "nn.Module"
+        ],
+        "class": "CausalDepthwiseSeparableResidualBlock",
+        "methods": [
+          "__init__",
+          "forward"
+        ]
+      },
+      {
+        "bases": [
+          "nn.Module"
+        ],
+        "class": "P2B3Conv1DOnlyCount4",
+        "methods": [
+          "__init__",
+          "forward"
+        ]
+      }
+    ],
+    "state_dict": {
+      "depthwise.bias": {
+        "dtype": "torch.float32",
+        "shape": [
+          64
+        ]
+      },
+      "depthwise.weight": {
+        "dtype": "torch.float32",
+        "shape": [
+          64,
+          1,
+          3
+        ]
+      },
+      "pointwise.bias": {
+        "dtype": "torch.float32",
+        "shape": [
+          64
+        ]
+      },
+      "pointwise.weight": {
+        "dtype": "torch.float32",
+        "shape": [
+          64,
+          64,
+          1
+        ]
+      }
+    },
+    "trainable_parameter_count": 4416
+  },
+  "next_stage": "V5_P2_G1A_R1_INTERFACE_RESOLUTION",
+  "repo": "/home/zira/research/projects/GNN-2d",
+  "samples": {},
+  "security_boundary": {
+    "architecture_selected": false,
+    "b4_validation_cache_accessed": false,
+    "b6_test_cache_accessed": false,
+    "checkpoint_loaded": false,
+    "legal_decoder_implemented": false,
+    "optimization_steps": 0,
+    "quantization_performed": false,
+    "rtl_generated": false,
+    "test_directory_enumerated": false,
+    "test_tensors_deserialized": false,
+    "threshold_tuning_performed": false,
+    "train_samples_deserialized": 1,
+    "training_performed": false,
+    "validation_samples_deserialized": 1
+  },
+  "stage": "V5_P2_G1A_SOURCE_ONLY_GRAPH_BASELINE_PREFLIGHT",
+  "status": "HOLD",
+  "topology": {},
+  "warnings": []
+}

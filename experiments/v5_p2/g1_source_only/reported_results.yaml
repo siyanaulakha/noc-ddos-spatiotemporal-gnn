@@ -1,0 +1,29 @@
+experiment_id: V5P2-G1C
+status: validation_results
+
+operators:
+  Conv1D:
+    parameter_count: 28353
+
+  GCNConv:
+    parameter_count: 36673
+
+  GraphConv:
+    parameter_count: 44865
+    reported_validation_highlights:
+      validation_score:
+        value: 0.7678
+        epoch: 36
+      source_auc:
+        highest_observed: 0.9867
+      graph_ap:
+        highest_observed_approximate: 0.6967
+
+selection:
+  operator: GraphConv
+  evidence_type: controlled_validation_comparison
+
+limitations:
+  - Values in this file are reconstructed from frozen run summaries and logs.
+  - Final metric tables must be generated from the authoritative metrics artefacts.
+  - No blind-test result is reported here.

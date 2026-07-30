@@ -1,0 +1,200 @@
+{
+  "stage": "G0",
+  "status": "EQUIVALENCE_AUDIT_PASSED",
+  "created_utc": "2026-07-21T14:20:02.916493+00:00",
+  "scope": {
+    "training_started": false,
+    "validation_inference_performed": false,
+    "test_inference_performed": false,
+    "source_modified": false
+  },
+  "frozen_a1": {
+    "source": "/home/zira/research/projects/GNN-2d/scripts/train_temporal_gcn_v3.py",
+    "source_sha256": "2a70d2c6cac90f54504fa120126e643d9ce3a5d312436d6e59004e273d6d593b",
+    "parameter_count": 882,
+    "operator": "D^{-1/2} A D^{-1/2} H W + b, where V3 A already contains self-loops"
+  },
+  "uof_cited_graphconv": {
+    "reference": "Morris et al./PyTorch Geometric GraphConv formulation",
+    "equation": "H'_i = W_root H_i + W_neighbor sum_{j in N(i)} H_j + b_neighbor",
+    "aggregation": "add",
+    "separate_root_and_neighbor_transforms": true,
+    "degree_normalization": false,
+    "self_loop_policy": "Remove self-loops from neighbor edges; root path handles self",
+    "exact_uof_implementation_available": false,
+    "interpretation": "This is an operator-faithful ablation based on the paper's cited GraphConv, not a reproduction of the complete UofF model."
+  },
+  "topology": {
+    "edge_index_shape": [
+      2,
+      64
+    ],
+    "edge_count_raw": 64,
+    "edge_count_unique": 64,
+    "duplicate_edge_count": 0,
+    "self_loop_count": 16,
+    "self_loops": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        13,
+        13
+      ],
+      [
+        14,
+        14
+      ],
+      [
+        15,
+        15
+      ]
+    ],
+    "all_expected_self_loops_present": true,
+    "nonself_directed_edge_count": 48,
+    "missing_reverse_edges": [],
+    "bidirectional_nonself_edges": true,
+    "neighbor_degrees_without_self": [
+      2,
+      3,
+      3,
+      2,
+      3,
+      4,
+      4,
+      3,
+      3,
+      4,
+      4,
+      3,
+      2,
+      3,
+      3,
+      2
+    ]
+  },
+  "parameters": {
+    "a1_total": 882,
+    "g1_total": 1138,
+    "delta": 256,
+    "percentage_increase": 29.024943310657598,
+    "graph_layer_formula_counts": {
+      "a1_graph_layer1": 144,
+      "a1_graph_layer2": 136,
+      "a1_graph_block": 280,
+      "g1_graph_layer1": 272,
+      "g1_graph_layer2": 264,
+      "g1_graph_block": 536,
+      "graph_block_delta": 256
+    }
+  },
+  "operation_estimate": {
+    "definition": "Approximate scalar feature accumulations plus linear-layer multiply-accumulates; excludes activation, bias, launch, and framework overhead.",
+    "layers": [
+      {
+        "layer": 1,
+        "in_dim": 8,
+        "out_dim": 16,
+        "a1_sparse_estimate": 2560,
+        "a1_dense_estimate": 4096,
+        "g1_sparse_estimate": 4480,
+        "g1_dense_estimate": 6144
+      },
+      {
+        "layer": 2,
+        "in_dim": 16,
+        "out_dim": 8,
+        "a1_sparse_estimate": 3072,
+        "a1_dense_estimate": 6144,
+        "g1_sparse_estimate": 4864,
+        "g1_dense_estimate": 8192
+      }
+    ],
+    "a1_sparse_total": 5632,
+    "g1_sparse_total": 9344,
+    "g1_vs_a1_sparse_ratio": 1.6590909090909092,
+    "a1_dense_total": 10240,
+    "g1_dense_total": 14336,
+    "g1_vs_a1_dense_ratio": 1.4
+  },
+  "reference_forward": {
+    "formula_max_abs_error": 4.76837158203125e-07,
+    "incorrect_self_loop_double_count_max_abs_difference": 2.323629379272461
+  },
+  "pytorch_geometric": {
+    "available": false,
+    "reason": "ModuleNotFoundError: No module named 'torch_geometric'",
+    "required_for_equation_audit": false,
+    "note": "The dense reference implements the documented GraphConv equation exactly; PyG is not required for this audit."
+  },
+  "checks": {
+    "a1_source_hash_matches_frozen": true,
+    "dataset_shape_is_four_dimensional": true,
+    "node_count_is_16": true,
+    "edge_index_shape_is_2_by_64": true,
+    "all_16_self_loops_present": true,
+    "nonself_edges_are_bidirectional": true,
+    "nonself_directed_edge_count_is_48": true,
+    "a1_parameter_count_is_882": true,
+    "g1_parameter_count_is_1138": true,
+    "parameter_delta_is_256": true,
+    "graphconv_formula_matches_manual_reference": true,
+    "self_loop_double_counting_is_observable": true
+  },
+  "decision_if_passed": {
+    "operator_meaningfully_different": true,
+    "bounded_v3_diagnostic_justified": true,
+    "broad_v3_search_reopened": false,
+    "final_v3_model_changed": false,
+    "next_authorized_stage": "G1 source generation and structural diff audit only"
+  }
+}

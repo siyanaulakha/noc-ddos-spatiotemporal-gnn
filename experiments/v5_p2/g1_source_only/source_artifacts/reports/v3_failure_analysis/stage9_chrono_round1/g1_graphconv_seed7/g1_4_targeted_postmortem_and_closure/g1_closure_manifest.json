@@ -1,0 +1,30 @@
+{
+  "stage": "G1.4",
+  "status": "G1_CLOSED_AND_FROZEN",
+  "created_utc": "2026-07-21T15:22:46.159944+00:00",
+  "decision": {
+    "g1_status": "REJECTED_ON_VALIDATION",
+    "formal_test_transfer_authorized": false,
+    "multiseed_authorized": false,
+    "additional_v3_architecture_training_authorized": false,
+    "final_v3_model": "Chrono-A1 Conv1D-TemporalGCN",
+    "architectural_insight_retained": "Separate self/root and neighbor transforms improved attacker localization, but raw unnormalized neighbor summation violated normal-run false-positive safeguards.",
+    "next_architecture_work_location": "V4 only",
+    "v4_baseline_order": [
+      "V4-A1: Conv1D + normalized GCN",
+      "V4-G2 only after V4-A1 failure analysis: separate root transform + normalized/mean neighbor transform"
+    ],
+    "default_threshold_test_metrics_policy": "Document as diagnostic trainer output only; do not use for selection, advancement, or formal claims."
+  },
+  "artifact_hash_manifest": "/home/zira/research/projects/GNN-2d/reports/v3_failure_analysis/stage9_chrono_round1/g1_graphconv_seed7/g1_4_targeted_postmortem_and_closure/g1_closure_artifact_hashes.csv",
+  "artifact_hash_manifest_sha256": "e1b81fdf75c557d4d41bf0653249e86261b2a5045450512320c4c02d242ada43",
+  "next_immediate_track": "V3.1 raw-trace inventory and semantic-mask reconstructability audit",
+  "no_longer_authorized": [
+    "G1 formal test transfer",
+    "G1 multiseed confirmation",
+    "Mean-GraphConv training on V3",
+    "Normalized root-separated GraphConv training on V3",
+    "GraphSAGE training on V3",
+    "Further graph readout/loss/sampler tuning on V3"
+  ]
+}

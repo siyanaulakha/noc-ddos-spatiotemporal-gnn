@@ -1,0 +1,42 @@
+{
+  "architecture_description": "B3 causal temporal frontend plus two GraphConv layers",
+  "architecture_selected": true,
+  "b1_protocol_sha256": "0817ae7812f91e3c75260589acaf52bd8a74b07b2114a451b4773578efde4b60",
+  "checkpoint_selected": true,
+  "checkpoint_selection_basis": "highest frozen validation multitask selection score among the five GraphConv seeds",
+  "checkpoint_sha256": "82314baedb4bf3969842abf9076679682369daae2e57db07d4b4aeaa8623f7cc",
+  "decoder_frozen": false,
+  "deployment_proxies": {
+    "graph_message_scalar_ops": 6144,
+    "latency_us_per_item": 54.51185117166801,
+    "parameter_count": 59785,
+    "total_linear_macs": 11161920
+  },
+  "frozen_checkpoint_path": "/home/zira/research/projects/GNN-2d/reports/v5/p2_task_d_checkpoint_selection_freeze/selected_graphconv_checkpoint.pt",
+  "loader_sha256": "2725ff993f4f03ebee3d5ffb775b1fedd6b131a9c4c89ed8049f45b249c24ac2",
+  "original_checkpoint_path": "/home/zira/research/projects/GNN-2d/models/v5/p2_task_d_full_multitask/graphconv/seed_107/best_checkpoint.pt",
+  "ready_for_one_shot_test": false,
+  "report_path": "/home/zira/research/projects/GNN-2d/reports/v5/p2_task_d_full_multitask_training/graphconv/seed_107/V5_P2_TASK_D_GRAPHCONV_SEED_107_REPORT.json",
+  "report_sha256": "81a332abc324174d40abe0276c4f92b4797e904a58596d383194623d95c5378b",
+  "selected_architecture": "graphconv",
+  "selected_epoch": 25,
+  "selected_seed": 107,
+  "stage": "V5_P2_TASK_D_CHECKPOINT_SELECTION_FREEZE",
+  "status": "COMPLETE",
+  "task_d_model_sha256": "ccdfcb74c1ddab7f20b98c922444873ad76c204ec4b5fd6827d52fb716f11fd9",
+  "test_directory_enumerated": false,
+  "test_tensors_deserialized": false,
+  "threshold_tuning_performed": false,
+  "thresholds_frozen": false,
+  "validation_metrics": {
+    "count_macro_f1": 0.9867282059256288,
+    "graph_ap": 0.7360511740605318,
+    "graph_auroc": 0.8971664603519822,
+    "macro_role_ap": 0.6329713404345747,
+    "path_ap": 0.6509758051365477,
+    "source_ap": 0.6484946984744402,
+    "transit_ap": 0.5924258930480705,
+    "victim_ap": 0.6399889650792403
+  },
+  "validation_selection_score": 0.7807553812773486
+}
